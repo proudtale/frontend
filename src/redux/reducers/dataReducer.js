@@ -6,8 +6,9 @@ import {
   DELETE_SCREAM,
   POST_SCREAM,
   SET_SCREAM,
-  SUBMIT_COMMENT
-} from '../types';
+  SUBMIT_COMMENT,
+  EDIT_SCREAM
+} from "../types";
 
 const initialState = {
   screams: [],
@@ -33,10 +34,15 @@ export default function(state = initialState, action) {
         ...state,
         scream: action.payload
       };
+    case EDIT_SCREAM:
+      return {
+        ...state,
+        scream: action.payload
+      };
     case LIKE_SCREAM:
     case UNLIKE_SCREAM:
       let index = state.screams.findIndex(
-        (scream) => scream.screamId === action.payload.screamId
+        scream => scream.screamId === action.payload.screamId
       );
       state.screams[index] = action.payload;
       if (state.scream.screamId === action.payload.screamId) {
@@ -47,7 +53,7 @@ export default function(state = initialState, action) {
       };
     case DELETE_SCREAM:
       index = state.screams.findIndex(
-        (scream) => scream.screamId === action.payload
+        scream => scream.screamId === action.payload
       );
       state.screams.splice(index, 1);
       return {

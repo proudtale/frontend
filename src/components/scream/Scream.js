@@ -1,27 +1,29 @@
-import React, { Component } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
-import { Link } from 'react-router-dom';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-import PropTypes from 'prop-types';
-import MyButton from '../../util/MyButton';
-import DeleteScream from './DeleteScream';
-import ScreamDialog from './ScreamDialog';
-import LikeButton from './LikeButton';
+import React, { Component } from "react";
+import withStyles from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import PropTypes from "prop-types";
+import MyButton from "../../util/MyButton";
+import DeleteScream from "./DeleteScream";
+import ScreamDialog from "./ScreamDialog";
+import LikeButton from "./LikeButton";
 // MUI Stuff
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
 // Icons
-import ChatIcon from '@material-ui/icons/Chat';
+import ChatIcon from "@material-ui/icons/Chat";
 // Redux
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
+import { Button } from "@material-ui/core";
+import TextEditor from "./TextEditor";
 
 const styles = {
   card: {
-    position: 'relative',
-    display: 'flex',
+    position: "relative",
+    display: "flex",
     marginBottom: 20
   },
   image: {
@@ -29,16 +31,25 @@ const styles = {
   },
   content: {
     padding: 25,
-    objectFit: 'cover'
+    objectFit: "cover"
   }
 };
 
 class Scream extends Component {
+  state = {
+    edit: false
+  };
+
+  setEdit = () => {
+    this.setState({ edit: !this.state.edit });
+  };
+
   render() {
     dayjs.extend(relativeTime);
     const {
       classes,
       scream: {
+        title,
         body,
         createdAt,
         userImage,
@@ -57,7 +68,17 @@ class Scream extends Component {
       authenticated && userHandle === handle ? (
         <DeleteScream screamId={screamId} />
       ) : null;
-    return (
+    const editButton =
+      authenticated && userHandle === handle ? (
+        <Button onClick={this.setEdit}>Edit</Button>
+      ) : null;
+    return this.state.edit ? (
+      <TextEditor
+        setEdit={this.setEdit}
+        edit={true}
+        scream={this.props.scream}
+      />
+    ) : (
       <Card className={classes.card}>
         <CardMedia
           image={userImage}
@@ -74,10 +95,11 @@ class Scream extends Component {
             {userHandle}
           </Typography>
           {deleteButton}
+          {editButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
-          <Typography variant="body1">{body}</Typography>
+          <Typography variant="body1">{title}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} Likes</span>
           <MyButton tip="comments">
@@ -102,7 +124,7 @@ Scream.propTypes = {
   openDialog: PropTypes.bool
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   user: state.user
 });
 
