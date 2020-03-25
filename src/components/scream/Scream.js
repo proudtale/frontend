@@ -17,68 +17,48 @@ import Typography from "@material-ui/core/Typography";
 import ChatIcon from "@material-ui/icons/Chat";
 // Redux
 import { connect } from "react-redux";
-import { Button } from "@material-ui/core";
-import TextEditor from "./TextEditor";
 
 const styles = {
   card: {
     position: "relative",
     display: "flex",
-    marginBottom: 20
+    marginBottom: 20,
   },
   image: {
-    minWidth: 200
+    minWidth: 200,
   },
   content: {
     padding: 25,
-    objectFit: "cover"
-  }
+    objectFit: "cover",
+  },
 };
 
 class Scream extends Component {
-  state = {
-    edit: false
-  };
-
-  setEdit = () => {
-    this.setState({ edit: !this.state.edit });
-  };
-
   render() {
     dayjs.extend(relativeTime);
     const {
       classes,
       scream: {
         title,
-        body,
         createdAt,
         userImage,
         userHandle,
         screamId,
         likeCount,
-        commentCount
+        commentCount,
       },
       user: {
         authenticated,
-        credentials: { handle }
-      }
+        credentials: { handle },
+      },
     } = this.props;
 
     const deleteButton =
       authenticated && userHandle === handle ? (
         <DeleteScream screamId={screamId} />
       ) : null;
-    const editButton =
-      authenticated && userHandle === handle ? (
-        <Button onClick={this.setEdit}>Edit</Button>
-      ) : null;
-    return this.state.edit ? (
-      <TextEditor
-        setEdit={this.setEdit}
-        edit={true}
-        scream={this.props.scream}
-      />
-    ) : (
+
+    return (
       <Card className={classes.card}>
         <CardMedia
           image={userImage}
@@ -95,7 +75,6 @@ class Scream extends Component {
             {userHandle}
           </Typography>
           {deleteButton}
-          {editButton}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
@@ -121,11 +100,11 @@ Scream.propTypes = {
   user: PropTypes.object.isRequired,
   scream: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
-  openDialog: PropTypes.bool
+  openDialog: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  user: state.user
+const mapStateToProps = (state) => ({
+  user: state.user,
 });
 
 export default connect(mapStateToProps)(withStyles(styles)(Scream));

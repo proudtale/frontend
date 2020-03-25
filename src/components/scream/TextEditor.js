@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 //redux
 import { connect } from "react-redux";
-import { getScreams, editScream } from "../../redux/actions/dataActions";
+import { getScreams, submitEdit } from "../../redux/actions/dataActions";
 
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -17,21 +17,16 @@ const styles = {
   submitButton: {
     position: "relative",
     float: "right",
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 };
 
 class TextEditor extends Component {
-  // componentDidMount() {
-  //   this.props.getScreams();
-  // }
-
   constructor(props) {
     super(props);
     this.state = {
       editorHtml: this.props.scream ? this.props.scream.body : "",
       theme: "snow",
-      edit: this.props.edit
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -45,24 +40,22 @@ class TextEditor extends Component {
     this.setState({ theme: newTheme });
   }
 
-  handleClick = () => {
-    const regex = /^<p>|<\/p>$/g;
-    let modifiedText = this.state.editorHtml.replace(regex, "");
-    if (this.props.edit) {
+  handleClick = (event) => {
+    if (this.props.data.edit) {
+      event.preventDefault();
       const scream = this.props.scream;
-      console.log(scream);
-      scream.body = modifiedText;
-      this.props.editScream(scream);
-      this.props.setEdit();
+      scream.body = this.state.editorHtml;
+      this.props.submitEdit(scream);
     } else {
-      this.props.setValue(modifiedText);
+      // if we are not in editing mode we are making a post!
+      this.props.setValue(this.state.editorHtml);
     }
   };
 
   render() {
     const {
       classes,
-      UI: { loading }
+      UI: { loading },
     } = this.props;
     return (
       <div>
@@ -76,7 +69,6 @@ class TextEditor extends Component {
           placeholder={this.props.placeholder}
         />
         <Button
-          type="submit"
           variant="contained"
           color="primary"
           className={classes.submitButton}
@@ -95,12 +87,12 @@ class TextEditor extends Component {
 TextEditor.propTypes = {
   getScreams: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
-  scream: PropTypes.object
+  scream: PropTypes.object,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   data: state.data,
-  UI: state.UI
+  UI: state.UI,
 });
 
 TextEditor.modules = {
@@ -112,15 +104,15 @@ TextEditor.modules = {
       { list: "ordered" },
       { list: "bullet" },
       { indent: "-1" },
-      { indent: "+1" }
+      { indent: "+1" },
     ],
     ["link", "image", "video"],
-    ["clean"]
+    ["clean"],
   ],
   clipboard: {
     // toggle to add extra line breaks when pasting HTML:
-    matchVisual: false
-  }
+    matchVisual: false,
+  },
 };
 /*
  * Quill editor formats
@@ -140,16 +132,16 @@ TextEditor.formats = [
   "indent",
   "link",
   "image",
-  "video"
+  "video",
 ];
 
 /*
  * PropType validation
  */
 TextEditor.propTypes = {
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 };
 
-export default connect(mapStateToProps, { getScreams, editScream })(
+export default connect(mapStateToProps, { getScreams, submitEdit })(
   withStyles(styles)(TextEditor)
 );
