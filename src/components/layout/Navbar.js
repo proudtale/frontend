@@ -21,7 +21,7 @@ import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
 
 const styles = (theme) => ({
-  ...theme,
+  ...theme.spread,
   navbarImage: {
     width: 50,
     height: 50,

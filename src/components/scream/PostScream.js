@@ -16,17 +16,17 @@ import { postScream, clearErrors } from "../../redux/actions/dataActions";
 //
 import TextEditor from "./TextEditor";
 
-const styles = theme => ({
-  ...theme,
+const styles = (theme) => ({
+  ...theme.spread,
 
   progressSpinner: {
-    position: "absolute"
+    position: "absolute",
   },
   closeButton: {
     position: "absolute",
     left: "91%",
-    top: "6%"
-  }
+    top: "6%",
+  },
 });
 
 class PostScream extends Component {
@@ -35,12 +35,12 @@ class PostScream extends Component {
     // text: '',
     title: "",
     value: "",
-    errors: {}
+    errors: {},
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
-        errors: nextProps.UI.errors
+        errors: nextProps.UI.errors,
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
@@ -48,7 +48,7 @@ class PostScream extends Component {
     }
   }
 
-  setValue = val => {
+  setValue = (val) => {
     this.setState({ value: val });
   };
   handleOpen = () => {
@@ -58,11 +58,11 @@ class PostScream extends Component {
     this.props.clearErrors();
     this.setState({ open: false, errors: {} });
   };
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({ title: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.postScream({ title: this.state.title, body: this.state.value });
   };
@@ -121,11 +121,11 @@ class PostScream extends Component {
 PostScream.propTypes = {
   postScream: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
-  UI: PropTypes.object.isRequired
+  UI: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
-  UI: state.UI
+const mapStateToProps = (state) => ({
+  UI: state.UI,
 });
 
 export default connect(mapStateToProps, { postScream, clearErrors })(
