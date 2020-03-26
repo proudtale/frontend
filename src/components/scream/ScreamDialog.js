@@ -28,7 +28,7 @@ import {
 import TextEditor from "./TextEditor";
 
 const styles = (theme) => ({
-  ...theme,
+  ...theme.spread,
   profileImage: {
     maxWidth: 200,
     height: 200,

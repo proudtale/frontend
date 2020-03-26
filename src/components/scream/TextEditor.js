@@ -69,6 +69,7 @@ class TextEditor extends Component {
           placeholder={this.props.placeholder}
         />
         <Button
+          type="submit"
           variant="contained"
           color="primary"
           className={classes.submitButton}
