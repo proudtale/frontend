@@ -1,36 +1,35 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import MyButton from '../../util/MyButton';
-import PostScream from '../scream/PostScream';
-import Notifications from './Notifications';
-import withStyles from '@material-ui/core/styles/withStyles';
+import React, { Component, Fragment } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import MyButton from "../../util/MyButton";
+import PostScream from "../scream/PostScream";
+import Notifications from "./Notifications";
+import withStyles from "@material-ui/core/styles/withStyles";
 // MUI stuff
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Button from "@material-ui/core/Button";
 // Icons
-import CreateIcon from '@material-ui/icons/Create';
-import HomeIcon from '@material-ui/icons/Home';
-import PeopleIcon from '@material-ui/icons/People';
-import TuneIcon from '@material-ui/icons/Tune';
-import EmailIcon from '@material-ui/icons/Email';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import HomeIcon from "@material-ui/icons/Home";
+import PeopleIcon from "@material-ui/icons/People";
+import TuneIcon from "@material-ui/icons/Tune";
+import EmailIcon from "@material-ui/icons/Email";
+import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 
 //Redux
-import { connect } from 'react-redux';
-import { logoutUser} from '../../redux/actions/userActions';
+import { connect } from "react-redux";
+import { logoutUser } from "../../redux/actions/userActions";
 
 const styles = (theme) => ({
   ...theme,
   navbarImage: {
     width: 50,
-    height:50,
-    borderRadius: '10%'
+    height: 50,
+    borderRadius: "10%",
   },
   navbarHandle: {
-    marginRight: '10px'
-  }
+    marginRight: "10px",
+  },
 });
 
 class Navbar extends Component {
@@ -38,14 +37,22 @@ class Navbar extends Component {
     this.props.logoutUser();
   };
   render() {
-    const { classes, credentials: {imageUrl, handle}, authenticated } = this.props;
+    const {
+      classes,
+      credentials: { imageUrl, handle },
+      authenticated,
+    } = this.props;
     return (
       <AppBar>
         <Toolbar className="nav-container">
           {authenticated ? (
             <Fragment>
               <h3 className={classes.navbarHandle}>{handle}</h3>
-              <img src={imageUrl} alt="profile" className={classes.navbarImage}/>
+              <img
+                src={imageUrl}
+                alt="profile"
+                className={classes.navbarImage}
+              />
               <PostScream />
               <Notifications />
               <Link to="/">
@@ -62,24 +69,15 @@ class Navbar extends Component {
               <Button>
                 <TuneIcon />
               </Button>
-              <Button color="inherit" component={Link} to="/textEditor">
-                <CreateIcon />
+              <Button>
+                <EmailIcon />
               </Button>
               <Button>
-                <EmailIcon/>
-              </Button>
-              <Button>
-                <PeopleIcon/>
+                <PeopleIcon />
               </Button>
               <Button color="inherit" component={Link} to="/">
                 <HomeIcon />
               </Button>
-              {/* <Button color="inherit" component={Link} to="/login">
-                Login
-              </Button>
-              <Button color="inherit" component={Link} to="/signup">
-                Register
-              </Button> */}
             </Fragment>
           )}
         </Toolbar>
@@ -88,17 +86,19 @@ class Navbar extends Component {
   }
 }
 
-
-const mapActionsToProps = { logoutUser};
+const mapActionsToProps = { logoutUser };
 
 Navbar.propTypes = {
   authenticated: PropTypes.bool.isRequired,
-  logoutUser: PropTypes.func.isRequired
+  logoutUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   credentials: state.user.credentials,
-  authenticated: state.user.authenticated
+  authenticated: state.user.authenticated,
 });
 
-export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Navbar));
+export default connect(
+  mapStateToProps,
+  mapActionsToProps
+)(withStyles(styles)(Navbar));

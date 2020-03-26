@@ -1,57 +1,63 @@
-import React, { Component, Fragment } from 'react';
-import PropTypes from 'prop-types';
-import withStyles from '@material-ui/core/styles/withStyles';
-import MyButton from '../../util/MyButton';
-import LikeButton from './LikeButton';
-import Comments from './Comments';
-import CommentForm from './CommentForm';
-import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
+import React, { Component, Fragment } from "react";
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/core/styles/withStyles";
+import MyButton from "../../util/MyButton";
+import LikeButton from "./LikeButton";
+import Comments from "./Comments";
+import CommentForm from "./CommentForm";
+import dayjs from "dayjs";
+import { Link } from "react-router-dom";
 // MUI Stuff
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 // Icons
-import CloseIcon from '@material-ui/icons/Close';
-import UnfoldMore from '@material-ui/icons/UnfoldMore';
-import ChatIcon from '@material-ui/icons/Chat';
+import CloseIcon from "@material-ui/icons/Close";
+import UnfoldMore from "@material-ui/icons/UnfoldMore";
+import ChatIcon from "@material-ui/icons/Chat";
 // Redux stuff
-import { connect } from 'react-redux';
-import { getScream, clearErrors } from '../../redux/actions/dataActions';
+import { connect } from "react-redux";
+import {
+  getScream,
+  clearErrors,
+  editScream,
+} from "../../redux/actions/dataActions";
+import TextEditor from "./TextEditor";
 
 const styles = (theme) => ({
   ...theme,
   profileImage: {
     maxWidth: 200,
     height: 200,
-    borderRadius: '50%',
-    objectFit: 'cover'
+    borderRadius: "50%",
+    objectFit: "cover",
   },
   dialogContent: {
-    padding: 20
+    padding: 20,
   },
   closeButton: {
-    position: 'absolute',
-    left: '90%'
+    position: "absolute",
+    left: "90%",
   },
   expandButton: {
-    position: 'absolute',
-    left: '90%'
+    position: "absolute",
+    left: "90%",
   },
   spinnerDiv: {
-    textAlign: 'center',
+    textAlign: "center",
     marginTop: 50,
-    marginBottom: 50
-  }
+    marginBottom: 50,
+  },
 });
 
 class ScreamDialog extends Component {
   state = {
     open: false,
-    oldPath: '',
-    newPath: ''
+    oldPath: "",
+    newPath: "",
   };
   componentDidMount() {
     if (this.props.openDialog) {
@@ -74,6 +80,7 @@ class ScreamDialog extends Component {
   handleClose = () => {
     window.history.pushState(null, null, this.state.oldPath);
     this.setState({ open: false });
+    if (this.props.edit) this.props.editScream(); // if we are in edit mode, and we close the popup we want to close the editor!
     this.props.clearErrors();
   };
 
@@ -81,6 +88,7 @@ class ScreamDialog extends Component {
     const {
       classes,
       scream: {
+        title,
         screamId,
         body,
         createdAt,
@@ -88,11 +96,19 @@ class ScreamDialog extends Component {
         commentCount,
         userImage,
         userHandle,
-        comments
+        comments,
       },
-      UI: { loading }
+      UI: { loading },
+      user: {
+        authenticated,
+        credentials: { handle },
+      },
+      edit,
     } = this.props;
-
+    const editButton =
+      authenticated && userHandle === handle ? (
+        <Button onClick={this.props.editScream}>Edit</Button>
+      ) : null;
     const dialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
         <CircularProgress size={200} thickness={2} />
@@ -113,17 +129,26 @@ class ScreamDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body2" color="textSecondary">
-            {dayjs(createdAt).format('h:mm a, MMMM DD YYYY')}
+            {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
           </Typography>
           <hr className={classes.invisibleSeparator} />
-          <Typography variant="body1">{body}</Typography>
+          <Typography variant="body1">{title}</Typography>
           <LikeButton screamId={screamId} />
           <span>{likeCount} likes</span>
           <MyButton tip="comments">
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} comments</span>
+          <hr className={classes.invisibleSeparator} />
+          {editButton}
         </Grid>
+        {edit ? (
+          <TextEditor scream={this.props.scream} />
+        ) : (
+          <Typography variant="body1">
+            <div dangerouslySetInnerHTML={{ __html: body }}></div>
+          </Typography>
+        )}
         <hr className={classes.visibleSeparator} />
         <CommentForm screamId={screamId} />
         <Comments comments={comments} />
@@ -166,17 +191,20 @@ ScreamDialog.propTypes = {
   screamId: PropTypes.string.isRequired,
   userHandle: PropTypes.string.isRequired,
   scream: PropTypes.object.isRequired,
-  UI: PropTypes.object.isRequired
+  UI: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   scream: state.data.scream,
-  UI: state.UI
+  edit: state.data.edit,
+  UI: state.UI,
+  user: state.user,
 });
 
 const mapActionsToProps = {
   getScream,
-  clearErrors
+  clearErrors,
+  editScream,
 };
 
 export default connect(
