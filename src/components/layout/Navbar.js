@@ -19,9 +19,9 @@ import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 //Redux
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
+import Searchbar from "./Searchbar";
 
 const styles = (theme) => ({
-  ...theme,
   navbarImage: {
     width: 50,
     height: 50,
@@ -45,6 +45,7 @@ class Navbar extends Component {
     return (
       <AppBar>
         <Toolbar className="nav-container">
+          <Searchbar />
           {authenticated ? (
             <Fragment>
               <h3 className={classes.navbarHandle}>{handle}</h3>

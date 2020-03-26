@@ -1,12 +1,12 @@
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   background-image: url(./images/desktop.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  }
+}
 .container {
   margin: 80px auto 0 auto;
   max-width: 1200px;
@@ -17,7 +17,7 @@ body {
 .nav-container {
   /* margin: auto; */
   display: flex;
-  justify-content:flex-end;
+  justify-content: flex-end;
 }
 .nav-container svg {
   color: #fff;
