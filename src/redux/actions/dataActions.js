@@ -13,6 +13,7 @@ import {
   SUBMIT_COMMENT,
   SUBMIT_EDIT,
   EDIT_SCREAM,
+  SEARCH_SCREAMS,
 } from "../types";
 import axios from "axios";
 
@@ -156,6 +157,31 @@ export const getUserData = (userHandle) => (dispatch) => {
         payload: null,
       });
     });
+};
+
+export const searchScreams = (value, screams) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  if (screams.length < 1) {
+    axios
+      .get("/screams")
+      .then((res) => {
+        dispatch({
+          type: SET_SCREAMS,
+          payload: res.data,
+        });
+      })
+      .then(() => {
+        dispatch({
+          type: SEARCH_SCREAMS,
+          payload: value,
+        });
+      });
+  } else {
+    dispatch({
+      type: SEARCH_SCREAMS,
+      payload: value,
+    });
+  }
 };
 
 export const clearErrors = () => (dispatch) => {

@@ -1,5 +1,6 @@
 import {
   SET_SCREAMS,
+  SEARCH_SCREAMS,
   LIKE_SCREAM,
   UNLIKE_SCREAM,
   LOADING_DATA,
@@ -13,9 +14,14 @@ import {
 
 const initialState = {
   screams: [],
+  filteredScreams: [],
   scream: {},
   loading: false,
   edit: false,
+};
+
+const filterScreams = (screams, value) => {
+  return screams.filter((scream) => scream.title.indexOf(value) > -1);
 };
 
 export default function (state = initialState, action) {
@@ -79,6 +85,12 @@ export default function (state = initialState, action) {
           ...state.scream,
           comments: [action.payload, ...state.scream.comments],
         },
+      };
+    case SEARCH_SCREAMS:
+      return {
+        ...state,
+        filteredScreams: filterScreams(state.screams, action.payload),
+        loading: false,
       };
     default:
       return state;
