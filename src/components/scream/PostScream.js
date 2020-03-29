@@ -64,6 +64,7 @@ class PostScream extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    console.log("HIII");
     this.props.postScream({ title: this.state.title, body: this.state.value });
   };
   render() {
@@ -102,14 +103,7 @@ class PostScream extends Component {
                 onChange={this.handleChange}
                 fullWidth
               />
-              <TextEditor
-                type="text"
-                label="Body"
-                multiline
-                rows="3"
-                error={errors.body ? true : false}
-                setValue={this.setValue}
-              />
+              <TextEditor type="text" label="Body" setValue={this.setValue} />
             </form>
           </DialogContent>
         </Dialog>
