@@ -22,6 +22,7 @@ import { logoutUser } from "../../redux/actions/userActions";
 import Searchbar from "./Searchbar";
 
 const styles = (theme) => ({
+  ...theme.spread,
   navbarImage: {
     width: 50,
     height: 50,
