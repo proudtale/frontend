@@ -4,11 +4,15 @@ import PropTypes from "prop-types";
 import MyButton from "../../util/MyButton";
 import PostScream from "../scream/PostScream";
 import Notifications from "./Notifications";
+import MobileNavbar from "../../util/MobileNavbar";
+
 import withStyles from "@material-ui/core/styles/withStyles";
 // MUI stuff
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+import Box from "@material-ui/core/Box";
+
 // Icons
 import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
@@ -43,6 +47,7 @@ class Navbar extends Component {
   handleLogout = () => {
     this.props.logoutUser();
   };
+
   render() {
     const {
       classes,
@@ -65,58 +70,60 @@ class Navbar extends Component {
             <h4 className={classes.navbarTitle}>proudtale</h4>
           </div>
           {/* Right side in header */}
-          <div>
-            {authenticated ? (
-              <Fragment>
-                <h4 className={classes.navbarHandle}>{handle}</h4>
-                <img
-                  src={imageUrl}
-                  alt="profile"
-                  className={classes.navbarImage}
-                />
-                <PostScream />
-                <Notifications tip="Notification" />
-                <Link to="/">
-                  <MyButton tip="Home">
-                    <HomeIcon />
-                  </MyButton>
-                </Link>
-                <Link to="community">
-                  <MyButton tip="Community">
-                    <PeopleIcon />
-                  </MyButton>
-                </Link>
-                <MyButton tip="Logout" onClick={this.handleLogout}>
-                  <MeetingRoomIcon color="primary" />
+          {authenticated ? (
+            <Box display={{ xs: "none", sm: "block" }}>
+              <h4 className={classes.navbarHandle}>{handle}</h4>
+              <img
+                src={imageUrl}
+                alt="profile"
+                className={classes.navbarImage}
+              />
+              <PostScream />
+              <Notifications tip="Notification" />
+              <Link to="/">
+                <MyButton tip="Home">
+                  <HomeIcon />
                 </MyButton>
-              </Fragment>
-            ) : (
-              <Fragment>
-                <Button>
-                  <TuneIcon />
-                </Button>
-                <Button>
-                  <EmailIcon />
-                </Button>
-                <Link to="/">
-                  <MyButton tip="Home">
-                    <HomeIcon />
-                  </MyButton>
-                </Link>
-                {/* <Button title="Home" color="inherit" component={Link} to="/">
+              </Link>
+              <Link to="community">
+                <MyButton tip="Community">
+                  <PeopleIcon />
+                </MyButton>
+              </Link>
+              <MyButton tip="Logout" onClick={this.handleLogout}>
+                <MeetingRoomIcon color="primary" />
+              </MyButton>
+            </Box>
+          ) : (
+            <Box display={{ xs: "none", sm: "block" }}>
+              <Button>
+                <TuneIcon />
+              </Button>
+              <Button>
+                <EmailIcon />
+              </Button>
+              <Link to="/">
+                <MyButton tip="Home">
+                  <HomeIcon />
+                </MyButton>
+              </Link>
+              {/* <Button title="Home" color="inherit" component={Link} to="/">
                   <HomeIcon />
                 </Button> */}
-                <Link to="login">
-                  <MyButton tip="Login">
-                    <LockOpenIcon />
-                  </MyButton>
-                </Link>
-                {/* <Button title="Login" color="inherit" component={Link} to="login">
+              <Link to="login">
+                <MyButton tip="Login">
+                  <LockOpenIcon />
+                </MyButton>
+              </Link>
+              {/* <Button title="Login" color="inherit" component={Link} to="login">
                   <LockOpenIcon />
                 </Button> */}
-              </Fragment>
-            )}
-          </div>
+            </Box>
+          )}
+          <MobileNavbar
+            logoutUser={this.props.logoutUser}
+            authenticated={authenticated}
+          />
         </Toolbar>
       </AppBar>
     );

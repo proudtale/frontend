@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 const styles = (theme) => ({
   ...theme.spread,
 });
@@ -70,12 +72,21 @@ class Slide extends Component {
           />
         </div>
 
-        <article className="slide__content">
-          <h2 className="slide__headline">{headline}</h2>
-          <button className="slide__action btn white-text mt-4">
-            {button}
-          </button>
-        </article>
+        <Grid
+          className="slide__content"
+          container
+          direction="column"
+          spacing={3}
+        >
+          <Grid item>
+            <h2 className="slide__headline">{headline}</h2>
+          </Grid>
+          <Grid item>
+            <Button className="btn white-text mt-lg-4" disableRipple={true}>
+              {button}
+            </Button>
+          </Grid>
+        </Grid>
       </li>
     );
   }
