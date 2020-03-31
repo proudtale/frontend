@@ -14,10 +14,12 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+
 // Icons
 import CloseIcon from "@material-ui/icons/Close";
-import UnfoldMore from "@material-ui/icons/UnfoldMore";
 import ChatIcon from "@material-ui/icons/Chat";
+import ImportContactsIcon from "@material-ui/icons/ImportContacts";
+
 // Redux stuff
 import { connect } from "react-redux";
 import {
@@ -107,7 +109,9 @@ class ScreamDialog extends Component {
     } = this.props;
     const editButton =
       authenticated && userHandle === handle ? (
-        <Button onClick={this.props.editScream}>Edit</Button>
+        <Button onClick={this.props.editScream} color="primary">
+          Edit
+        </Button>
       ) : null;
     const dialogMarkup = loading ? (
       <div className={classes.spinnerDiv}>
@@ -133,7 +137,8 @@ class ScreamDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{title}</Typography>
-          <LikeButton screamId={screamId} />
+          {/* <LikeButton screamId={screamId} />  need to fix it later */}
+          <LikeButton />
           <span>{likeCount} likes</span>
           <MyButton tip="comments">
             <ChatIcon color="primary" />
@@ -158,10 +163,10 @@ class ScreamDialog extends Component {
       <Fragment>
         <MyButton
           onClick={this.handleOpen}
-          tip="Expand scream"
+          tip="Expand book"
           tipClassName={classes.expandButton}
         >
-          <UnfoldMore color="primary" />
+          <ImportContactsIcon color="primary" />
         </MyButton>
         <Dialog
           open={this.state.open}

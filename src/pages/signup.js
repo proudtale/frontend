@@ -13,9 +13,16 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 // Redux stuff
 import { connect } from "react-redux";
 import { signupUser } from "../redux/actions/userActions";
+import { Checkbox, FormControlLabel } from "@material-ui/core";
 
 const styles = (theme) => ({
   ...theme.spread,
+  registerStyle: {
+    background: "white",
+    padding: "2em",
+    borderRadius: "1em",
+    marginTop: "3em",
+  },
 });
 
 class signup extends Component {
@@ -60,87 +67,94 @@ class signup extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-          <img src={AppIcon} alt="proudtale" className={classes.image} />
-          <Typography variant="h4" className={classes.pageTitle}>
-            Register
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
-            <TextField
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              className={classes.textField}
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              value={this.state.email}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id="password"
-              name="password"
-              type="password"
-              label="Password"
-              className={classes.textField}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              value={this.state.password}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id="confirmPassword"
-              name="confirmPassword"
-              type="password"
-              label="Confirm Password"
-              className={classes.textField}
-              helperText={errors.confirmPassword}
-              error={errors.confirmPassword ? true : false}
-              value={this.state.confirmPassword}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id="handle"
-              name="handle"
-              type="text"
-              label="Handle"
-              className={classes.textField}
-              helperText={errors.handle}
-              error={errors.handle ? true : false}
-              value={this.state.handle}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            {errors.general && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              disabled={loading}
-            >
+      <div className={classes.registerStyle}>
+        <Grid container className={classes.form}>
+          <Grid item sm />
+          <Grid item sm>
+            <img src={AppIcon} alt="proudtale" className={classes.image} />
+            <Typography variant="h4" className={classes.pageTitle}>
               Register
-              {loading && (
-                <CircularProgress size={30} className={classes.progress} />
+            </Typography>
+            <form noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                className={classes.textField}
+                helperText={errors.email}
+                error={errors.email ? true : false}
+                value={this.state.email}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                id="password"
+                name="password"
+                type="password"
+                label="Password"
+                className={classes.textField}
+                helperText={errors.password}
+                error={errors.password ? true : false}
+                value={this.state.password}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                label="Confirm Password"
+                className={classes.textField}
+                helperText={errors.confirmPassword}
+                error={errors.confirmPassword ? true : false}
+                value={this.state.confirmPassword}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                id="handle"
+                name="handle"
+                type="text"
+                label="Handle"
+                className={classes.textField}
+                helperText={errors.handle}
+                error={errors.handle ? true : false}
+                value={this.state.handle}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              {errors.general && (
+                <Typography variant="body2" className={classes.customError}>
+                  {errors.general}
+                </Typography>
               )}
-            </Button>
-            <br />
-            <small>
-              Already have an account ? Login <Link to="/login">here</Link>
-            </small>
-          </form>
+              <FormControlLabel
+                control={<Checkbox color="primary" name="agreement" />}
+                value="I agree"
+                label="I agree to the Proudtale Agreement"
+              />
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                disabled={loading}
+              >
+                Register
+                {loading && (
+                  <CircularProgress size={30} className={classes.progress} />
+                )}
+              </Button>
+              <br />
+              <small>
+                Already have an account ? Login <Link to="/login">here</Link>
+              </small>
+            </form>
+          </Grid>
+          <Grid item sm />
         </Grid>
-        <Grid item sm />
-      </Grid>
+      </div>
     );
   }
 }

@@ -15,6 +15,7 @@ import PeopleIcon from "@material-ui/icons/People";
 import TuneIcon from "@material-ui/icons/Tune";
 import EmailIcon from "@material-ui/icons/Email";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 //Redux
 import { connect } from "react-redux";
@@ -28,7 +29,13 @@ const styles = (theme) => ({
     borderRadius: "10%",
   },
   navbarHandle: {
-    marginRight: "10px",
+    display: "inline",
+    fontWeight: "bolder",
+    margin: "2em 0.7em 0 0",
+  },
+  navbarTitle: {
+    marginTop: "0.9em",
+    fontFamily: "cursive",
   },
 });
 
@@ -44,42 +51,72 @@ class Navbar extends Component {
     } = this.props;
     return (
       <AppBar>
-        <Toolbar className="nav-container">
-          {authenticated ? (
-            <Fragment>
-              <h3 className={classes.navbarHandle}>{handle}</h3>
+        <Toolbar className="nav-container mdb-color darken-3 d-flex justify-content-between">
+          {/* proudtale log and website name in header */}
+          <div className="d-flex">
+            <Link to="/">
               <img
-                src={imageUrl}
-                alt="profile"
-                className={classes.navbarImage}
+                height="60"
+                widht="60"
+                src={process.env.PUBLIC_URL + "/proudtalelog.png"}
+                alt="proudetale"
               />
-              <PostScream />
-              <Notifications />
-              <Link to="/">
-                <MyButton tip="Home">
-                  <HomeIcon />
+            </Link>
+            <h4 className={classes.navbarTitle}>proudtale</h4>
+          </div>
+          {/* Right side in header */}
+          <div>
+            {authenticated ? (
+              <Fragment>
+                <h4 className={classes.navbarHandle}>{handle}</h4>
+                <img
+                  src={imageUrl}
+                  alt="profile"
+                  className={classes.navbarImage}
+                />
+                <PostScream />
+                <Notifications tip="Notification" />
+                <Link to="/">
+                  <MyButton tip="Home">
+                    <HomeIcon />
+                  </MyButton>
+                </Link>
+                <Link to="community">
+                  <MyButton tip="Community">
+                    <PeopleIcon />
+                  </MyButton>
+                </Link>
+                <MyButton tip="Logout" onClick={this.handleLogout}>
+                  <MeetingRoomIcon color="primary" />
                 </MyButton>
-              </Link>
-              <MyButton tip="Logout" onClick={this.handleLogout}>
-                <MeetingRoomIcon color="primary" />
-              </MyButton>
-            </Fragment>
-          ) : (
-            <Fragment>
-              <Button>
-                <TuneIcon />
-              </Button>
-              <Button>
-                <EmailIcon />
-              </Button>
-              <Button>
-                <PeopleIcon />
-              </Button>
-              <Button color="inherit" component={Link} to="/">
-                <HomeIcon />
-              </Button>
-            </Fragment>
-          )}
+              </Fragment>
+            ) : (
+              <Fragment>
+                <Button>
+                  <TuneIcon />
+                </Button>
+                <Button>
+                  <EmailIcon />
+                </Button>
+                <Link to="/">
+                  <MyButton tip="Home">
+                    <HomeIcon />
+                  </MyButton>
+                </Link>
+                {/* <Button title="Home" color="inherit" component={Link} to="/">
+                  <HomeIcon />
+                </Button> */}
+                <Link to="login">
+                  <MyButton tip="Login">
+                    <LockOpenIcon />
+                  </MyButton>
+                </Link>
+                {/* <Button title="Login" color="inherit" component={Link} to="login">
+                  <LockOpenIcon />
+                </Button> */}
+              </Fragment>
+            )}
+          </div>
         </Toolbar>
       </AppBar>
     );
