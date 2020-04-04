@@ -80,12 +80,11 @@ class home extends Component {
       //   // screamId,
       // }
     } = this.props;
-
     let homeMarkup = (
       <div>
         {/* <div>
-          <img src={userImage} alt="profile" className="profile-image" />
-        </div> */}
+        <img src={userImage} alt="profile" className="profile-image" />
+      </div> */}
         <div>
           <h1 className={classes.styleTitle}>Popular Book</h1>
           <Slider heading="Example Slider" slides={slideData} />
@@ -103,12 +102,12 @@ class home extends Component {
     return homeMarkup;
   }
 }
+
 // home.propTypes = {
 //   user: PropTypes.object.isRequired,
 //   classes: PropTypes.object.isRequired,
 //   scream: PropTypes.object.isRequired,
 // }
-
 // const mapStateToProps = (state) => ({
 //   user: state.user,
 //   scream: state.data.scream

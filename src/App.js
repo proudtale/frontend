@@ -20,6 +20,7 @@ import community from "./pages/community";
 import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/user";
+import search from "./pages/search";
 
 import axios from "axios";
 
@@ -61,6 +62,12 @@ class App extends Component {
                     path="/users/:handle/scream/:screamId"
                     component={user}
                   />
+                  <Route
+                    exact
+                    path="/search/:searchValue"
+                    component={search}
+                  ></Route>
+                  <Route exact path="/search" component={search}></Route>
                 </Switch>
               </div>
             </div>
