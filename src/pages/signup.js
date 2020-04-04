@@ -13,7 +13,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 // Redux stuff
 import { connect } from "react-redux";
 import { signupUser } from "../redux/actions/userActions";
-import { Checkbox, FormControlLabel } from "@material-ui/core";
+import { Checkbox, FormControlLabel, FormHelperText } from "@material-ui/core";
 
 const styles = (theme) => ({
   ...theme.spread,
@@ -22,6 +22,9 @@ const styles = (theme) => ({
     padding: "2em",
     borderRadius: "1em",
     marginTop: "3em",
+  },
+  centerText: {
+    textAlign: "center",
   },
 });
 
@@ -43,16 +46,24 @@ class signup extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({
-      loading: true,
-    });
-    const newUserData = {
-      email: this.state.email,
-      password: this.state.password,
-      confirmPassword: this.state.confirmPassword,
-      handle: this.state.handle,
-    };
-    this.props.signupUser(newUserData, this.props.history);
+    let checkBox = document.getElementsByName("agreement")[0];
+    console.log(checkBox.checked);
+    if (checkBox.checked === true) {
+      this.setState({
+        loading: true,
+      });
+      const newUserData = {
+        email: this.state.email,
+        password: this.state.password,
+        confirmPassword: this.state.confirmPassword,
+        handle: this.state.handle,
+      };
+      this.props.signupUser(newUserData, this.props.history);
+    } else {
+      this.setState({
+        errors: { checkBox: true },
+      });
+    }
   };
   handleChange = (event) => {
     this.setState({
@@ -129,11 +140,18 @@ class signup extends Component {
                   {errors.general}
                 </Typography>
               )}
+
               <FormControlLabel
                 control={<Checkbox color="primary" name="agreement" />}
                 value="I agree"
                 label="I agree to the Proudtale Agreement"
               />
+              {this.state.errors.checkBox ? (
+                <FormHelperText className={classes.centerText} error={true}>
+                  You must agree to the terms and conditions!
+                </FormHelperText>
+              ) : null}
+
               <Button
                 type="submit"
                 variant="contained"

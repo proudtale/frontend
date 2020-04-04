@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 const styles = (theme) => ({
   ...theme.spread,
 });
@@ -69,7 +71,7 @@ class Slide extends Component {
             onLoad={this.imageLoaded}
           />
         </div>
-
+        
         <article className="slide__content">
           <h4 className="slide__headline">{headline}</h4>
           <button className="btn white-text p-0 m-0">{button}</button>
