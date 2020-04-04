@@ -1,0 +1,16 @@
+.navNarrow {
+  display: none;
+
+  .menuIcon:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 480px) {
+  .navWide {
+    display: none;
+  }
+  .navNarrow {
+    display: block;
+  }
+}

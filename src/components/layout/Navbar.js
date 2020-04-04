@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import MyButton from "../../util/MyButton";
@@ -9,17 +9,22 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+
 // Icons
+
+import Box from "@material-ui/core/Box";
 import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
 import TuneIcon from "@material-ui/icons/Tune";
 import EmailIcon from "@material-ui/icons/Email";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
+import LockOpenIcon from "@material-ui/icons/LockOpen";
 
 //Redux
 import { connect } from "react-redux";
 import { logoutUser } from "../../redux/actions/userActions";
 import Searchbar from "./Searchbar";
+import MobileNavbar from "../../util/MobileNavbar";
 
 const styles = (theme) => ({
   ...theme.spread,
@@ -29,7 +34,13 @@ const styles = (theme) => ({
     borderRadius: "10%",
   },
   navbarHandle: {
-    marginRight: "10px",
+    display: "inline",
+    fontWeight: "bolder",
+    margin: "2em 0.7em 0 0",
+  },
+  navbarTitle: {
+    marginTop: "0.9em",
+    fontFamily: "cursive",
   },
 });
 
@@ -45,43 +56,69 @@ class Navbar extends Component {
     } = this.props;
     return (
       <AppBar>
-        <Toolbar className="nav-container">
+        <Toolbar className="nav-container mdb-color darken-3 d-flex justify-content-between">
+          {/* proudtale log and website name in header */}
+          <div className="d-flex">
+            <Link to="/">
+              <img
+                height="60"
+                widht="60"
+                src={process.env.PUBLIC_URL + "/proudtalelog.png"}
+                alt="proudetale"
+              />
+            </Link>
+            <h4 className={classes.navbarTitle}>proudtale</h4>
+          </div>
           <Searchbar />
+          {/* Right side in header */}
           {authenticated ? (
-            <Fragment>
-              <h3 className={classes.navbarHandle}>{handle}</h3>
+            <Box display={{ xs: "none", sm: "block" }}>
+              <h4 className={classes.navbarHandle}>{handle}</h4>
               <img
                 src={imageUrl}
                 alt="profile"
                 className={classes.navbarImage}
               />
               <PostScream />
-              <Notifications />
+              <Notifications tip="Notification" />
               <Link to="/">
                 <MyButton tip="Home">
                   <HomeIcon />
                 </MyButton>
               </Link>
+              <Link to="community">
+                <MyButton tip="Community">
+                  <PeopleIcon />
+                </MyButton>
+              </Link>
               <MyButton tip="Logout" onClick={this.handleLogout}>
                 <MeetingRoomIcon color="primary" />
               </MyButton>
-            </Fragment>
+            </Box>
           ) : (
-            <Fragment>
+            <Box display={{ xs: "none", sm: "block" }}>
               <Button>
                 <TuneIcon />
               </Button>
               <Button>
                 <EmailIcon />
               </Button>
-              <Button>
-                <PeopleIcon />
-              </Button>
-              <Button color="inherit" component={Link} to="/">
-                <HomeIcon />
-              </Button>
-            </Fragment>
+              <Link to="/">
+                <MyButton tip="Home">
+                  <HomeIcon />
+                </MyButton>
+              </Link>
+              <Link to="login">
+                <MyButton tip="Login">
+                  <LockOpenIcon />
+                </MyButton>
+              </Link>
+            </Box>
           )}
+          <MobileNavbar
+            logoutUser={this.props.logoutUser}
+            authenticated={authenticated}
+          />
         </Toolbar>
       </AppBar>
     );

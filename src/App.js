@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import jwtDecode from "jwt-decode";
@@ -13,8 +13,10 @@ import { logoutUser, getUserData } from "./redux/actions/userActions";
 import Navbar from "./components/layout/Navbar";
 import themeObject from "./util/theme";
 import AuthRoute from "./util/AuthRoute";
+import Footer from "./components/layout/Footer";
 // Pages
 import home from "./pages/home";
+import community from "./pages/community";
 import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/user";
@@ -47,25 +49,29 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <Navbar />
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={home} />
-                <AuthRoute exact path="/login" component={login} />
-                <AuthRoute exact path="/signup" component={signup} />
-                <Route exact path="/users/:handle" component={user} />
-                <Route
-                  exact
-                  path="/users/:handle/scream/:screamId"
-                  component={user}
-                />
-                <Route
-                  exact
-                  path="/search/:searchValue"
-                  component={search}
-                ></Route>
-                <Route exact path="/search" component={search}></Route>
-              </Switch>
+            <div className="home-page-container">
+              <div className="container">
+                <Switch>
+                  <Route exact path="/" component={home} />
+                  <Route exact path="/community" component={community} />
+                  <AuthRoute exact path="/login" component={login} />
+                  <AuthRoute exact path="/signup" component={signup} />
+                  <Route exact path="/users/:handle" component={user} />
+                  <Route
+                    exact
+                    path="/users/:handle/scream/:screamId"
+                    component={user}
+                  />
+                  <Route
+                    exact
+                    path="/search/:searchValue"
+                    component={search}
+                  ></Route>
+                  <Route exact path="/search" component={search}></Route>
+                </Switch>
+              </div>
             </div>
+            <Footer />
           </Router>
         </Provider>
       </MuiThemeProvider>

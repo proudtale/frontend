@@ -17,6 +17,12 @@ import { loginUser } from "../redux/actions/userActions";
 
 const styles = (theme) => ({
   ...theme.spread,
+  loginStyle: {
+    background: "white",
+    padding: "2em",
+    borderRadius: "1em",
+    marginTop: "3em",
+  },
 });
 
 class login extends Component {
@@ -55,63 +61,65 @@ class login extends Component {
     const { errors } = this.state;
 
     return (
-      <Grid container className={classes.form}>
-        <Grid item sm />
-        <Grid item sm>
-          <img src={AppIcon} alt="monkey" className={classes.image} />
-          <Typography variant="h4" className={classes.pageTitle}>
-            Login
-          </Typography>
-          <form noValidate onSubmit={this.handleSubmit}>
-            <TextField
-              id="email"
-              name="email"
-              type="email"
-              label="Email"
-              className={classes.textField}
-              helperText={errors.email}
-              error={errors.email ? true : false}
-              value={this.state.email}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            <TextField
-              id="password"
-              name="password"
-              type="password"
-              label="Password"
-              className={classes.textField}
-              helperText={errors.password}
-              error={errors.password ? true : false}
-              value={this.state.password}
-              onChange={this.handleChange}
-              fullWidth
-            />
-            {errors.general && (
-              <Typography variant="body2" className={classes.customError}>
-                {errors.general}
-              </Typography>
-            )}
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              disabled={loading}
-            >
+      <div className={classes.loginStyle}>
+        <Grid container className={classes.form}>
+          <Grid item sm />
+          <Grid item sm>
+            <img src={AppIcon} alt="proudtalelog" className={classes.image} />
+            <Typography variant="h4" className={classes.pageTitle}>
               Login
-              {loading && (
-                <CircularProgress size={30} className={classes.progress} />
+            </Typography>
+            <form noValidate onSubmit={this.handleSubmit}>
+              <TextField
+                id="email"
+                name="email"
+                type="email"
+                label="Email"
+                className={classes.textField}
+                helperText={errors.email}
+                error={errors.email ? true : false}
+                value={this.state.email}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              <TextField
+                id="password"
+                name="password"
+                type="password"
+                label="Password"
+                className={classes.textField}
+                helperText={errors.password}
+                error={errors.password ? true : false}
+                value={this.state.password}
+                onChange={this.handleChange}
+                fullWidth
+              />
+              {errors.general && (
+                <Typography variant="body2" className={classes.customError}>
+                  {errors.general}
+                </Typography>
               )}
-            </Button>
-            <br />
-            <small>
-              dont have an account ? Register <Link to="/signup">here</Link>
-            </small>
-          </form>
+              <Button
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                disabled={loading}
+              >
+                Login
+                {loading && (
+                  <CircularProgress size={30} className={classes.progress} />
+                )}
+              </Button>
+              <br />
+              <small>
+                dont have an account ? Register <Link to="/signup">here</Link>
+              </small>
+            </form>
+          </Grid>
+          <Grid item sm />
         </Grid>
-        <Grid item sm />
-      </Grid>
+      </div>
     );
   }
 }
