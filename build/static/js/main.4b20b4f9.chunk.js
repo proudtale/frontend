@@ -7,11 +7,11 @@
     118: function (e, t, a) {
       e.exports = a.p + "static/media/icon.a5eb20a3.png";
     },
-    305: function (e, t, a) {
-      e.exports = a(595);
+    306: function (e, t, a) {
+      e.exports = a(596);
     },
-    310: function (e, t, a) {},
-    595: function (e, t, a) {
+    311: function (e, t, a) {},
+    596: function (e, t, a) {
       "use strict";
       a.r(t);
       var n = a(1),
@@ -25,7 +25,7 @@
         u = a(13),
         d = a(16),
         p = a(53),
-        h = (a(310), a(158)),
+        h = (a(311), a(158)),
         E = a.n(h),
         b = a(87),
         f = a.n(b),
@@ -265,7 +265,7 @@
         me = a(231),
         ue = a.n(me),
         de =
-          (a(505),
+          (a(506),
           (function (e) {
             function t(e) {
               var a;
@@ -731,17 +731,19 @@
         Pe = a.n(Fe),
         Be = a(162),
         We = a.n(Be),
-        Ye = a(233),
+        Ye = a(234),
         He = a.n(Ye),
-        ze = a(235),
+        ze = a(236),
         Ge = a.n(ze),
-        Ve = a(236),
+        Ve = a(237),
         Ke = a.n(Ve),
-        Xe = a(234),
+        Xe = a(235),
         Je = a.n(Xe),
-        qe = a(237),
+        qe = a(238),
         $e = a.n(qe),
-        Qe = (function (e) {
+        Qe = a(233),
+        Ze = a.n(Qe),
+        et = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -799,7 +801,12 @@
                       ),
                       r.a.createElement(
                         "div",
-                        null,
+                        { className: "navNarrow" },
+                        r.a.createElement(Ze.a, { className: "menuIcon" })
+                      ),
+                      r.a.createElement(
+                        "div",
+                        { className: "navWide" },
                         o
                           ? r.a.createElement(
                               n.Fragment,
@@ -881,13 +888,13 @@
             t
           );
         })(n.Component),
-        Ze = { logoutUser: U },
-        et = Object(v.b)(function (e) {
+        tt = { logoutUser: U },
+        at = Object(v.b)(function (e) {
           return {
             credentials: e.user.credentials,
             authenticated: e.user.authenticated,
           };
-        }, Ze)(
+        }, tt)(
           H()(function (e) {
             return Object(S.a)({}, e.spread, {
               navbarImage: { width: 50, height: 50, borderRadius: "10%" },
@@ -898,15 +905,15 @@
               },
               navbarTitle: { marginTop: "0.9em", fontFamily: "cursive" },
             });
-          })(Qe)
+          })(et)
         ),
-        tt = a(238),
-        at = Object(v.b)(function (e) {
+        nt = a(239),
+        rt = Object(v.b)(function (e) {
           return { authenticated: e.user.authenticated };
         })(function (e) {
           var t = e.component,
             a = e.authenticated,
-            n = Object(tt.a)(e, ["component", "authenticated"]);
+            n = Object(nt.a)(e, ["component", "authenticated"]);
           return r.a.createElement(
             p.b,
             Object.assign({}, n, {
@@ -918,8 +925,8 @@
             })
           );
         }),
-        nt = a(54),
-        rt = (function (e) {
+        lt = a(54),
+        ct = (function (e) {
           function t() {
             return (
               Object(o.a)(this, t),
@@ -933,19 +940,19 @@
                 key: "render",
                 value: function () {
                   return r.a.createElement(
-                    nt.e,
+                    lt.e,
                     {
                       color: "mdb-color darken-3",
                       className: "font-small pt-4 mt-4",
                     },
                     r.a.createElement(
-                      nt.d,
+                      lt.d,
                       { fluid: !0 },
                       r.a.createElement(
-                        nt.i,
+                        lt.i,
                         { className: "justify-content-center" },
                         r.a.createElement(
-                          nt.c,
+                          lt.c,
                           { md: "3" },
                           r.a.createElement(
                             "h5",
@@ -982,7 +989,7 @@
                           )
                         ),
                         r.a.createElement(
-                          nt.c,
+                          lt.c,
                           { md: "3" },
                           r.a.createElement(
                             "h5",
@@ -1019,7 +1026,7 @@
                           )
                         ),
                         r.a.createElement(
-                          nt.c,
+                          lt.c,
                           { md: "3" },
                           r.a.createElement(
                             "h5",
@@ -1060,7 +1067,7 @@
                           "footer-copyright text-center py-3 mdb-color darken-4",
                       },
                       r.a.createElement(
-                        nt.d,
+                        lt.d,
                         { fluid: !0 },
                         "\xa9 ",
                         new Date().getFullYear(),
@@ -1080,7 +1087,7 @@
             t
           );
         })(n.Component),
-        lt = (function (e) {
+        ot = (function (e) {
           function t(e) {
             var a;
             return (
@@ -1180,13 +1187,13 @@
                         "article",
                         { className: "slide__content" },
                         r.a.createElement(
-                          "h2",
+                          "h4",
                           { className: "slide__headline" },
                           n
                         ),
                         r.a.createElement(
                           "button",
-                          { className: "slide__action btn white-text mt-4" },
+                          { className: "btn white-text p-0 m-0" },
                           a
                         )
                       )
@@ -1198,10 +1205,10 @@
             t
           );
         })(n.Component),
-        ct = H()(function (e) {
+        it = H()(function (e) {
           return Object(S.a)({}, e.spread);
-        })(lt),
-        ot = (function (e) {
+        })(ot),
+        st = (function (e) {
           function t(e) {
             var a;
             return (
@@ -1277,7 +1284,7 @@
                         l
                       ),
                       n.map(function (a) {
-                        return r.a.createElement(ct, {
+                        return r.a.createElement(it, {
                           key: a.index,
                           slide: a,
                           current: t,
@@ -1292,7 +1299,7 @@
             t
           );
         })(n.Component),
-        it = [
+        mt = [
           {
             index: 0,
             headline: "New Fashion",
@@ -1350,7 +1357,7 @@
               "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/typewriter.jpg",
           },
         ],
-        st = (function (e) {
+        ut = (function (e) {
           function t() {
             return (
               Object(o.a)(this, t),
@@ -1375,9 +1382,9 @@
                         { className: e.styleTitle },
                         "Book"
                       ),
-                      r.a.createElement(ot, {
+                      r.a.createElement(st, {
                         heading: "Example Slider",
-                        slides: it,
+                        slides: mt,
                       })
                     ),
                     r.a.createElement(
@@ -1388,9 +1395,9 @@
                         { className: e.styleTitle },
                         "Biography"
                       ),
-                      r.a.createElement(ot, {
+                      r.a.createElement(st, {
                         heading: "Example Slider",
-                        slides: it,
+                        slides: mt,
                       })
                     ),
                     r.a.createElement(
@@ -1401,9 +1408,9 @@
                         { className: e.styleTitle },
                         "Fiction"
                       ),
-                      r.a.createElement(ot, {
+                      r.a.createElement(st, {
                         heading: "Example Slider",
-                        slides: it,
+                        slides: mt,
                       })
                     )
                   );
@@ -1413,24 +1420,25 @@
             t
           );
         })(n.Component),
-        mt = Object(v.b)()(
+        dt = Object(v.b)()(
           H()(function (e) {
             return Object(S.a)({}, e.spread, {
               styleTitle: {
-                color: "#1c2a48",
+                color: "white",
                 fontWeight: "bolder",
                 fontFamily: "cursive",
+                textShadow: "2px 1px #1c2a48",
               },
             });
-          })(st)
+          })(ut)
         ),
-        ut = a(17),
-        dt = a.n(ut),
-        pt = a(66),
+        pt = a(17),
         ht = a.n(pt),
-        Et = a(242),
+        Et = a(66),
         bt = a.n(Et),
-        ft = (function (e) {
+        ft = a(243),
+        gt = a.n(ft),
+        yt = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -1471,7 +1479,7 @@
                         onClick: this.handleOpen,
                         btnClassName: e.deleteButton,
                       },
-                      r.a.createElement(bt.a, { color: "secondary" })
+                      r.a.createElement(gt.a, { color: "secondary" })
                     ),
                     r.a.createElement(
                       K.a,
@@ -1487,7 +1495,7 @@
                         "Are you sure you want to delete this scream ?"
                       ),
                       r.a.createElement(
-                        ht.a,
+                        bt.a,
                         null,
                         r.a.createElement(
                           oe.a,
@@ -1508,7 +1516,7 @@
             t
           );
         })(n.Component),
-        gt = Object(v.b)(null, {
+        vt = Object(v.b)(null, {
           deleteScream: function (e) {
             return function (t) {
               _.a
@@ -1524,11 +1532,11 @@
         })(
           H()({
             deleteButton: { position: "absolute", left: "90%", top: "10%" },
-          })(ft)
+          })(yt)
         ),
-        yt = a(164),
-        vt = a.n(yt),
-        Ot = (function (e) {
+        Ot = a(164),
+        jt = a.n(Ot),
+        Ct = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -1571,7 +1579,7 @@
                       : r.a.createElement(
                           W,
                           { tip: "Like", onClick: this.likeScream },
-                          r.a.createElement(vt.a, { color: "primary" })
+                          r.a.createElement(jt.a, { color: "primary" })
                         )
                     : r.a.createElement(
                         d.b,
@@ -1579,7 +1587,7 @@
                         r.a.createElement(
                           W,
                           { tip: "Like" },
-                          r.a.createElement(vt.a, { color: "primary" })
+                          r.a.createElement(jt.a, { color: "primary" })
                         )
                       );
                 },
@@ -1588,7 +1596,7 @@
             t
           );
         })(n.Component),
-        jt = {
+        St = {
           likeScream: function (e) {
             return function (t) {
               _.a
@@ -1614,10 +1622,10 @@
             };
           },
         },
-        Ct = Object(v.b)(function (e) {
+        Nt = Object(v.b)(function (e) {
           return { user: e.user };
-        }, jt)(Ot),
-        St = (function (e) {
+        }, St)(Ct),
+        kt = (function (e) {
           function t() {
             return (
               Object(o.a)(this, t),
@@ -1634,7 +1642,7 @@
                     t = e.comments,
                     a = e.classes;
                   return r.a.createElement(
-                    dt.a,
+                    ht.a,
                     { container: !0 },
                     t.map(function (e, l) {
                       var c = e.body,
@@ -1645,13 +1653,13 @@
                         n.Fragment,
                         { key: o },
                         r.a.createElement(
-                          dt.a,
+                          ht.a,
                           { item: !0, sm: 12 },
                           r.a.createElement(
-                            dt.a,
+                            ht.a,
                             { container: !0 },
                             r.a.createElement(
-                              dt.a,
+                              ht.a,
                               { item: !0, sm: 2 },
                               r.a.createElement("img", {
                                 src: i,
@@ -1660,7 +1668,7 @@
                               })
                             ),
                             r.a.createElement(
-                              dt.a,
+                              ht.a,
                               { item: !0, sm: 9 },
                               r.a.createElement(
                                 "div",
@@ -1705,7 +1713,7 @@
             t
           );
         })(n.Component),
-        Nt = H()(function (e) {
+        wt = H()(function (e) {
           return Object(S.a)({}, e.spread, {
             commentImage: {
               maxWidth: "100%",
@@ -1715,9 +1723,9 @@
             },
             commentData: { marginLeft: 20 },
           });
-        })(St),
-        kt = a(43),
-        wt = (function (e) {
+        })(kt),
+        It = a(43),
+        xt = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -1729,7 +1737,7 @@
                 (e = Object(m.a)(t)).call.apply(e, [this].concat(r))
               )).state = { body: "", errors: {} }),
               (a.handleChange = function (e) {
-                a.setState(Object(kt.a)({}, e.target.name, e.target.value));
+                a.setState(Object(It.a)({}, e.target.name, e.target.value));
               }),
               (a.handleSubmit = function (e) {
                 e.preventDefault(),
@@ -1759,7 +1767,7 @@
                     n = this.state.errors;
                   return a
                     ? r.a.createElement(
-                        dt.a,
+                        ht.a,
                         { item: !0, sm: 12, style: { textAlign: "center" } },
                         r.a.createElement(
                           "form",
@@ -1797,7 +1805,7 @@
             t
           );
         })(n.Component),
-        It = Object(v.b)(
+        Tt = Object(v.b)(
           function (e) {
             return { UI: e.UI, authenticated: e.user.authenticated };
           },
@@ -1818,11 +1826,11 @@
         )(
           H()(function (e) {
             return Object(S.a)({}, e.spread);
-          })(wt)
+          })(xt)
         ),
-        xt = a(243),
-        Tt = a.n(xt),
-        Rt = (function (e) {
+        Rt = a(244),
+        At = a.n(Rt),
+        _t = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -1900,10 +1908,10 @@
                           r.a.createElement(se.a, { size: 200, thickness: 2 })
                         )
                       : r.a.createElement(
-                          dt.a,
+                          ht.a,
                           { container: !0, spacing: 16 },
                           r.a.createElement(
-                            dt.a,
+                            ht.a,
                             { item: !0, sm: 5 },
                             r.a.createElement("img", {
                               src: u,
@@ -1912,7 +1920,7 @@
                             })
                           ),
                           r.a.createElement(
-                            dt.a,
+                            ht.a,
                             { item: !0, sm: 7 },
                             r.a.createElement(
                               Ne.a,
@@ -1937,7 +1945,7 @@
                               className: t.invisibleSeparator,
                             }),
                             r.a.createElement(Ne.a, { variant: "body1" }, l),
-                            r.a.createElement(Ct, null),
+                            r.a.createElement(Nt, null),
                             r.a.createElement("span", null, s, " likes"),
                             r.a.createElement(
                               W,
@@ -1964,8 +1972,8 @@
                           r.a.createElement("hr", {
                             className: t.visibleSeparator,
                           }),
-                          r.a.createElement(It, { screamId: c }),
-                          r.a.createElement(Nt, { comments: h })
+                          r.a.createElement(Tt, { screamId: c }),
+                          r.a.createElement(wt, { comments: h })
                         );
                   return r.a.createElement(
                     n.Fragment,
@@ -1977,7 +1985,7 @@
                         tip: "Expand book",
                         tipClassName: t.expandButton,
                       },
-                      r.a.createElement(Tt.a, { color: "primary" })
+                      r.a.createElement(At.a, { color: "primary" })
                     ),
                     r.a.createElement(
                       K.a,
@@ -2005,7 +2013,7 @@
             t
           );
         })(n.Component),
-        At = {
+        Ut = {
           getScream: ne,
           clearErrors: re,
           editScream: function () {
@@ -2014,14 +2022,14 @@
             };
           },
         },
-        _t = Object(v.b)(function (e) {
+        Lt = Object(v.b)(function (e) {
           return {
             scream: e.data.scream,
             edit: e.data.edit,
             UI: e.UI,
             user: e.user,
           };
-        }, At)(
+        }, Ut)(
           H()(function (e) {
             return Object(S.a)({}, e.spread, {
               profileImage: {
@@ -2039,15 +2047,15 @@
                 marginBottom: 50,
               },
             });
-          })(Rt)
+          })(_t)
         ),
-        Ut = a(67),
-        Lt = a.n(Ut),
-        Mt = a(69),
+        Mt = a(67),
         Dt = a.n(Mt),
-        Ft = a(68),
+        Ft = a(69),
         Pt = a.n(Ft),
-        Bt = (function (e) {
+        Bt = a(68),
+        Wt = a.n(Bt),
+        Yt = (function (e) {
           function t() {
             return (
               Object(o.a)(this, t),
@@ -2076,18 +2084,18 @@
                     h = u.credentials.handle,
                     E =
                       p && o === h
-                        ? r.a.createElement(gt, { screamId: i })
+                        ? r.a.createElement(vt, { screamId: i })
                         : null;
                   return r.a.createElement(
-                    Lt.a,
+                    Dt.a,
                     { className: t.card },
-                    r.a.createElement(Pt.a, {
+                    r.a.createElement(Wt.a, {
                       image: c,
                       title: "Profile image",
                       className: t.image,
                     }),
                     r.a.createElement(
-                      Dt.a,
+                      Pt.a,
                       { className: t.content },
                       r.a.createElement(
                         Ne.a,
@@ -2106,7 +2114,7 @@
                         fe()(l).fromNow()
                       ),
                       r.a.createElement(Ne.a, { variant: "body1" }, n),
-                      r.a.createElement(Ct, { screamId: i }),
+                      r.a.createElement(Nt, { screamId: i }),
                       r.a.createElement("span", null, s, " Likes"),
                       r.a.createElement(
                         W,
@@ -2114,7 +2122,7 @@
                         r.a.createElement(_e.a, { color: "primary" })
                       ),
                       r.a.createElement("span", null, m, " comments"),
-                      r.a.createElement(_t, {
+                      r.a.createElement(Lt, {
                         screamId: i,
                         userHandle: o,
                         openDialog: this.props.openDialog,
@@ -2127,18 +2135,18 @@
             t
           );
         })(n.Component),
-        Wt = Object(v.b)(function (e) {
+        Ht = Object(v.b)(function (e) {
           return { user: e.user };
         })(
           H()({
             card: { position: "relative", display: "flex", marginBottom: 20 },
             image: { minWidth: 200 },
             content: { padding: 25, objectFit: "cover" },
-          })(Bt)
+          })(Yt)
         ),
-        Yt = a(116),
-        Ht = a.n(Yt),
-        zt = (function (e) {
+        zt = a(116),
+        Gt = a.n(zt),
+        Vt = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -2164,7 +2172,7 @@
                 a.setState({ open: !1 });
               }),
               (a.handleChange = function (e) {
-                a.setState(Object(kt.a)({}, e.target.name, e.target.value));
+                a.setState(Object(It.a)({}, e.target.name, e.target.value));
               }),
               (a.handleSubmit = function () {
                 var e = {
@@ -2201,7 +2209,7 @@
                         onClick: this.handleOpen,
                         btnClassName: e.button,
                       },
-                      r.a.createElement(Ht.a, { color: "primary" })
+                      r.a.createElement(Gt.a, { color: "primary" })
                     ),
                     r.a.createElement(
                       K.a,
@@ -2253,7 +2261,7 @@
                         )
                       ),
                       r.a.createElement(
-                        ht.a,
+                        bt.a,
                         null,
                         r.a.createElement(
                           oe.a,
@@ -2274,7 +2282,7 @@
             t
           );
         })(n.Component),
-        Gt = Object(v.b)(
+        Kt = Object(v.b)(
           function (e) {
             return { credentials: e.user.credentials };
           },
@@ -2296,19 +2304,19 @@
         )(
           H()(function (e) {
             return Object(S.a)({}, e.spread, { button: { float: "right" } });
-          })(zt)
+          })(Vt)
         ),
-        Vt = a(117),
-        Kt = a.n(Vt),
-        Xt = a(37),
+        Xt = a(117),
         Jt = a.n(Xt),
-        qt = a(73),
+        qt = a(37),
         $t = a.n(qt),
-        Qt = a(74),
+        Qt = a(73),
         Zt = a.n(Qt),
-        ea = a(75),
+        ea = a(74),
         ta = a.n(ea),
-        aa = H()(function (e) {
+        aa = a(75),
+        na = a.n(aa),
+        ra = H()(function (e) {
           return Object(S.a)({}, e.spread, {
             handle: {
               height: 20,
@@ -2332,7 +2340,7 @@
         })(function (e) {
           var t = e.classes;
           return r.a.createElement(
-            Jt.a,
+            $t.a,
             { className: t.paper },
             r.a.createElement(
               "div",
@@ -2341,7 +2349,7 @@
                 "div",
                 { className: "image-wrapper" },
                 r.a.createElement("img", {
-                  src: Kt.a,
+                  src: Jt.a,
                   alt: "profile",
                   className: "profile-image",
                 })
@@ -2355,22 +2363,22 @@
                 r.a.createElement("div", { className: t.fullLine }),
                 r.a.createElement("div", { className: t.fullLine }),
                 r.a.createElement("hr", null),
-                r.a.createElement($t.a, { color: "primary" }),
+                r.a.createElement(Zt.a, { color: "primary" }),
                 " ",
                 r.a.createElement("span", null, "Location"),
                 r.a.createElement("hr", null),
-                r.a.createElement(Zt.a, { color: "primary" }),
+                r.a.createElement(ta.a, { color: "primary" }),
                 " https://website.com",
                 r.a.createElement("hr", null),
-                r.a.createElement(ta.a, { color: "primary" }),
+                r.a.createElement(na.a, { color: "primary" }),
                 " Joined date"
               )
             )
           );
         }),
-        na = a(70),
-        ra = a.n(na),
-        la = (function (e) {
+        la = a(70),
+        ca = a.n(la),
+        oa = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -2413,10 +2421,10 @@
                     p = a.loading,
                     h = a.authenticated;
                   return p
-                    ? r.a.createElement(aa, null)
+                    ? r.a.createElement(ra, null)
                     : h
                     ? r.a.createElement(
-                        Jt.a,
+                        $t.a,
                         { className: t.paper },
                         r.a.createElement(
                           "div",
@@ -2442,16 +2450,16 @@
                                 onClick: this.handleEditPicture,
                                 btnClassName: "button",
                               },
-                              r.a.createElement(Ht.a, { color: "primary" })
+                              r.a.createElement(Gt.a, { color: "primary" })
                             )
                           ),
                           r.a.createElement("hr", null),
                           r.a.createElement(
                             "div",
                             { className: "profile-details" },
-                            r.a.createElement(Gt, null),
+                            r.a.createElement(Kt, null),
                             r.a.createElement(
-                              ra.a,
+                              ca.a,
                               {
                                 component: d.b,
                                 to: "/users/".concat(c),
@@ -2468,7 +2476,7 @@
                               r.a.createElement(
                                 n.Fragment,
                                 null,
-                                r.a.createElement($t.a, { color: "primary" }),
+                                r.a.createElement(Zt.a, { color: "primary" }),
                                 " ",
                                 r.a.createElement("span", null, u),
                                 r.a.createElement("hr", null)
@@ -2477,7 +2485,7 @@
                               r.a.createElement(
                                 n.Fragment,
                                 null,
-                                r.a.createElement(Zt.a, { color: "primary" }),
+                                r.a.createElement(ta.a, { color: "primary" }),
                                 r.a.createElement(
                                   "a",
                                   {
@@ -2490,7 +2498,7 @@
                                 ),
                                 r.a.createElement("hr", null)
                               ),
-                            r.a.createElement(ta.a, { color: "primary" }),
+                            r.a.createElement(na.a, { color: "primary" }),
                             " ",
                             r.a.createElement(
                               "span",
@@ -2502,7 +2510,7 @@
                         )
                       )
                     : r.a.createElement(
-                        Jt.a,
+                        $t.a,
                         { className: t.paper },
                         r.a.createElement(
                           Ne.a,
@@ -2540,7 +2548,7 @@
             t
           );
         })(n.Component),
-        ca = {
+        ia = {
           uploadImage: function (e) {
             return function (t) {
               t({ type: "LOADING_USER" }),
@@ -2555,14 +2563,14 @@
             };
           },
         },
-        oa = Object(v.b)(function (e) {
+        sa = Object(v.b)(function (e) {
           return { user: e.user };
-        }, ca)(
+        }, ia)(
           H()(function (e) {
             return Object(S.a)({}, e.spread);
-          })(la)
+          })(oa)
         ),
-        ia = H()(function (e) {
+        ma = H()(function (e) {
           return Object(S.a)({}, e.spread, {
             card: { display: "flex", marginBottom: 20 },
             cardContent: {
@@ -2600,11 +2608,11 @@
           var t = e.classes,
             a = Array.from({ length: 5 }).map(function (e, a) {
               return r.a.createElement(
-                Lt.a,
+                Dt.a,
                 { className: t.card, key: a },
-                r.a.createElement(Pt.a, { className: t.cover, image: Kt.a }),
+                r.a.createElement(Wt.a, { className: t.cover, image: Jt.a }),
                 r.a.createElement(
-                  Dt.a,
+                  Pt.a,
                   { className: t.cardContent },
                   r.a.createElement("div", { className: t.handle }),
                   r.a.createElement("div", { className: t.date }),
@@ -2616,7 +2624,7 @@
             });
           return r.a.createElement(n.Fragment, null, a);
         }),
-        sa = (function (e) {
+        ua = (function (e) {
           function t() {
             return (
               Object(o.a)(this, t),
@@ -2638,21 +2646,21 @@
                   var e = this.props.data,
                     t = e.screams,
                     a = e.loading
-                      ? r.a.createElement(ia, null)
+                      ? r.a.createElement(ma, null)
                       : t.map(function (e) {
-                          return r.a.createElement(Wt, {
+                          return r.a.createElement(Ht, {
                             key: e.screamId,
                             scream: e,
                           });
                         });
                   return r.a.createElement(
-                    dt.a,
+                    ht.a,
                     { container: !0, spacing: 16 },
-                    r.a.createElement(dt.a, { item: !0, sm: 8, xs: 12 }, a),
+                    r.a.createElement(ht.a, { item: !0, sm: 8, xs: 12 }, a),
                     r.a.createElement(
-                      dt.a,
+                      ht.a,
                       { item: !0, sm: 4, xs: 12 },
-                      r.a.createElement(oa, null)
+                      r.a.createElement(sa, null)
                     )
                   );
                 },
@@ -2661,15 +2669,15 @@
             t
           );
         })(n.Component),
-        ma = Object(v.b)(
+        da = Object(v.b)(
           function (e) {
             return { data: e.data };
           },
           { getScreams: ae }
-        )(sa),
-        ua = a(118),
-        da = a.n(ua),
-        pa = (function (e) {
+        )(ua),
+        pa = a(118),
+        ha = a.n(pa),
+        Ea = (function (e) {
           function t() {
             var e;
             return (
@@ -2683,7 +2691,7 @@
                 e.props.loginUser(a, e.props.history);
               }),
               (e.handleChange = function (t) {
-                e.setState(Object(kt.a)({}, t.target.name, t.target.value));
+                e.setState(Object(It.a)({}, t.target.name, t.target.value));
               }),
               (e.state = { email: "", password: "", errors: {} }),
               e
@@ -2709,14 +2717,14 @@
                     "div",
                     { className: t.loginStyle },
                     r.a.createElement(
-                      dt.a,
+                      ht.a,
                       { container: !0, className: t.form },
-                      r.a.createElement(dt.a, { item: !0, sm: !0 }),
+                      r.a.createElement(ht.a, { item: !0, sm: !0 }),
                       r.a.createElement(
-                        dt.a,
+                        ht.a,
                         { item: !0, sm: !0 },
                         r.a.createElement("img", {
-                          src: da.a,
+                          src: ha.a,
                           alt: "proudtalelog",
                           className: t.image,
                         }),
@@ -2783,7 +2791,7 @@
                           )
                         )
                       ),
-                      r.a.createElement(dt.a, { item: !0, sm: !0 })
+                      r.a.createElement(ht.a, { item: !0, sm: !0 })
                     )
                   );
                 },
@@ -2792,7 +2800,7 @@
             t
           );
         })(n.Component),
-        ha = {
+        ba = {
           loginUser: function (e, t) {
             return function (a) {
               a({ type: "LOADING_UI" }),
@@ -2810,9 +2818,9 @@
             };
           },
         },
-        Ea = Object(v.b)(function (e) {
+        fa = Object(v.b)(function (e) {
           return { user: e.user, UI: e.UI };
-        }, ha)(
+        }, ba)(
           H()(function (e) {
             return Object(S.a)({}, e.spread, {
               loginStyle: {
@@ -2822,10 +2830,10 @@
                 marginTop: "3em",
               },
             });
-          })(pa)
+          })(Ea)
         ),
-        ba = a(165),
-        fa = (function (e) {
+        ga = a(165),
+        ya = (function (e) {
           function t() {
             var e;
             return (
@@ -2844,7 +2852,7 @@
                 e.props.signupUser(a, e.props.history);
               }),
               (e.handleChange = function (t) {
-                e.setState(Object(kt.a)({}, t.target.name, t.target.value));
+                e.setState(Object(It.a)({}, t.target.name, t.target.value));
               }),
               (e.state = {
                 email: "",
@@ -2876,14 +2884,14 @@
                     "div",
                     { className: t.registerStyle },
                     r.a.createElement(
-                      dt.a,
+                      ht.a,
                       { container: !0, className: t.form },
-                      r.a.createElement(dt.a, { item: !0, sm: !0 }),
+                      r.a.createElement(ht.a, { item: !0, sm: !0 }),
                       r.a.createElement(
-                        dt.a,
+                        ht.a,
                         { item: !0, sm: !0 },
                         r.a.createElement("img", {
-                          src: da.a,
+                          src: ha.a,
                           alt: "proudtale",
                           className: t.image,
                         }),
@@ -2949,8 +2957,8 @@
                               { variant: "body2", className: t.customError },
                               n.general
                             ),
-                          r.a.createElement(ba.b, {
-                            control: r.a.createElement(ba.a, {
+                          r.a.createElement(ga.b, {
+                            control: r.a.createElement(ga.a, {
                               color: "primary",
                               name: "agreement",
                             }),
@@ -2982,7 +2990,7 @@
                           )
                         )
                       ),
-                      r.a.createElement(dt.a, { item: !0, sm: !0 })
+                      r.a.createElement(ht.a, { item: !0, sm: !0 })
                     )
                   );
                 },
@@ -2991,7 +2999,7 @@
             t
           );
         })(n.Component),
-        ga = Object(v.b)(
+        va = Object(v.b)(
           function (e) {
             return { user: e.user, UI: e.UI };
           },
@@ -3023,9 +3031,9 @@
                 marginTop: "3em",
               },
             });
-          })(fa)
+          })(ya)
         ),
-        ya = H()(function (e) {
+        Oa = H()(function (e) {
           return Object(S.a)({}, e.spread);
         })(function (e) {
           var t = e.classes,
@@ -3037,7 +3045,7 @@
             s = a.website,
             m = a.location;
           return r.a.createElement(
-            Jt.a,
+            $t.a,
             { className: t.paper },
             r.a.createElement(
               "div",
@@ -3056,7 +3064,7 @@
                 "div",
                 { className: "profile-details" },
                 r.a.createElement(
-                  ra.a,
+                  ca.a,
                   {
                     component: d.b,
                     to: "/users/".concat(l),
@@ -3073,7 +3081,7 @@
                   r.a.createElement(
                     n.Fragment,
                     null,
-                    r.a.createElement($t.a, { color: "primary" }),
+                    r.a.createElement(Zt.a, { color: "primary" }),
                     " ",
                     r.a.createElement("span", null, m),
                     r.a.createElement("hr", null)
@@ -3082,7 +3090,7 @@
                   r.a.createElement(
                     n.Fragment,
                     null,
-                    r.a.createElement(Zt.a, { color: "primary" }),
+                    r.a.createElement(ta.a, { color: "primary" }),
                     r.a.createElement(
                       "a",
                       { href: s, target: "_blank", rel: "noopener noreferrer" },
@@ -3091,7 +3099,7 @@
                     ),
                     r.a.createElement("hr", null)
                   ),
-                r.a.createElement(ta.a, { color: "primary" }),
+                r.a.createElement(na.a, { color: "primary" }),
                 " ",
                 r.a.createElement(
                   "span",
@@ -3103,7 +3111,7 @@
             )
           );
         }),
-        va = (function (e) {
+        ja = (function (e) {
           function t() {
             var e, a;
             Object(o.a)(this, t);
@@ -3146,7 +3154,7 @@
                     a = e.loading,
                     n = this.state.screamIdParam,
                     l = a
-                      ? r.a.createElement(ia, null)
+                      ? r.a.createElement(ma, null)
                       : null === t
                       ? r.a.createElement(
                           "p",
@@ -3156,32 +3164,32 @@
                       : n
                       ? t.map(function (e) {
                           return e.screamId !== n
-                            ? r.a.createElement(Wt, {
+                            ? r.a.createElement(Ht, {
                                 key: e.screamId,
                                 scream: e,
                               })
-                            : r.a.createElement(Wt, {
+                            : r.a.createElement(Ht, {
                                 key: e.screamId,
                                 scream: e,
                                 openDialog: !0,
                               });
                         })
                       : t.map(function (e) {
-                          return r.a.createElement(Wt, {
+                          return r.a.createElement(Ht, {
                             key: e.screamId,
                             scream: e,
                           });
                         });
                   return r.a.createElement(
-                    dt.a,
+                    ht.a,
                     { container: !0, spacing: 16 },
-                    r.a.createElement(dt.a, { item: !0, sm: 8, xs: 12 }, l),
+                    r.a.createElement(ht.a, { item: !0, sm: 8, xs: 12 }, l),
                     r.a.createElement(
-                      dt.a,
+                      ht.a,
                       { item: !0, sm: 4, xs: 12 },
                       null === this.state.profile
-                        ? r.a.createElement(aa, null)
-                        : r.a.createElement(ya, { profile: this.state.profile })
+                        ? r.a.createElement(ra, null)
+                        : r.a.createElement(Oa, { profile: this.state.profile })
                     )
                   );
                 },
@@ -3190,7 +3198,7 @@
             t
           );
         })(n.Component),
-        Oa = Object(v.b)(
+        Ca = Object(v.b)(
           function (e) {
             return { data: e.data };
           },
@@ -3209,8 +3217,8 @@
               };
             },
           }
-        )(va),
-        ja = f()({
+        )(ja),
+        Sa = f()({
           palette: {
             primary: {
               light: "#33c9dc",
@@ -3267,14 +3275,14 @@
         });
       _.a.defaults.baseURL =
         "https://us-central1-socialape-aa1d6.cloudfunctions.net/api";
-      var Ca = localStorage.FBIdToken;
-      Ca &&
-        (1e3 * y()(Ca).exp < Date.now()
+      var Na = localStorage.FBIdToken;
+      Na &&
+        (1e3 * y()(Na).exp < Date.now()
           ? (R.dispatch(U()), (window.location.href = "/login"))
           : (R.dispatch({ type: "SET_AUTHENTICATED" }),
-            (_.a.defaults.headers.common.Authorization = Ca),
+            (_.a.defaults.headers.common.Authorization = Na),
             R.dispatch(L())));
-      var Sa = (function (e) {
+      var ka = (function (e) {
         function t() {
           return (
             Object(o.a)(this, t),
@@ -3289,14 +3297,14 @@
               value: function () {
                 return r.a.createElement(
                   E.a,
-                  { theme: ja },
+                  { theme: Sa },
                   r.a.createElement(
                     v.a,
                     { store: R },
                     r.a.createElement(
                       d.a,
                       null,
-                      r.a.createElement(et, null),
+                      r.a.createElement(at, null),
                       r.a.createElement(
                         "div",
                         { className: "home-page-container" },
@@ -3309,37 +3317,37 @@
                             r.a.createElement(p.b, {
                               exact: !0,
                               path: "/",
-                              component: mt,
+                              component: dt,
                             }),
                             r.a.createElement(p.b, {
                               exact: !0,
                               path: "/community",
-                              component: ma,
+                              component: da,
                             }),
-                            r.a.createElement(at, {
+                            r.a.createElement(rt, {
                               exact: !0,
                               path: "/login",
-                              component: Ea,
+                              component: fa,
                             }),
-                            r.a.createElement(at, {
+                            r.a.createElement(rt, {
                               exact: !0,
                               path: "/signup",
-                              component: ga,
+                              component: va,
                             }),
                             r.a.createElement(p.b, {
                               exact: !0,
                               path: "/users/:handle",
-                              component: Oa,
+                              component: Ca,
                             }),
                             r.a.createElement(p.b, {
                               exact: !0,
                               path: "/users/:handle/scream/:screamId",
-                              component: Oa,
+                              component: Ca,
                             })
                           )
                         )
                       ),
-                      r.a.createElement(rt, null)
+                      r.a.createElement(ct, null)
                     )
                   )
                 );
@@ -3356,14 +3364,14 @@
             /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
           )
       );
-      a(592), a(593), a(594);
-      c.a.render(r.a.createElement(Sa, null), document.getElementById("root")),
+      a(593), a(594), a(595);
+      c.a.render(r.a.createElement(ka, null), document.getElementById("root")),
         "serviceWorker" in navigator &&
           navigator.serviceWorker.ready.then(function (e) {
             e.unregister();
           });
     },
   },
-  [[305, 1, 2]],
+  [[306, 1, 2]],
 ]);
-//# sourceMappingURL=main.87999bed.chunk.js.map
+//# sourceMappingURL=main.4b20b4f9.chunk.js.map

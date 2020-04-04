@@ -20,6 +20,7 @@ import TuneIcon from "@material-ui/icons/Tune";
 import EmailIcon from "@material-ui/icons/Email";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import MenuIcon from "@material-ui/icons/Menu";
 
 //Redux
 import { connect } from "react-redux";
@@ -107,17 +108,11 @@ class Navbar extends Component {
                   <HomeIcon />
                 </MyButton>
               </Link>
-              {/* <Button title="Home" color="inherit" component={Link} to="/">
-                  <HomeIcon />
-                </Button> */}
               <Link to="login">
                 <MyButton tip="Login">
                   <LockOpenIcon />
                 </MyButton>
               </Link>
-              {/* <Button title="Login" color="inherit" component={Link} to="login">
-                  <LockOpenIcon />
-                </Button> */}
             </Box>
           )}
           <MobileNavbar

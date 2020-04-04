@@ -71,22 +71,11 @@ class Slide extends Component {
             onLoad={this.imageLoaded}
           />
         </div>
-
-        <Grid
-          className="slide__content"
-          container
-          direction="column"
-          spacing={3}
-        >
-          <Grid item>
-            <h2 className="slide__headline">{headline}</h2>
-          </Grid>
-          <Grid item>
-            <Button className="btn white-text mt-lg-4" disableRipple={true}>
-              {button}
-            </Button>
-          </Grid>
-        </Grid>
+        
+        <article className="slide__content">
+          <h4 className="slide__headline">{headline}</h4>
+          <button className="btn white-text p-0 m-0">{button}</button>
+        </article>
       </li>
     );
   }

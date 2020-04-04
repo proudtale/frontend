@@ -65,7 +65,7 @@ class Footer extends Component {
         <div className="footer-copyright text-center py-3 mdb-color darken-4">
           <MDBContainer fluid>
             &copy; {new Date().getFullYear()} Copyright:{" "}
-            <a href="https://www.proudtale.com/"> proudtales.com</a>
+            <a href="https://proudtale.com/"> proudtales.com</a>
           </MDBContainer>
         </div>
       </MDBFooter>

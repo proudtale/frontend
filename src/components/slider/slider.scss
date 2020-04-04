@@ -26,11 +26,12 @@
 
 //  Buttons
 .btn {
-  background-color: var(--color-primary);
+  background: none;
   color: white;
   cursor: pointer;
   font-family: inherit;
-  font-size: inherit;
+  padding: 0;
+  box-shadow: none;
   &:focus {
     outline-color: var(--color-focus);
     outline-offset: 2px;
@@ -44,8 +45,8 @@
 }
 // Slider
 .slider {
-  --slide-size: 30vmin;
-  --slide-margin: 3vmin;
+  --slide-size: 26vmin;
+  --slide-margin: 1.7vmin;
   height: var(--slide-size);
   margin: 0 auto 2em 1em;
   width: var(--slide-size);
@@ -62,14 +63,15 @@
 //   Slide
 .slide {
   align-items: center;
-  color: white;
+  // color: white;
+  // text-shadow: "2px 1px #1c2a48";
   display: flex;
   flex: 1;
   flex-direction: column;
   height: var(--slide-size);
   justify-content: center;
   margin: 0 var(--slide-margin);
-  opacity: 0.25;
+  opacity: 0.6;
   position: relative;
   text-align: center;
   transition: opacity calc(var(--base-duration) / 2) var(--base-ease),
@@ -81,7 +83,7 @@
   &--previous,
   &--next {
     &:hover {
-      opacity: 0.7;
+      opacity: 1;
     }
   }
 
@@ -110,6 +112,7 @@
   opacity: 1;
   pointer-events: auto;
   user-select: auto;
+  border: 2px solid white;
 
   @media (hover: hover) {
     &:hover .slide__image-wrapper {
@@ -125,7 +128,7 @@
 .slide__image-wrapper {
   background-color: var(--color-accent);
   border-radius: 1%;
-  height: 107%;
+  height: 100%;
   left: 0%;
   overflow: hidden;
   position: absolute;
@@ -139,7 +142,6 @@
   height: 110%;
   left: -5%;
   object-fit: cover;
-  opacity: 0;
   pointer-events: none;
   position: absolute;
   top: -5%;
@@ -159,9 +161,13 @@
 }
 
 .slide__headline {
-  font-size: 5vmin;
-  font-weight: 300;
+  font-size: 3vmin;
+  font-weight: bolder;
   position: relative;
+  margin-bottom: 2.5em;
+  // color: "white";
+  color: white;
+  text-shadow: 2px 2px #1c2a48;
 }
 
 .slide__content {
@@ -173,6 +179,9 @@
   transition: transform var(--base-duration) var(--base-ease);
   visibility: hidden;
   height: inherit;
+  // background: white;
+  width: 80%;
+
   .slide--current & {
     animation: fade-in calc(var(--base-duration) / 2) var(--base-ease) forwards;
     visibility: visible;
