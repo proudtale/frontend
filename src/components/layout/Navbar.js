@@ -9,6 +9,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
+
 // Icons
 import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
@@ -16,6 +17,7 @@ import TuneIcon from "@material-ui/icons/Tune";
 import EmailIcon from "@material-ui/icons/Email";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import MenuIcon from "@material-ui/icons/Menu";
 
 //Redux
 import { connect } from "react-redux";
@@ -64,8 +66,11 @@ class Navbar extends Component {
             </Link>
             <h4 className={classes.navbarTitle}>proudtale</h4>
           </div>
+          <div className="navNarrow">
+            <MenuIcon className="menuIcon" />
+          </div>
           {/* Right side in header */}
-          <div>
+          <div className="navWide">
             {authenticated ? (
               <Fragment>
                 <h4 className={classes.navbarHandle}>{handle}</h4>

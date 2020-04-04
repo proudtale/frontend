@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "../components/slider/slider";
+// import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // md stuff
@@ -10,9 +11,10 @@ import { connect } from "react-redux";
 const styles = (theme) => ({
   ...theme.spread,
   styleTitle: {
-    color: "#1c2a48",
+    color: "white",
     fontWeight: "bolder",
     fontFamily: "cursive",
+    textShadow: "2px 1px #1c2a48",
   },
 });
 
@@ -69,11 +71,23 @@ const slideData = [
 
 class home extends Component {
   render() {
-    const { classes } = this.props;
-    return (
+    const {
+      classes,
+      // scream: {
+      //   // title,
+      //   userImage
+      //   // userHandle,
+      //   // screamId,
+      // }
+    } = this.props;
+
+    let homeMarkup = (
       <div>
+        {/* <div>
+          <img src={userImage} alt="profile" className="profile-image" />
+        </div> */}
         <div>
-          <h1 className={classes.styleTitle}>Book</h1>
+          <h1 className={classes.styleTitle}>Popular Book</h1>
           <Slider heading="Example Slider" slides={slideData} />
         </div>
         <div>
@@ -86,7 +100,18 @@ class home extends Component {
         </div>
       </div>
     );
+    return homeMarkup;
   }
 }
+// home.propTypes = {
+//   user: PropTypes.object.isRequired,
+//   classes: PropTypes.object.isRequired,
+//   scream: PropTypes.object.isRequired,
+// }
+
+// const mapStateToProps = (state) => ({
+//   user: state.user,
+//   scream: state.data.scream
+// });
 
 export default connect()(withStyles(styles)(home));

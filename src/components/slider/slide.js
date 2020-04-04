@@ -71,10 +71,8 @@ class Slide extends Component {
         </div>
 
         <article className="slide__content">
-          <h2 className="slide__headline">{headline}</h2>
-          <button className="slide__action btn white-text mt-4">
-            {button}
-          </button>
+          <h4 className="slide__headline">{headline}</h4>
+          <button className="btn white-text p-0 m-0">{button}</button>
         </article>
       </li>
     );
