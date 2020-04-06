@@ -39,8 +39,10 @@ const styles = (theme) => ({
     margin: "2em 0.7em 0 0",
   },
   navbarTitle: {
-    marginTop: "0.9em",
     fontFamily: "cursive",
+  },
+  test: {
+    background: "green",
   },
 });
 
@@ -58,7 +60,7 @@ class Navbar extends Component {
       <AppBar>
         <Toolbar className="nav-container mdb-color darken-3 d-flex justify-content-between">
           {/* proudtale log and website name in header */}
-          <div className="d-flex">
+          <div className="align-verticle-flex">
             <Link to="/">
               <img
                 height="60"
@@ -67,54 +69,67 @@ class Navbar extends Component {
                 alt="proudetale"
               />
             </Link>
-            <h4 className={classes.navbarTitle}>proudtale</h4>
+            <Box display={{ xs: "none", sm: "block" }}>
+              <h4 className={classes.navbarTitle}>proudtale</h4>
+            </Box>
           </div>
-          <Searchbar />
           {/* Right side in header */}
-          {authenticated ? (
-            <Box display={{ xs: "none", sm: "block" }}>
-              <h4 className={classes.navbarHandle}>{handle}</h4>
-              <img
-                src={imageUrl}
-                alt="profile"
-                className={classes.navbarImage}
-              />
-              <PostScream />
-              <Notifications tip="Notification" />
-              <Link to="/">
-                <MyButton tip="Home">
-                  <HomeIcon />
+          <Box
+            width="75%"
+            display={{ xs: "none", md: "flex" }}
+            justifyContent="end"
+          >
+            {authenticated ? (
+              <React.Fragment>
+                <Searchbar />
+                <h4 className={classes.navbarHandle}>{handle}</h4>
+                <img
+                  src={imageUrl}
+                  alt="profile"
+                  className={classes.navbarImage}
+                />
+                <PostScream />
+                <Notifications tip="Notification" />
+                <Link to="/">
+                  <MyButton tip="Home">
+                    <HomeIcon />
+                  </MyButton>
+                </Link>
+                <Link to="community">
+                  <MyButton className="align-verticle-flex" tip="Community">
+                    <PeopleIcon />
+                  </MyButton>
+                </Link>
+                <MyButton
+                  className="align-verticle-flex"
+                  tip="Logout"
+                  onClick={this.handleLogout}
+                >
+                  <MeetingRoomIcon color="primary" />
                 </MyButton>
-              </Link>
-              <Link to="community">
-                <MyButton tip="Community">
-                  <PeopleIcon />
-                </MyButton>
-              </Link>
-              <MyButton tip="Logout" onClick={this.handleLogout}>
-                <MeetingRoomIcon color="primary" />
-              </MyButton>
-            </Box>
-          ) : (
-            <Box display={{ xs: "none", sm: "block" }}>
-              <Button>
-                <TuneIcon />
-              </Button>
-              <Button>
-                <EmailIcon />
-              </Button>
-              <Link to="/">
-                <MyButton tip="Home">
-                  <HomeIcon />
-                </MyButton>
-              </Link>
-              <Link to="login">
-                <MyButton tip="Login">
-                  <LockOpenIcon />
-                </MyButton>
-              </Link>
-            </Box>
-          )}
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <Searchbar />
+                <Button>
+                  <TuneIcon />
+                </Button>
+                <Button>
+                  <EmailIcon />
+                </Button>
+                <Link className="align-verticle-flex" to="/">
+                  <MyButton tip="Home">
+                    <HomeIcon />
+                  </MyButton>
+                </Link>
+                <Link className="align-verticle-flex" to="login">
+                  <MyButton tip="Login">
+                    <LockOpenIcon />
+                  </MyButton>
+                </Link>
+              </React.Fragment>
+            )}
+          </Box>
           <MobileNavbar
             logoutUser={this.props.logoutUser}
             authenticated={authenticated}

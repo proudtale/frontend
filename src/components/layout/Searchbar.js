@@ -8,6 +8,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import Button from "@material-ui/core/Button";
 
 import { connect } from "react-redux";
+import { IconButton } from "@material-ui/core";
 
 function Searchbar(props) {
   const { classes, screams } = props;
@@ -33,23 +34,20 @@ function Searchbar(props) {
   };
 
   return (
-    <div>
+    <div className={classes.wrapper}>
       <div className={classes.search} {...getRootProps()}>
-        <Link to="/search">
-          <label className={classes.searchIcon} {...getInputLabelProps()}>
-            <SearchIcon />
-          </label>
-        </Link>
+        <label {...getInputLabelProps()}></label>
         <InputBase
           classes={{ root: classes.inputRoot, input: classes.inputInput }}
           {...getInputProps()}
           onKeyPress={(e) => handleKeyPress(e, inputValue)}
         />
         <Link to={`/search/${inputValue}`}>
-          <Button className={classes.button}>Search</Button>
+          <Button className={classes.button}>
+            <SearchIcon />
+          </Button>
         </Link>
       </div>
-
       {groupedOptions.length > 0 ? (
         <ul className={classes.listBox} {...getListboxProps()}>
           {groupedOptions.map((option, index) => (
@@ -89,13 +87,12 @@ const styles = (theme) => ({
   },
   inputRoot: {
     color: "inherit",
-    marginLeft: "3rem",
+    marginLeft: "1rem",
   },
   inputInput: {
     transition: theme.transitions.create("width"),
-    width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "50ch",
+      width: "20ch",
     },
   },
   listBox: {
@@ -144,6 +141,10 @@ const styles = (theme) => ({
   },
   button: {
     color: "white",
+  },
+  wrapper: {
+    height: "auto",
+    margin: "1rem 0",
   },
 });
 
