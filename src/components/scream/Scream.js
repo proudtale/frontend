@@ -23,13 +23,21 @@ const styles = {
     position: "relative",
     display: "flex",
     marginBottom: 20,
+    marginRight: 20,
   },
   image: {
-    minWidth: 200,
+    minWidth: "12em",
+    minHeight: "13em",
   },
   content: {
     padding: 25,
     objectFit: "cover",
+  },
+  profileImage: {
+    width: 47,
+    height: 50,
+    borderRadius: "10%",
+    marginRight: "0.5em",
   },
 };
 
@@ -62,7 +70,7 @@ class Scream extends Component {
       <Card className={classes.card}>
         <CardMedia
           image={userImage}
-          title="Profile image"
+          title="Book image"
           className={classes.image}
         />
         <CardContent className={classes.content}>
@@ -72,6 +80,11 @@ class Scream extends Component {
             to={`/users/${userHandle}`}
             color="primary"
           >
+            <img
+              src={userImage}
+              alt="Profile"
+              className={classes.profileImage}
+            />
             {userHandle}
           </Typography>
           {deleteButton}

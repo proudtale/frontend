@@ -7,9 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-
 import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
+import EditIcon from "@material-ui/icons/Edit";
 // Redux stuff
 import { connect } from "react-redux";
 import { postScream, clearErrors } from "../../redux/actions/dataActions";
@@ -69,7 +69,7 @@ class PostScream extends Component {
   };
   render() {
     const { errors } = this.state;
-    const { classes } = this.props;
+    const { classes, bookImage } = this.props;
     return (
       <Fragment>
         <MyButton onClick={this.handleOpen} tip="Create book">
@@ -78,18 +78,35 @@ class PostScream extends Component {
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
-          fullWidth
-          maxWidth="sm"
+          fullScreen={true}
         >
           <MyButton
             tip="Close"
             onClick={this.handleClose}
             tipClassName={classes.closeButton}
+            ml={20}
           >
             <CloseIcon />
           </MyButton>
           <DialogTitle>Publish your new book</DialogTitle>
           <DialogContent>
+            <div className="image-wrapper">
+              <img src={bookImage} alt="book" className="profile-image" />
+              <input
+                type="file"
+                id="imageInput"
+                hidden="hidden"
+                onChange={this.handleImageChange}
+              />
+              <MyButton
+                tip="Edit profile picture"
+                onClick={this.handleEditPicture}
+                btnClassName="button"
+              >
+                <EditIcon color="primary" />
+              </MyButton>
+            </div>
+
             <form onSubmit={this.handleSubmit}>
               <TextField
                 name="title"
