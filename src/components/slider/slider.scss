@@ -96,8 +96,6 @@
 //   Slide
 .slide {
   align-items: center;
-  // color: white;
-  // text-shadow: "2px 1px #1c2a48";
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -198,7 +196,6 @@
   font-weight: bolder;
   position: relative;
   margin-bottom: 2.5em;
-  // color: "white";
   color: white;
   text-shadow: 2px 2px #1c2a48;
 }
@@ -207,12 +204,12 @@
   --d: 60;
 
   opacity: 0;
-  padding: 1vmin;
+  // padding: 1vmin;
   position: relative;
   transition: transform var(--base-duration) var(--base-ease);
   visibility: hidden;
   // background: white;
-  width: 80%;
+  width: 100%;
 
   .slide--current & {
     animation: fade-in calc(var(--base-duration) / 2) var(--base-ease) forwards;

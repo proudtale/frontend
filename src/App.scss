@@ -39,3 +39,9 @@ body {
 a {
   text-decoration: none;
 }
+
+@media (min-width: 1800px) {
+  .container {
+    min-width: 1800px;
+  }
+}

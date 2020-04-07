@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import Slider from "../components/slider/slider";
-// import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 
-// md stuff
-
 // Redux stuff
-import { connect } from "react-redux";
+import axios from "axios";
 
 const styles = (theme) => ({
   ...theme.spread,
@@ -18,84 +15,50 @@ const styles = (theme) => ({
   },
 });
 
-const slideData = [
-  {
-    index: 0,
-    headline: "New Fashion",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/fashion.jpg",
-  },
-  {
-    index: 1,
-    headline: "In The Wilderness",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/forest.jpg",
-  },
-  {
-    index: 2,
-    headline: "For Your Current Mood",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/guitar.jpg",
-  },
-  {
-    index: 3,
-    headline: "Focus On The Writing",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/typewriter.jpg",
-  },
-  {
-    index: 4,
-    headline: "New Fashion Trend",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/fashion.jpg",
-  },
-  {
-    index: 5,
-    headline: "In The Wilderness",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/forest.jpg",
-  },
-  {
-    index: 6,
-    headline: "For Your Current Mood",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/guitar.jpg",
-  },
-  {
-    index: 7,
-    headline: "Focus On The Writing",
-    button: "Read Now",
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/225363/typewriter.jpg",
-  },
-];
-
+const popularBook = [];
+function Book(index, title, author, bookImage) {
+  this.index = index;
+  this.title = title;
+  this.author = author;
+  this.bookImage = bookImage;
+}
 class home extends Component {
+  componentDidMount() {
+    axios
+      .get("https://us-central1-socialape-aa1d6.cloudfunctions.net/api/screams")
+      .then((res) => {
+        let books = res.data;
+        let n = 0;
+        while (n < books.length) {
+          let book = new Book(
+            n,
+            books[n].title,
+            books[n].userHandle,
+            books[n].userImage
+          );
+          popularBook.push(book);
+          n++;
+        }
+        console.log(books);
+        console.log(popularBook);
+        this.setState(popularBook);
+      });
+  }
   render() {
-    const {
-      classes,
-      // scream: {
-      //   // title,
-      //   userImage
-      //   // userHandle,
-      //   // screamId,
-      // }
-    } = this.props;
+    const { classes } = this.props;
     let homeMarkup = (
       <div>
-        {/* <div>
-        <img src={userImage} alt="profile" className="profile-image" />
-      </div> */}
         <div>
           <h1 className={classes.styleTitle}>Popular Book</h1>
-          <Slider heading="Example Slider" slides={slideData} />
+          <Slider heading="Popular Book" slides={popularBook} />
         </div>
         <div>
           <h1 className={classes.styleTitle}>Biography</h1>
-          <Slider heading="Example Slider" slides={slideData} />
+          <Slider heading="Biography" slides={popularBook} />
         </div>
         <div>
           <h1 className={classes.styleTitle}>Fiction</h1>
-          <Slider heading="Example Slider" slides={slideData} />
+          <Slider heading="Fiction" slides={popularBook} />
         </div>
       </div>
     );
@@ -103,14 +66,4 @@ class home extends Component {
   }
 }
 
-// home.propTypes = {
-//   user: PropTypes.object.isRequired,
-//   classes: PropTypes.object.isRequired,
-//   scream: PropTypes.object.isRequired,
-// }
-// const mapStateToProps = (state) => ({
-//   user: state.user,
-//   scream: state.data.scream
-// });
-
-export default connect()(withStyles(styles)(home));
+export default withStyles(styles)(home);
