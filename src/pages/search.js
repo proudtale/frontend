@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 
-import Scream from "../components/scream/Scream";
+// Components
+import Scream from "../components/community/Scream";
+// Util
 import ScreamSkeleton from "../util/ScreamSkeleton";
+// Redux
 import { searchScreams, getScreams } from "../redux/actions/dataActions";
-
 import { connect } from "react-redux";
+// MUI Core
 import { Typography } from "@material-ui/core";
 
 class search extends Component {

@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import withStyles from "@material-ui/core/styles/withStyles";
-import NoImg from "../images/no-img.png";
-// MUI
+// MUI Core
 import Paper from "@material-ui/core/Paper";
+import withStyles from "@material-ui/core/styles/withStyles";
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
 import LinkIcon from "@material-ui/icons/Link";
 import CalendarToday from "@material-ui/icons/CalendarToday";
-
+// Images
+import NoImg from "../assets/images/no-img.png";
 const styles = (theme) => ({
   ...theme.spread,
   handle: {

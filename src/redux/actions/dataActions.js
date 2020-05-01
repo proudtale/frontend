@@ -67,8 +67,8 @@ export const postScream = (newScream) => (dispatch) => {
       });
     });
 };
-//Edit a scream
 
+//Edit a scream
 export const submitEdit = (scream) => (dispatch) => {
   dispatch({ type: LOADING_UI });
 
@@ -187,3 +187,45 @@ export const searchScreams = (value, screams) => (dispatch) => {
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
+
+// Post a book
+// export const postBook = (newBook) => (dispatch) => {
+//   dispatch({ type: LOADING_UI });
+//   axios
+//     .post("/scream", newBook)
+//     .then((res) => {
+//       dispatch({
+//         type: POST_SCREAM,
+//         payload: res.data,
+//       });
+//       dispatch(clearErrors());
+//     })
+//     .catch((err) => {
+//       dispatch({
+//         type: SET_ERRORS,
+//         payload: err.response.data,
+//       });
+//     });
+// };
+
+//Edit a book
+// export const submitEdit = (scream) => (dispatch) => {
+//   dispatch({ type: LOADING_UI });
+
+//   axios
+//     .post(`/scream/${scream.screamId}/edit`, scream)
+//     .then((res) => {
+//       dispatch({
+//         type: SUBMIT_EDIT,
+//         payload: res.data,
+//       });
+//       dispatch(getScream(scream.screamId));
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// };
+
+// export const editScream = () => (dispatch) => {
+//   dispatch({ type: EDIT_SCREAM });
+// };

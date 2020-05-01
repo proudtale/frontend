@@ -133,7 +133,6 @@ class Profile extends Component {
     ) : (
       <ProfileSkeleton />
     );
-
     return profileMarkup;
   }
 }

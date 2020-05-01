@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 
 const styles = (theme) => ({
   ...theme.spread,
@@ -44,8 +45,7 @@ class Slide extends Component {
   }
 
   render() {
-    //   const { classes }  = this.props;
-    const { src, button, headline, index } = this.props.slide;
+    const { bookImage, author, title, index } = this.props.slide;
     const current = this.props.current;
     let classNames = "slide";
 
@@ -61,19 +61,21 @@ class Slide extends Component {
         onMouseMove={this.handleMouseMove}
         onMouseLeave={this.handleMouseLeave}
       >
-        <div className="slide__image-wrapper">
-          <img
-            className="slide__image"
-            alt={headline}
-            src={src}
-            onLoad={this.imageLoaded}
-          />
-        </div>
+        <Link to="">
+          <div className="slide__image-wrapper">
+            <img
+              className="slide__image"
+              alt={title}
+              src={bookImage}
+              onLoad={this.imageLoaded}
+            />
+          </div>
 
-        <article className="slide__content">
-          <h4 className="slide__headline">{headline}</h4>
-          <button className="btn white-text p-0 m-0">{button}</button>
-        </article>
+          <article className="slide__content">
+            <h4 className="slide__headline">{title}</h4>
+            <h5 className="white-text font-weight-bolder">{author}</h5>
+          </article>
+        </Link>
       </li>
     );
   }
