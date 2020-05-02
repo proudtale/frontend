@@ -18,7 +18,7 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/profile/user";
 import search from "./pages/search";
-import createbook from "./pages/book/createbook";
+import createbook from "./pages/book/publish";
 import nomatchpage from "./pages/nomatchpage";
 
 // Redux Axios
