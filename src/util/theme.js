@@ -2,7 +2,7 @@ export default {
   palette: {
     primary: {
       light: "#33c9dc",
-      main: "#00bcd4",
+      main: "#1C2A48",
       dark: "#008394",
       contrastText: "#fff",
     },
@@ -13,6 +13,7 @@ export default {
       contrastText: "#fff",
     },
   },
+  spacing: (factor) => `${0.25 * factor}rem`,
   spread: {
     typography: {
       useNextVariants: true,

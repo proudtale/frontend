@@ -19,6 +19,8 @@ import signup from "./pages/signup";
 import user from "./pages/profile/user";
 import search from "./pages/search";
 import publish from "./pages/book/publish";
+import createbook from "./pages/book/createbook";
+import chapter from "./pages/chapter/chapter";
 import nomatchpage from "./pages/nomatchpage";
 
 // Redux Axios
@@ -56,7 +58,7 @@ class App extends Component {
           <Router>
             <Navbar />
             <div className="home-page-container">
-              <div>
+              <div className="adjust-top">
                 <Switch>
                   <Route exact path="/" component={home} />
                   <AuthRoute
@@ -72,6 +74,11 @@ class App extends Component {
                     exact
                     path="/users/:handle/scream/:screamId"
                     component={user}
+                  />
+                  <Route
+                    exact
+                    path="/book/:bookId/chapter/:chapterId"
+                    component={chapter}
                   />
                   <Route
                     exact
