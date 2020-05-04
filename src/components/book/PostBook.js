@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import MyButton from "../../util/MyButton";
 
 // component
-import TextEditor from "../layout/TextEditor";
+import BookTextEditor from "./TextEditor";
 
 // MUI Stuff
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -14,26 +14,32 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
 //MUI Icon
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 
 // Redux stuff
 import { connect } from "react-redux";
 import { postScream, clearErrors } from "../../redux/actions/dataActions";
+// Image
 
+import publishBookIcon from "../../assets/icons/publishbookicon.png";
 const styles = (theme) => ({
   ...theme.spread,
-
+  postbook: {
+    display: "inline",
+  },
   button: {
-    fontSize: "1.2em",
-    marginBottom: theme.spacing(2),
-    color: "#fff",
-    padding: "0.5em",
     background: "#1c2a48",
+    marginTop: theme.spacing(0.7),
+    fontSize: "8em",
+    height: "2em",
+    "& img": {
+      width: "1.5em",
+    },
   },
-  progressSpinner: {
-    position: "absolute",
-  },
+  // progressSpinner: {
+  //   position: "absolute",
+  // },
   closeButton: {
     position: "absolute",
     right: theme.spacing(1),
@@ -84,20 +90,20 @@ class PostScream extends Component {
     const { errors } = this.state;
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.postbook}>
         <Fragment>
           <Button
             onClick={this.handleOpen}
             tip="Create book"
             className={classes.button}
           >
-            <AddIcon />
-            Create your book
+            {/* <AddIcon className={classes.addIcon}/> */}
+            <img src={publishBookIcon} alt="create book" />
           </Button>
           <Dialog
             open={this.state.open}
             onClose={this.handleClose}
-            maxWidth="xl"
+            maxWidth="lg"
             fullWidth={true}
             aria-labelledby="scroll-dialog-title"
           >
@@ -134,8 +140,12 @@ class PostScream extends Component {
                   onChange={this.handleChange}
                   fullWidth
                 />
-                <h6 className="font-weight-bolder mt-5">Book Body</h6>
-                <TextEditor type="text" label="Body" setValue={this.setValue} />
+                <h6 className="font-weight-bolder mt-5">Synopsis</h6>
+                <BookTextEditor
+                  type="text"
+                  label="Body"
+                  setValue={this.setValue}
+                />
               </form>
             </DialogContent>
           </Dialog>

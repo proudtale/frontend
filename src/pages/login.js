@@ -7,6 +7,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 import CircularProgress from "@material-ui/core/CircularProgress";
 // Redux stuff
 import { connect } from "react-redux";
@@ -16,11 +17,12 @@ import AppIcon from "../assets/images/proudtale.png";
 
 const styles = (theme) => ({
   ...theme.spread,
-  loginStyle: {
-    background: "white",
-    padding: "2em",
+  paper: {
     borderRadius: "1em",
-    marginTop: "3em",
+    padding: "2em",
+    margin: "auto",
+    marginTop: "10em",
+    maxWidth: 700,
   },
 });
 
@@ -60,10 +62,9 @@ class login extends Component {
     const { errors } = this.state;
 
     return (
-      <div className={classes.loginStyle}>
+      <Paper className={classes.paper}>
         <Grid container className={classes.form}>
-          <Grid item sm />
-          <Grid item sm>
+          <Grid item xs={12}>
             <img src={AppIcon} alt="proudtalelog" className={classes.image} />
             <Typography variant="h4" className={classes.pageTitle}>
               Login
@@ -116,9 +117,8 @@ class login extends Component {
               </small>
             </form>
           </Grid>
-          <Grid item sm />
         </Grid>
-      </div>
+      </Paper>
     );
   }
 }

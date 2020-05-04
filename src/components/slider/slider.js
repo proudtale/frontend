@@ -1,16 +1,5 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Slide from "../slider/slide";
-
-// SliderControl
-// const SliderControl = ({ type, title, handleClick }) => {
-//   return (
-//     <button className={`btn btn--${type}`} title={title} onClick={handleClick}>
-//       <svg className="icon" viewBox="0 0 24 24">
-//         <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
-//       </svg>
-//     </button>
-//   )
-// }
 
 class Slider extends Component {
   constructor(props) {
@@ -58,37 +47,25 @@ class Slider extends Component {
     };
 
     return (
-      <div className="slider" aria-labelledby={headingId}>
-        <ul className="slider__wrapper" style={wrapperTransform}>
-          <h4 id={headingId} class="visuallyhidden">
-            {heading}
-          </h4>
-
-          {slides.map((slide) => {
-            return (
-              <Slide
-                key={slide.index}
-                slide={slide}
-                current={current}
-                handleSlideClick={this.handleSlideClick}
-              />
-            );
-          })}
-        </ul>
-        {/* <div className="slider__controls">
-          <SliderControl 
-            type="previous"
-            title="Go to previous slide"
-            handleClick={this.handlePreviousClick}
-          />
-          
-          <SliderControl 
-            type="next"
-            title="Go to next slide"
-            handleClick={this.handleNextClick}
-          />
-        </div>     */}
-      </div>
+      <Fragment>
+        <h1 id={headingId} className="styleTitle">
+          {heading}
+        </h1>
+        <div className="slider" aria-labelledby={headingId}>
+          <ul className="slider__wrapper" style={wrapperTransform}>
+            {slides.map((slide) => {
+              return (
+                <Slide
+                  key={slide.index}
+                  slide={slide}
+                  current={current}
+                  handleSlideClick={this.handleSlideClick}
+                />
+              );
+            })}
+          </ul>
+        </div>
+      </Fragment>
     );
   }
 }

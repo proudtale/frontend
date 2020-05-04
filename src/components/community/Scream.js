@@ -73,7 +73,7 @@ class Scream extends Component {
       <Card className={classes.card}>
         <CardMedia
           image={userImage}
-          title="Book image"
+          title="User image"
           className={classes.image}
         />
         <CardContent className={classes.content}>

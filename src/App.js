@@ -18,14 +18,18 @@ import login from "./pages/login";
 import signup from "./pages/signup";
 import user from "./pages/profile/user";
 import search from "./pages/search";
-import createbook from "./pages/book/createbook";
+import publish from "./pages/book/publish";
 import nomatchpage from "./pages/nomatchpage";
 
 // Redux Axios
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";
-import { logoutUser, getUserData } from "./redux/actions/userActions";
+import {
+  logoutUser,
+  getUserData,
+  getBookData,
+} from "./redux/actions/userActions";
 import axios from "axios";
 
 const theme = createMuiTheme(themeObject);
@@ -43,6 +47,7 @@ if (token) {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common["Authorization"] = token;
     store.dispatch(getUserData());
+    store.dispatch(getBookData());
   }
 }
 
@@ -54,10 +59,14 @@ class App extends Component {
           <Router>
             <Navbar />
             <div className="home-page-container">
-              <div className="container">
+              <div>
                 <Switch>
                   <Route exact path="/" component={home} />
-                  <AuthRoute exact path="/createbook" component={createbook} />
+                  <AuthRoute
+                    exact
+                    path="/publish/:handle"
+                    component={publish}
+                  />
                   <AuthRoute exact path="/community" component={community} />
                   <Route exact path="/login" component={login} />
                   <Route exact path="/signup" component={signup} />

@@ -58,19 +58,21 @@ class user extends Component {
     );
 
     return (
-      <Grid container spacing={10}>
-        {/* <Grid item sm={8} xs={12}>
-          {screamsMarkup}
-        </Grid> */}
-        <Grid item sm={4} xs={12}>
-          {this.state.profile === null ? (
-            <ProfileSkeleton />
-          ) : (
-            // <StaticProfile profile={this.state.profile} />
-            <Profile />
-          )}
+      <div className="container">
+        <Grid container spacing={10}>
+          {/* <Grid item sm={8} xs={12}>
+            {screamsMarkup}
+          </Grid> */}
+          <Grid item sm={4} xs={12}>
+            {this.state.profile === null ? (
+              <ProfileSkeleton />
+            ) : (
+              // <StaticProfile profile={this.state.profile} />
+              <Profile />
+            )}
+          </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
