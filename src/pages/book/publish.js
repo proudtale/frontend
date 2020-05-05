@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 // Components
 import BookCard from "../../components/book/bookCard";
 import PostBook from "../../components/book/PostBook";
@@ -12,14 +11,12 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
-
 // Redux
 import { connect } from "react-redux";
-// import { getScreams } from "../../redux/actions/dataActions";
 import { getBookData } from "../../redux/actions/dataActions";
 import axios from "axios";
-
 const styles = (theme) => ({
   ...theme.spread,
   inProgress: {
@@ -34,21 +31,32 @@ const styles = (theme) => ({
   bookCardContainer: {
     display: "flex",
   },
-  publishHeader: {
-    background: "red",
-    width: "100%",
-  },
   publishBody: {
     display: "flex",
+  },
+  dialogTitle: {
+    "& span": {
+      color: "blue",
+    },
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
   },
 });
 class bookreview extends Component {
   state = {
     screamIdParam: null,
     open: false,
+    bookTitle: null,
   };
-  handleOpen = () => {
+  handleOpen = (e) => {
     this.setState({ open: true });
+    this.setState({
+      bookTitle: e.currentTarget.lastChild.textContent,
+    });
+    console.log(e.currentTarget.lastChild.textContent);
   };
   handleClose = () => {
     this.setState({ open: false });
@@ -69,7 +77,6 @@ class bookreview extends Component {
       })
       .catch((err) => console.log(err));
   }
-
   render() {
     const { screams, loading } = this.props.data;
     const { classes } = this.props;
@@ -94,6 +101,7 @@ class bookreview extends Component {
               onClick={this.handleOpen}
               key={scream.screamId}
               scream={scream}
+              div_name={scream.createdAt}
             />
           );
         else
@@ -106,8 +114,15 @@ class bookreview extends Component {
         onClose={this.handleClose}
         fullWidth
         maxWidth="sm"
+        aria-labelledby="customized-dialog-title"
       >
-        <DialogTitle>Do you want to proceed with writing chapters</DialogTitle>
+        <DialogTitle
+          id="customized-dialog-title"
+          className={classes.dialogTitle}
+        >
+          Do you want to proceed with writing chapters{" "}
+          <span>{this.state.bookTitle}</span> ?
+        </DialogTitle>
         <DialogActions>
           <Button onClick={this.handleClose} color="primary">
             Yes
