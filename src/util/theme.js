@@ -1,3 +1,5 @@
+import { ThemeProvider } from "@material-ui/core";
+
 export default {
   palette: {
     primary: {
@@ -87,6 +89,15 @@ export default {
         "&:hover": {
           cursor: "pointer",
         },
+      },
+    },
+    bookInfo: {
+      "& .profile-image": {
+        width: 70,
+        height: 70,
+        objectFit: "cover",
+        maxWidth: "100%",
+        borderRadius: "50%",
       },
     },
     buttons: {

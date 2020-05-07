@@ -20,6 +20,7 @@ import user from "./pages/profile/user";
 import search from "./pages/search";
 import publish from "./pages/book/publish";
 import nomatchpage from "./pages/nomatchpage";
+import info from "./pages/book/info";
 
 // Redux Axios
 import { Provider } from "react-redux";
@@ -73,6 +74,7 @@ class App extends Component {
                     path="/users/:handle/scream/:screamId"
                     component={user}
                   />
+                  <Route exact path="/books/:bookId" component={info} />
                   <Route
                     exact
                     path="/search/:searchValue"
