@@ -15,8 +15,10 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 // Redux
 import { connect } from "react-redux";
-import { getBookData } from "../../redux/actions/dataActions";
+import { getBookData } from "../../redux/actions/bookActions";
 import axios from "axios";
+
+import Proudtalelogo from "../../assets/images/proudtalelogo.png";
 const styles = (theme) => ({
   ...theme.spread,
   inProgress: {
@@ -34,7 +36,11 @@ const styles = (theme) => ({
   publishBody: {
     display: "flex",
   },
+  dialogDiv: {
+    display: "flex",
+  },
   dialogTitle: {
+    textAlign: "center",
     "& span": {
       color: "blue",
     },
@@ -43,6 +49,15 @@ const styles = (theme) => ({
     margin: theme.spacing(1),
     marginLeft: theme.spacing(2),
     backgroundColor: theme.palette.primary.main,
+  },
+  dialogContent: {
+    display: "flex",
+    "& span": {
+      color: "blue",
+    },
+    "& p": {
+      fontSize: "1.1em",
+    },
   },
 });
 class bookreview extends Component {
@@ -101,7 +116,6 @@ class bookreview extends Component {
               onClick={this.handleOpen}
               key={scream.screamId}
               scream={scream}
-              div_name={scream.createdAt}
             />
           );
         else
@@ -116,21 +130,31 @@ class bookreview extends Component {
         maxWidth="sm"
         aria-labelledby="customized-dialog-title"
       >
-        <DialogTitle
-          id="customized-dialog-title"
-          className={classes.dialogTitle}
-        >
-          Do you want to proceed with writing chapters{" "}
-          <span>{this.state.bookTitle}</span> ?
-        </DialogTitle>
-        <DialogActions>
-          <Button onClick={this.handleClose} color="primary">
-            Yes
-          </Button>
-          <Button onClick={this.handleClose} color="secondary">
-            No
-          </Button>
-        </DialogActions>
+        <div className={classes.dialogDiv}>
+          <img alt="proudtale logo" src={Proudtalelogo} />
+          <div>
+            <DialogTitle
+              id="customized-dialog-title"
+              className={classes.dialogTitle}
+            >
+              Proudtale Confirmation Dialog
+            </DialogTitle>
+            <DialogContent className={classes.dialogContent}>
+              <p>
+                Do you want to proceed with writing chapters{" "}
+                <span>{this.state.bookTitle}</span> ?
+              </p>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose} color="primary">
+                Yes
+              </Button>
+              <Button onClick={this.handleClose} color="secondary">
+                No
+              </Button>
+            </DialogActions>
+          </div>
+        </div>
       </Dialog>
     );
     return (
