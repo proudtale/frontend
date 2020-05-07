@@ -25,11 +25,8 @@ import nomatchpage from "./pages/nomatchpage";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";
-import {
-  logoutUser,
-  getUserData,
-  getBookData,
-} from "./redux/actions/userActions";
+import { logoutUser, getUserData } from "./redux/actions/userActions";
+// import { getBookData } from "./redux/actions/bookActions";
 import axios from "axios";
 
 const theme = createMuiTheme(themeObject);
@@ -47,7 +44,7 @@ if (token) {
     store.dispatch({ type: SET_AUTHENTICATED });
     axios.defaults.headers.common["Authorization"] = token;
     store.dispatch(getUserData());
-    store.dispatch(getBookData());
+    // store.dispatch(getBookData());
   }
 }
 

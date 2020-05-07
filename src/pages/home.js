@@ -49,7 +49,7 @@ class home extends Component {
     this.getPopluarBook();
   }
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { isLoading, popularBook } = this.state;
 
     let homeMarkup = (

@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import Grid from "@material-ui/core/Grid";
 // Components
-import Scream from "../../components/community/Scream";
+// import Scream from "../../components/community/Scream";
 // import StaticProfile from "../../components/profile/StaticProfile";
 import Profile from "../../components/profile/Profile";
 // Util
-import ScreamSkeleton from "../../util/ScreamSkeleton";
+// import ScreamSkeleton from "../../util/ScreamSkeleton";
 import ProfileSkeleton from "../../util/ProfileSkeleton";
 // Redux Axios
 import { connect } from "react-redux";
@@ -40,22 +40,22 @@ class user extends Component {
       .catch((err) => console.log(err));
   }
   render() {
-    const { screams, loading } = this.props.data;
-    const { screamIdParam } = this.state;
+    // const { screams, loading } = this.props.data;
+    // const { screamIdParam } = this.state;
 
-    const screamsMarkup = loading ? (
-      <ScreamSkeleton />
-    ) : screams === null ? (
-      <p>No screams from this user</p>
-    ) : !screamIdParam ? (
-      screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
-    ) : (
-      screams.map((scream) => {
-        if (scream.screamId !== screamIdParam)
-          return <Scream key={scream.screamId} scream={scream} />;
-        else return <Scream key={scream.screamId} scream={scream} openDialog />;
-      })
-    );
+    // const screamsMarkup = loading ? (
+    //   <ScreamSkeleton />
+    // ) : screams === null ? (
+    //   <p>No screams from this user</p>
+    // ) : !screamIdParam ? (
+    //   screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
+    // ) : (
+    //   screams.map((scream) => {
+    //     if (scream.screamId !== screamIdParam)
+    //       return <Scream key={scream.screamId} scream={scream} />;
+    //     else return <Scream key={scream.screamId} scream={scream} openDialog />;
+    //   })
+    // );
 
     return (
       <div className="container">

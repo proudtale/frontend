@@ -64,19 +64,6 @@ export const getUserData = () => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
-export const getBookData = () => (dispatch) => {
-  dispatch({ type: LOADING_USER });
-  axios
-    .get("/usr")
-    .then((res) => {
-      dispatch({
-        type: SET_USER,
-        payload: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
 export const uploadImage = (formData) => (dispatch) => {
   dispatch({ type: LOADING_USER });
   axios

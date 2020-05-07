@@ -8,6 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import CircularProgress from "@material-ui/core/CircularProgress";
 // Redux stuff
 import { connect } from "react-redux";
@@ -19,10 +20,14 @@ const styles = (theme) => ({
   ...theme.spread,
   paper: {
     borderRadius: "1em",
-    padding: "2em",
+    padding: "4em",
     margin: "auto",
     marginTop: "10em",
     maxWidth: 700,
+    boxShadow: "none",
+  },
+  signupLink: {
+    marginTop: "1em",
   },
 });
 
@@ -67,7 +72,7 @@ class login extends Component {
           <Grid item xs={12}>
             <img src={AppIcon} alt="proudtalelog" className={classes.image} />
             <Typography variant="h4" className={classes.pageTitle}>
-              Login
+              Log in
             </Typography>
             <form noValidate onSubmit={this.handleSubmit}>
               <TextField
@@ -75,6 +80,7 @@ class login extends Component {
                 name="email"
                 type="email"
                 label="Email"
+                variant="outlined"
                 className={classes.textField}
                 helperText={errors.email}
                 error={errors.email ? true : false}
@@ -87,12 +93,14 @@ class login extends Component {
                 name="password"
                 type="password"
                 label="Password"
+                variant="outlined"
                 className={classes.textField}
                 helperText={errors.password}
                 error={errors.password ? true : false}
                 value={this.state.password}
                 onChange={this.handleChange}
                 fullWidth
+                mb="2em"
               />
               {errors.general && (
                 <Typography variant="body2" className={classes.customError}>
@@ -103,18 +111,22 @@ class login extends Component {
                 type="submit"
                 variant="contained"
                 color="primary"
+                fullWidth
                 className={classes.button}
                 disabled={loading}
               >
-                Login
+                Log in
                 {loading && (
                   <CircularProgress size={30} className={classes.progress} />
                 )}
               </Button>
-              <br />
-              <small>
-                dont have an account ? Register <Link to="/signup">here</Link>
-              </small>
+              <Box className={classes.signupLink}>
+                <span>
+                  <Link to="/signup">
+                    Don't have an account ? Create account
+                  </Link>
+                </span>
+              </Box>
             </form>
           </Grid>
         </Grid>

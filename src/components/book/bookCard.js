@@ -60,7 +60,7 @@ class Scream extends Component {
 
     const deleteButton =
       authenticated && userHandle === handle ? (
-        <DeleteBook screamId={screamId} />
+        <DeleteBook screamId={screamId} title={title} />
       ) : null;
 
     return (

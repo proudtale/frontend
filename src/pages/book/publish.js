@@ -17,7 +17,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import { connect } from "react-redux";
 import { getBookData } from "../../redux/actions/bookActions";
 import axios from "axios";
-
+// Image
 import Proudtalelogo from "../../assets/images/proudtalelogo.png";
 const styles = (theme) => ({
   ...theme.spread,
@@ -41,9 +41,6 @@ const styles = (theme) => ({
   },
   dialogTitle: {
     textAlign: "center",
-    "& span": {
-      color: "blue",
-    },
   },
   avatar: {
     margin: theme.spacing(1),
@@ -141,8 +138,8 @@ class bookreview extends Component {
             </DialogTitle>
             <DialogContent className={classes.dialogContent}>
               <p>
-                Do you want to proceed with writing chapters{" "}
-                <span>{this.state.bookTitle}</span> ?
+                Do you want to proceed with{" "}
+                <span>writing chapters of {this.state.bookTitle}</span> ?
               </p>
             </DialogContent>
             <DialogActions>
