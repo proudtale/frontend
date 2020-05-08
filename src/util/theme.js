@@ -1,5 +1,3 @@
-import { ThemeProvider } from "@material-ui/core";
-
 export default {
   palette: {
     primary: {

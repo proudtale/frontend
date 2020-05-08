@@ -2,13 +2,9 @@ import React from "react";
 // import PropTypes from "prop-types";
 
 import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import IconButton from "@material-ui/core/IconButton";
 
 import InsertCommentIcon from "@material-ui/icons/InsertComment";
 import ReplyIcon from "@material-ui/icons/Reply";
@@ -144,16 +140,18 @@ export default function BookInfo() {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item>
-        <Typography variant="h4" component="h3">
-          Synopsis
-        </Typography>
-        <br />
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
+      <Grid item container justify="center">
+        <Grid item xs={8}>
+          <Typography variant="h4" component="h3">
+            Synopsis
+          </Typography>
+          <br />
+          <Typography variant="body2" color="textSecondary" component="p">
+            This impressive paella is a perfect party dish and a fun meal to
+            cook together with your guests. Add 1 cup of frozen peas along with
+            the mussels, if you like.
+          </Typography>
+        </Grid>
       </Grid>
     </Grid>
   );
