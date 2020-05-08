@@ -15,6 +15,7 @@ import ReplyIcon from "@material-ui/icons/Reply";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 
 import { makeStyles } from "@material-ui/core/styles";
+import Pill from "../../util/Pill";
 
 const useStyles = makeStyles((theme) => ({
   ...theme.spread,
@@ -27,10 +28,24 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontWeight: 500,
   },
-  icon: {
+  iconParent: {
     margin: "0 1rem",
     display: "inline-flex",
     verticalAlign: "middle",
+  },
+  icon: {
+    marginRight: "7px",
+  },
+  progress: {
+    maxHeight: "35px",
+    padding: theme.spacing(0, 4),
+  },
+  blackText: {
+    color: "rgb(0, 0, 0) !important",
+  },
+  tag: {
+    margin: "0 8px 0 0",
+    padding: theme.spacing(0, 4),
   },
   username: {
     fontSize: "2rem",
@@ -67,9 +82,20 @@ export default function BookInfo() {
             justify="space-around"
           >
             <Grid item>
-              <Typography variant="h2" classes={{ h2: classes.title }}>
-                Name of Book{" "}
-              </Typography>
+              <Grid container justify="space-between">
+                <Typography variant="h2" classes={{ h2: classes.title }}>
+                  Name of Book
+                </Typography>
+                <Pill
+                  classes={{
+                    root: classes.progress,
+                    disabled: classes.blackText,
+                  }}
+                  label="completed"
+                  color="#ABFFC8"
+                  disabled
+                />
+              </Grid>
               <CardHeader
                 avatar={
                   <img
@@ -82,26 +108,47 @@ export default function BookInfo() {
                 classes={{ title: classes.username }}
               />
               <Grid container>
-                <span className={classes.icon}>
-                  <ReplyIcon /> 3
+                <span className={classes.iconParent}>
+                  <ReplyIcon className={classes.icon} /> 3
                 </span>
-                <span className={classes.icon}>
-                  <InsertCommentIcon /> 3
+                <span className={classes.iconParent}>
+                  <InsertCommentIcon className={classes.icon} /> 3
                 </span>
-                <span className={classes.icon}>
-                  <ImportContactsIcon /> 3
+                <span className={classes.iconParent}>
+                  <ImportContactsIcon className={classes.icon} /> 3
                 </span>
               </Grid>
             </Grid>
             <Grid item>
-              <Button fullWidth variant="contained" color="primary">
-                Continue
-              </Button>
+              {["nonfiction", "cooking"].map((v) => (
+                <Pill className={classes.tag} label={v} color="#F1F1F1" />
+              ))}
+            </Grid>
+            <Grid item>
+              <Typography variant="body2" component="p">
+                Continue As:
+              </Typography>
+              <Grid container spacing={3}>
+                <Grid item xs={6}>
+                  <Button fullWidth variant="contained" color="primary">
+                    eBook
+                  </Button>
+                </Grid>
+                <Grid item xs={6}>
+                  <Button fullWidth variant="outlined" color="primary">
+                    Audio Book
+                  </Button>
+                </Grid>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
       </Grid>
       <Grid item>
+        <Typography variant="h4" component="h3">
+          Synopsis
+        </Typography>
+        <br />
         <Typography variant="body2" color="textSecondary" component="p">
           This impressive paella is a perfect party dish and a fun meal to cook
           together with your guests. Add 1 cup of frozen peas along with the
