@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Slide from "../slider/slide";
 
 class Slider extends Component {
@@ -40,8 +40,8 @@ class Slider extends Component {
     };
 
     return (
-      <React.Fragment>
-        <h1 className="styleTitle" id={headingId}>
+      <Fragment>
+        <h1 id={headingId} className="styleTitle">
           {heading}
         </h1>
         <div className="slider" aria-labelledby={headingId}>
@@ -58,7 +58,8 @@ class Slider extends Component {
             })}
           </ul>
         </div>
-      </React.Fragment>
+      </Fragment>
+
     );
   }
 }

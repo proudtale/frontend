@@ -26,7 +26,7 @@ class community extends Component {
       <ScreamSkeleton />
     );
     return (
-      <div>
+      <div className="container">
         <PostScream />
         <Grid container spacing={16}>
           <Grid item sm={8} xs={12}>

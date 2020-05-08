@@ -2,14 +2,13 @@ import React, { Component } from "react";
 import Slider from "../components/slider/slider";
 import withStyles from "@material-ui/core/styles/withStyles";
 
+// MUI
 import Grid from "@material-ui/core/Grid";
 // Redux stuff
 import axios from "axios";
-
 const styles = (theme) => ({
   ...theme.spread,
 });
-
 class home extends Component {
   state = {
     popularBook: [],
@@ -50,34 +49,39 @@ class home extends Component {
     this.getPopluarBook();
   }
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { isLoading, popularBook } = this.state;
+
     let homeMarkup = (
-      <Grid parent>
-        <Grid>
+      <div className="container">
+        <div>
           {!isLoading ? (
-            <Slider heading="Popular Book" slides={popularBook} />
-          ) : (
-            <p>Loading ...</p>
-          )}
-        </Grid>
-        <Grid>
-          {!isLoading ? (
-            <Slider heading="Fiction" slides={popularBook} />
-          ) : (
-            <p>Loading ...</p>
-          )}
-        </Grid>
-        <Grid>
-          {!isLoading ? (
-            <Grid>
-              <Slider heading="Romance" slides={popularBook} />
+            <Grid parent>
+              <Slider heading="Popular Book" slides={popularBook} />
             </Grid>
           ) : (
-            <p>Loading ...</p>
+            <h4>Loading ...</h4>
           )}
-        </Grid>
-      </Grid>
+        </div>
+        <div>
+          {!isLoading ? (
+            <Grid parent>
+              <Slider heading="Biography" slides={popularBook} />
+            </Grid>
+          ) : (
+            <h4>Loading ...</h4>
+          )}
+        </div>
+        <div>
+          {!isLoading ? (
+            <Grid parent>
+              <Slider heading="Fiction" slides={popularBook} />
+            </Grid>
+          ) : (
+            <h4>Loading ...</h4>
+          )}
+        </div>
+      </div>
     );
     return homeMarkup;
   }

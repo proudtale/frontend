@@ -10,7 +10,7 @@ export const LOADING_UI = "LOADING_UI";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 export const LOADING_DATA = "LOADING_DATA";
 export const STOP_LOADING_UI = "STOP_LOADING_UI";
-// Data reducer types
+// Data reducer scream types
 export const SET_SCREAMS = "SET_SCREAMS";
 export const SET_SCREAM = "SET_SCREAM";
 export const EDIT_SCREAM = "EDIT_SCREAM";
@@ -21,3 +21,14 @@ export const DELETE_SCREAM = "DELETE_SCREAM";
 export const POST_SCREAM = "POST_SCREAM";
 export const SUBMIT_COMMENT = "SUBMIT_COMMENT";
 export const SEARCH_SCREAMS = "SEARCH_SCREAM";
+// Data reducer book types
+export const SET_BOOKS = "SET_SCREAMS";
+export const SET_BOOK = "SET_SCREAM";
+export const EDIT_BOOK = "EDIT_SCREAM";
+export const SUBMIT_EDIT_BOOK = "SUBMIT_EDIT_BOOK";
+export const LIKE_BOOK = "LIKE_BOOK";
+export const UNLIKE_BOOK = "UNLIKE_BOOK";
+export const DELETE_BOOK = "DELETE_BOOK";
+export const POST_BOOK = "POST_BOOK";
+export const SUBMIT_COMMENT_BOOK = "SUBMIT_COMMENT_BOOK";
+export const SEARCH_BOOKS = "SEARCH_BOOK";

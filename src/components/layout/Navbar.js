@@ -93,12 +93,12 @@ class Navbar extends Component {
                   <HomeIcon />
                 </MyButton>
               </Link>
-              <Link to="createbook">
-                <MyButton tip="Create new content">
+              <Link to={`/publish/${handle}`}>
+                <MyButton tip="Publish">
                   <RateReviewIcon />
                 </MyButton>
               </Link>
-              <Link to="community">
+              <Link to="/community">
                 <MyButton tip="Community">
                   <PeopleIcon />
                 </MyButton>
