@@ -1,61 +1,62 @@
 import {
-  SET_SCREAMS,
+  SET_BOOKS,
   LOADING_DATA,
-  LIKE_SCREAM,
-  UNLIKE_SCREAM,
-  DELETE_SCREAM,
+  LIKE_BOOK,
+  UNLIKE_BOOK,
+  DELETE_BOOK,
   SET_ERRORS,
-  POST_SCREAM,
+  POST_BOOK,
   CLEAR_ERRORS,
   LOADING_UI,
-  SET_SCREAM,
+  SET_BOOK,
   STOP_LOADING_UI,
-  SUBMIT_COMMENT,
-  SUBMIT_EDIT,
-  EDIT_SCREAM,
-  SEARCH_SCREAMS,
+  SUBMIT_COMMENT_BOOK,
+  SUBMIT_EDIT_BOOK,
+  EDIT_BOOK,
+  SEARCH_BOOKS,
 } from "../types";
 import axios from "axios";
 
-// Get all screams
-export const getScreams = () => (dispatch) => {
+// Get all books
+export const getBooks = () => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios
-    .get("/screams")
+    .get("/books")
     .then((res) => {
       dispatch({
-        type: SET_SCREAMS,
+        type: SET_BOOKS,
         payload: res.data,
       });
     })
     .catch((err) => {
       dispatch({
-        type: SET_SCREAMS,
+        type: SET_BOOKS,
         payload: [],
       });
+      console.log(err);
     });
 };
-export const getScream = (screamId) => (dispatch) => {
+export const getBook = (bookId) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .get(`/scream/${screamId}`)
+    .get(`/book/${bookId}`)
     .then((res) => {
       dispatch({
-        type: SET_SCREAM,
+        type: SET_BOOK,
         payload: res.data,
       });
       dispatch({ type: STOP_LOADING_UI });
     })
     .catch((err) => console.log(err));
 };
-// Post a scream
-export const postScream = (newScream) => (dispatch) => {
+// Post a book
+export const postBook = (newBook) => (dispatch) => {
   dispatch({ type: LOADING_UI });
   axios
-    .post("/scream", newScream)
+    .post("/book", newBook)
     .then((res) => {
       dispatch({
-        type: POST_SCREAM,
+        type: POST_BOOK,
         payload: res.data,
       });
       dispatch(clearErrors());
@@ -68,59 +69,59 @@ export const postScream = (newScream) => (dispatch) => {
     });
 };
 
-//Edit a scream
-export const submitEdit = (scream) => (dispatch) => {
+// Edit a book
+export const submitEdit = (book) => (dispatch) => {
   dispatch({ type: LOADING_UI });
 
   axios
-    .post(`/scream/${scream.screamId}/edit`, scream)
+    .post(`/book/${book.bookId}/edit`, book)
     .then((res) => {
       dispatch({
-        type: SUBMIT_EDIT,
+        type: SUBMIT_EDIT_BOOK,
         payload: res.data,
       });
-      dispatch(getScream(scream.screamId));
+      dispatch(getBook(book.bookId));
     })
     .catch((err) => {
       console.log(err);
     });
 };
 
-export const editScream = () => (dispatch) => {
-  dispatch({ type: EDIT_SCREAM });
+export const editBook = () => (dispatch) => {
+  dispatch({ type: EDIT_BOOK });
 };
 
 // Like a scream
-export const likeScream = (screamId) => (dispatch) => {
+export const likeBook = (bookId) => (dispatch) => {
   axios
-    .get(`/scream/${screamId}/like`)
+    .get(`/book/${bookId}/like`)
     .then((res) => {
       dispatch({
-        type: LIKE_SCREAM,
+        type: LIKE_BOOK,
         payload: res.data,
       });
     })
     .catch((err) => console.log(err));
 };
 // Unlike a scream
-export const unlikeScream = (screamId) => (dispatch) => {
+export const unlikeScream = (bookId) => (dispatch) => {
   axios
-    .get(`/scream/${screamId}/unlike`)
+    .get(`/book/${bookId}/unlike`)
     .then((res) => {
       dispatch({
-        type: UNLIKE_SCREAM,
+        type: UNLIKE_BOOK,
         payload: res.data,
       });
     })
     .catch((err) => console.log(err));
 };
 // Submit a comment
-export const submitComment = (screamId, commentData) => (dispatch) => {
+export const submitComment = (bookId, commentBook) => (dispatch) => {
   axios
-    .post(`/scream/${screamId}/comment`, commentData)
+    .post(`/book/${bookId}/comment`, commentBook)
     .then((res) => {
       dispatch({
-        type: SUBMIT_COMMENT,
+        type: SUBMIT_COMMENT_BOOK,
         payload: res.data,
       });
       dispatch(clearErrors());
@@ -132,71 +133,57 @@ export const submitComment = (screamId, commentData) => (dispatch) => {
       });
     });
 };
-export const deleteScream = (screamId) => (dispatch) => {
+
+export const deleteBook = (bookId) => (dispatch) => {
   axios
-    .delete(`/scream/${screamId}`)
+    .delete(`/book/${bookId}`)
     .then(() => {
-      dispatch({ type: DELETE_SCREAM, payload: screamId });
+      dispatch({ type: DELETE_BOOK, payload: bookId });
     })
     .catch((err) => console.log(err));
-};
-
-export const getUserData = (userHandle) => (dispatch) => {
-  dispatch({ type: LOADING_DATA });
-  axios
-    .get(`/user/${userHandle}`)
-    .then((res) => {
-      dispatch({
-        type: SET_SCREAMS,
-        payload: res.data.screams,
-      });
-    })
-    .catch(() => {
-      dispatch({
-        type: SET_SCREAMS,
-        payload: null,
-      });
-    });
 };
 
 export const getBookData = (userHandle) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios
-    .get(`/user/${userHandle}`)
+    .get(`/user/${userHandle}/books`)
     .then((res) => {
       dispatch({
-        type: SET_SCREAMS,
-        payload: res.data.screams,
+        // type: SET_SCREAMS,
+        // payload: res.data.screams,
+        type: SET_BOOKS,
+        payload: res.data.books,
       });
     })
     .catch(() => {
       dispatch({
-        type: SET_SCREAMS,
+        // type: SET_SCREAMS,
+        type: SET_BOOKS,
         payload: null,
       });
     });
 };
 
-export const searchScreams = (value, screams) => (dispatch) => {
+export const searchBooks = (value, books) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
-  if (screams.length < 1) {
+  if (books.length < 1) {
     axios
-      .get("/screams")
+      .get("/books")
       .then((res) => {
         dispatch({
-          type: SET_SCREAMS,
+          type: SET_BOOKS,
           payload: res.data,
         });
       })
       .then(() => {
         dispatch({
-          type: SEARCH_SCREAMS,
+          type: SEARCH_BOOKS,
           payload: value,
         });
       });
   } else {
     dispatch({
-      type: SEARCH_SCREAMS,
+      type: SEARCH_BOOKS,
       payload: value,
     });
   }

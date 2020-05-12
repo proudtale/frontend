@@ -137,6 +137,7 @@ export const deleteScream = (screamId) => (dispatch) => {
     .delete(`/scream/${screamId}`)
     .then(() => {
       dispatch({ type: DELETE_SCREAM, payload: screamId });
+      console.log(screamId);
     })
     .catch((err) => console.log(err));
 };

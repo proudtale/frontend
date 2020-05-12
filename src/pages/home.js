@@ -18,7 +18,7 @@ class home extends Component {
   getPopluarBook() {
     axios({
       method: "GET",
-      url: "https://us-central1-socialape-aa1d6.cloudfunctions.net/api/screams",
+      url: "https://us-central1-socialape-aa1d6.cloudfunctions.net/api/books",
       params: {
         format: "json",
       },

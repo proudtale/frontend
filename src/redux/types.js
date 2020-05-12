@@ -22,9 +22,9 @@ export const POST_SCREAM = "POST_SCREAM";
 export const SUBMIT_COMMENT = "SUBMIT_COMMENT";
 export const SEARCH_SCREAMS = "SEARCH_SCREAM";
 // Data reducer book types
-export const SET_BOOKS = "SET_SCREAMS";
-export const SET_BOOK = "SET_SCREAM";
-export const EDIT_BOOK = "EDIT_SCREAM";
+export const SET_BOOKS = "SET_BOOKS";
+export const SET_BOOK = "SET_BOOK";
+export const EDIT_BOOK = "EDIT_BOOK";
 export const SUBMIT_EDIT_BOOK = "SUBMIT_EDIT_BOOK";
 export const LIKE_BOOK = "LIKE_BOOK";
 export const UNLIKE_BOOK = "UNLIKE_BOOK";

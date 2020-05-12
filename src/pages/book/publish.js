@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import BookCard from "../../components/book/bookCard";
 import PostBook from "../../components/book/PostBook";
 // Util
-import ScreamSkeleton from "../../util/ScreamSkeleton";
+import BookSkeleton from "../../util/BookSkeleton";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -59,7 +59,7 @@ const styles = (theme) => ({
 });
 class bookreview extends Component {
   state = {
-    screamIdParam: null,
+    bookIdParam: null,
     open: false,
     bookTitle: null,
   };
@@ -75,9 +75,9 @@ class bookreview extends Component {
   };
   componentDidMount() {
     const handle = this.props.match.params.handle;
-    const screamId = this.props.match.params.screamId;
+    const bookId = this.props.match.params.bookId;
 
-    if (screamId) this.setState({ screamIdParam: screamId });
+    if (bookId) this.setState({ bookIdParam: bookId });
 
     this.props.getBookData(handle);
     axios
@@ -90,33 +90,24 @@ class bookreview extends Component {
       .catch((err) => console.log(err));
   }
   render() {
-    const { screams, loading } = this.props.data;
+    const { books, loading } = this.props.data;
     const { classes } = this.props;
-    const { screamIdParam } = this.state;
-    let recentScreamsMarkup = loading ? (
-      <ScreamSkeleton />
-    ) : screams === null ? (
-      <p>No screams from this user</p>
-    ) : !screamIdParam ? (
-      screams.map((scream) => (
-        <BookCard
-          onClick={this.handleOpen}
-          key={scream.screamId}
-          scream={scream}
-        />
+    const { bookIdParam } = this.state;
+    let recentBooksMarkup = loading ? (
+      <BookSkeleton />
+    ) : books === null ? (
+      <p>No books from this user</p>
+    ) : !bookIdParam ? (
+      books.map((book) => (
+        <BookCard onClick={this.handleOpen} key={book.bookId} book={book} />
       ))
     ) : (
-      screams.map((scream) => {
-        if (scream.screamId !== screamIdParam)
+      books.map((book) => {
+        if (book.bookId !== bookIdParam)
           return (
-            <BookCard
-              onClick={this.handleOpen}
-              key={scream.screamId}
-              scream={scream}
-            />
+            <BookCard onClick={this.handleOpen} key={book.bookId} book={book} />
           );
-        else
-          return <BookCard key={scream.screamId} scream={scream} openDialog />;
+        else return <BookCard key={book.bookId} book={book} openDialog />;
       })
     );
     let confirmDialog = (
@@ -160,17 +151,13 @@ class bookreview extends Component {
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>
             <PostBook />
-            <div className={classes.bookCardContainer}>
-              {recentScreamsMarkup}
-            </div>
+            <div className={classes.bookCardContainer}>{recentBooksMarkup}</div>
           </Grid>
         </Grid>
         <Grid>
           <h2 className={classes.inProgressTitle}>Completed</h2>
           <Grid className={classes.publishBody}>
-            <div className={classes.bookCardContainer}>
-              {recentScreamsMarkup}
-            </div>
+            <div className={classes.bookCardContainer}>{recentBooksMarkup}</div>
           </Grid>
         </Grid>
         {confirmDialog}
@@ -180,12 +167,13 @@ class bookreview extends Component {
 }
 
 bookreview.propTypes = {
-  getUserData: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
+  getBookData: PropTypes.func.isRequired,
+  bookData: PropTypes.object.isRequired,
 };
 
+// redeucers from store.js
 const mapStateToProps = (state) => ({
-  data: state.data,
+  data: state.bookData,
 });
 
 export default connect(mapStateToProps, { getBookData })(

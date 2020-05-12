@@ -12,7 +12,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
 
 import { connect } from "react-redux";
-import { deleteScream } from "../../redux/actions/dataActions";
+import { deleteBook } from "../../redux/actions/bookActions";
 // Image
 import Proudtalelogo from "../../assets/images/proudtalelogo.png";
 const styles = {
@@ -38,7 +38,7 @@ const styles = {
   },
 };
 
-class DeleteScream extends Component {
+class DeleteBook extends Component {
   state = {
     open: false,
   };
@@ -50,7 +50,7 @@ class DeleteScream extends Component {
     this.setState({ open: false });
   };
   deleteBook = () => {
-    this.props.deleteScream(this.props.screamId);
+    this.props.deleteBook(this.props.bookId);
     this.setState({ open: false });
   };
   render() {
@@ -101,11 +101,9 @@ class DeleteScream extends Component {
     );
   }
 }
-DeleteScream.propTypes = {
-  deleteScream: PropTypes.func.isRequired,
+DeleteBook.propTypes = {
+  deleteBook: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
-  screamId: PropTypes.string.isRequired,
+  bookId: PropTypes.string.isRequired,
 };
-export default connect(null, { deleteScream })(
-  withStyles(styles)(DeleteScream)
-);
+export default connect(null, { deleteBook })(withStyles(styles)(DeleteBook));

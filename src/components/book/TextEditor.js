@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 
 //redux
 import { connect } from "react-redux";
-import { getScreams, submitEdit } from "../../redux/actions/dataActions";
+import { getBooks, submitEdit } from "../../redux/actions/bookActions";
 
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -25,7 +25,7 @@ class TextEditor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editorHtml: this.props.scream ? this.props.scream.body : "",
+      editorHtml: this.props.book ? this.props.book.desc : "",
       theme: "snow",
     };
     this.handleChange = this.handleChange.bind(this);
@@ -43,9 +43,9 @@ class TextEditor extends Component {
   handleClick = (event) => {
     if (this.props.data.edit) {
       event.preventDefault();
-      const scream = this.props.scream;
-      scream.body = this.state.editorHtml;
-      this.props.submitEdit(scream);
+      const book = this.props.book;
+      book.desc = this.state.editorHtml;
+      this.props.submitEdit(book);
     } else {
       // if we are not in editing mode we are making a post!
       this.props.setValue(this.state.editorHtml);
@@ -143,6 +143,6 @@ TextEditor.propTypes = {
   placeholder: PropTypes.string,
 };
 
-export default connect(mapStateToProps, { getScreams, submitEdit })(
+export default connect(mapStateToProps, { getBooks, submitEdit })(
   withStyles(styles)(TextEditor)
 );

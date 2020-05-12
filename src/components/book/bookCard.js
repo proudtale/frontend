@@ -45,12 +45,12 @@ const styles = {
   },
 };
 
-class Scream extends Component {
+class BookCard extends Component {
   render() {
     dayjs.extend(relativeTime);
     const {
       classes,
-      scream: { title, createdAt, userImage, userHandle, screamId },
+      book: { title, createdAt, userImage, userHandle, bookId },
       user: {
         authenticated,
         credentials: { handle },
@@ -60,7 +60,7 @@ class Scream extends Component {
 
     const deleteButton =
       authenticated && userHandle === handle ? (
-        <DeleteBook screamId={screamId} title={title} />
+        <DeleteBook bookId={bookId} title={title} />
       ) : null;
 
     return (
@@ -91,9 +91,9 @@ class Scream extends Component {
   }
 }
 
-Scream.propTypes = {
+BookCard.propTypes = {
   // user: PropTypes.object.isRequired,
-  scream: PropTypes.object.isRequired,
+  book: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   openDialog: PropTypes.bool,
 };
@@ -102,4 +102,4 @@ const mapStateToProps = (state) => ({
   user: state.user,
 });
 
-export default connect(mapStateToProps)(withStyles(styles)(Scream));
+export default connect(mapStateToProps)(withStyles(styles)(BookCard));

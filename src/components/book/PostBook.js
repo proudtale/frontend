@@ -14,12 +14,11 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
 
 //MUI Icon
-// import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { postScream, clearErrors } from "../../redux/actions/dataActions";
+import { postBook, clearErrors } from "../../redux/actions/bookActions";
 // Image
 
 import publishBookIcon from "../../assets/icons/publishbookicon.png";
@@ -51,7 +50,6 @@ const styles = (theme) => ({
 class PostScream extends Component {
   state = {
     open: false,
-    // text: '',
     title: "",
     value: "",
     errors: {},
@@ -83,8 +81,7 @@ class PostScream extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("HIII");
-    this.props.postScream({ title: this.state.title, body: this.state.value });
+    this.props.postBook({ title: this.state.title, desc: this.state.value });
   };
   render() {
     const { errors } = this.state;
@@ -97,7 +94,6 @@ class PostScream extends Component {
             tip="Create book"
             className={classes.button}
           >
-            {/* <AddIcon className={classes.addIcon}/> */}
             <img src={publishBookIcon} alt="create book" />
           </Button>
           <Dialog
@@ -143,7 +139,7 @@ class PostScream extends Component {
                 <h6 className="font-weight-bolder mt-5">Synopsis</h6>
                 <BookTextEditor
                   type="text"
-                  label="Body"
+                  label="Book Synopsis"
                   setValue={this.setValue}
                 />
               </form>
@@ -156,7 +152,7 @@ class PostScream extends Component {
 }
 
 PostScream.propTypes = {
-  postScream: PropTypes.func.isRequired,
+  postBook: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
   UI: PropTypes.object.isRequired,
 };
@@ -165,6 +161,6 @@ const mapStateToProps = (state) => ({
   UI: state.UI,
 });
 
-export default connect(mapStateToProps, { postScream, clearErrors })(
+export default connect(mapStateToProps, { postBook, clearErrors })(
   withStyles(styles)(PostScream)
 );
