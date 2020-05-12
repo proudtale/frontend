@@ -35,6 +35,6 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 'firebase deploy --token "$(FIREBASE_TOKEN)" -m "azure deploy"'
+    script: 'firebase deploy --token "$(AZURE_TOKEN)" -m "azure deploy"'
     workingDirectory: '$(System.DefaultWorkingDirectory)'
   displayName: 'firebase publish -m "azure deploy"'
