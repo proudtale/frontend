@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "proudtale-front"
+    "default": "proudtale-front",
+    "staging": "socialtest-d746c"
   }
 }
