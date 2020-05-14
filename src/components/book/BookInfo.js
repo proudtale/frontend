@@ -151,6 +151,7 @@ export default function BookInfo() {
             cook together with your guests. Add 1 cup of frozen peas along with
             the mussels, if you like.
           </Typography>
+          <Typography component="a"> Copyright Details</Typography>
         </Grid>
       </Grid>
     </Grid>
