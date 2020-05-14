@@ -21,6 +21,7 @@ import search from "./pages/search";
 import publish from "./pages/book/publish";
 import chapter from "./pages/chapter/chapter";
 import nomatchpage from "./pages/nomatchpage";
+import info from "./pages/book/info";
 
 // Redux Axios
 import { Provider } from "react-redux";
@@ -74,6 +75,7 @@ class App extends Component {
                     path="/users/:handle/scream/:screamId"
                     component={user}
                   />
+                      <Route exact path="/books/:bookId" component={info} />
                   <Route
                     exact
                     path="/book/:bookId/chapter/:chapterId"

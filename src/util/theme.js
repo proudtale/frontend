@@ -90,6 +90,15 @@ export default {
         },
       },
     },
+    bookInfo: {
+      "& .profile-image": {
+        width: 70,
+        height: 70,
+        objectFit: "cover",
+        maxWidth: "100%",
+        borderRadius: "50%",
+      },
+    },
     buttons: {
       textAlign: "center",
       "& a": {
