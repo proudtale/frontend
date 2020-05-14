@@ -16,11 +16,6 @@ import { deleteScream } from "../../redux/actions/dataActions";
 // Image
 import Proudtalelogo from "../../assets/images/proudtalelogo.png";
 const styles = {
-  deleteButton: {
-    // position: "absolute",
-    // left: "90%",
-    // top: "10%",
-  },
   dialogDiv: {
     display: "flex",
   },
