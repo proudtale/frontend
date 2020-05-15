@@ -6,13 +6,14 @@ import Scream from "../../components/community/Scream";
 import Profile from "../../components/profile/Profile";
 import PostScream from "../../components/community/PostScream";
 // Util
-import ScreamSkeleton from "../../util/ScreamSkeleton";
+import Skeleton from "../../util/Skeleton";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
-
 // Redux
 import { connect } from "react-redux";
 import { getScreams } from "../../redux/actions/dataActions";
+// Image
+import NoImg from "../../assets/images/no-img.png";
 
 class community extends Component {
   componentDidMount() {
@@ -23,7 +24,7 @@ class community extends Component {
     let recentScreamsMarkup = !loading ? (
       screams.map((scream) => <Scream key={scream.screamId} scream={scream} />)
     ) : (
-      <ScreamSkeleton />
+      <Skeleton image={NoImg} />
     );
     return (
       <div className="container">

@@ -87,6 +87,16 @@ export const submitEdit = (book) => (dispatch) => {
     });
 };
 
+export const uploadBookImage = (formData) => (dispatch) => {
+  dispatch({ type: LOADING_DATA });
+  axios
+    .post("/book/bookImage", formData)
+    .then(() => {
+      dispatch(getBookData());
+    })
+    .catch((err) => console.log(err));
+};
+
 export const editBook = () => (dispatch) => {
   dispatch({ type: EDIT_BOOK });
 };

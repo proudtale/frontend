@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { Link } from "react-router-dom";
+// MUI Core
 
 const styles = (theme) => ({
   ...theme.spread,
@@ -70,12 +71,11 @@ class Slide extends Component {
               onLoad={this.imageLoaded}
             />
           </div>
-
-          <article className="slide__content">
-            <h4 className="slide__headline">{title}</h4>
-            <h5 className="white-text font-weight-bolder">{author}</h5>
-          </article>
         </Link>
+        <article className="slide__content">
+          <h5 className="slide__headline">{title}</h5>
+          <h6 className="white-text font-weight-bolder">{author}</h6>
+        </article>
       </li>
     );
   }

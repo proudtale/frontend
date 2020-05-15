@@ -15,12 +15,12 @@ import Button from "@material-ui/core/Button";
 
 //MUI Icon
 import CloseIcon from "@material-ui/icons/Close";
+import PublishIcon from "@material-ui/icons/Publish";
 
 // Redux stuff
 import { connect } from "react-redux";
 import { postBook, clearErrors } from "../../redux/actions/bookActions";
 // Image
-
 import publishBookIcon from "../../assets/icons/publishbookicon.png";
 const styles = (theme) => ({
   ...theme.spread,
@@ -36,14 +36,14 @@ const styles = (theme) => ({
       width: "1.5em",
     },
   },
-  // progressSpinner: {
-  //   position: "absolute",
-  // },
   closeButton: {
     position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
     color: theme.palette.grey[500],
+  },
+  uploadButton: {
+    marginTop: "1em",
   },
 });
 
@@ -78,10 +78,21 @@ class PostScream extends Component {
   handleChange = (event) => {
     this.setState({ title: event.target.value });
   };
-
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.postBook({ title: this.state.title, desc: this.state.value });
+  };
+  handleBookImageChange = (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image, image.name);
+    // this.setState({bookImage: formData});
+    console.log(formData);
+    // console.log(this.state.value.bookImage);
+  };
+  handleAddPicture = () => {
+    const fileInput = document.getElementById("bookImageInput");
+    fileInput.click();
   };
   render() {
     const { errors } = this.state;
@@ -142,6 +153,23 @@ class PostScream extends Component {
                   label="Book Synopsis"
                   setValue={this.setValue}
                 />
+                <div className={classes.uploadButton}>
+                  <input
+                    type="file"
+                    id="bookImageInput"
+                    hidden="hidden"
+                    onChange={this.handleBookImageChange}
+                  />
+                  <Button
+                    tip="Book cover picture"
+                    onClick={this.handleAddPicture}
+                    color="primary"
+                    variant="outlined"
+                  >
+                    <PublishIcon color="primary" />
+                    Upload book cover image
+                  </Button>
+                </div>
               </form>
             </DialogContent>
           </Dialog>

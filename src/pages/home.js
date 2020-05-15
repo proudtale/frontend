@@ -29,9 +29,9 @@ class home extends Component {
       .then((res) =>
         res.data.map((book, index) => ({
           index: index,
-          title: book.title,
+          title: book.title.slice(0, 25),
           author: book.userHandle,
-          bookImage: book.userImage,
+          bookImage: book.bookImageUrl,
         }))
       )
       .then((popularBook) => {

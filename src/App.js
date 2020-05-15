@@ -61,7 +61,7 @@ class App extends Component {
                   <Route exact path="/" component={home} />
                   <AuthRoute
                     exact
-                    path="/publish/:handle"
+                    path="/contentcreation/:handle"
                     component={publish}
                   />
                   <AuthRoute exact path="/community" component={community} />

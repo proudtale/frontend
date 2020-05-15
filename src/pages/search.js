@@ -3,12 +3,14 @@ import React, { Component } from "react";
 // Components
 import Scream from "../components/community/Scream";
 // Util
-import ScreamSkeleton from "../util/ScreamSkeleton";
+import Skeleton from "../util/Skeleton";
 // Redux
 import { searchScreams, getScreams } from "../redux/actions/dataActions";
 import { connect } from "react-redux";
 // MUI Core
 import { Typography } from "@material-ui/core";
+// Image
+import NoImg from "../assets/images/no-img.png";
 
 class search extends Component {
   state = {
@@ -37,7 +39,7 @@ class search extends Component {
         ))
       )
     ) : (
-      <ScreamSkeleton />
+      <Skeleton image={NoImg} />
     );
     return (
       <div>

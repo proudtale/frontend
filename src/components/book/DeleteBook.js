@@ -17,9 +17,8 @@ import { deleteBook } from "../../redux/actions/bookActions";
 import Proudtalelogo from "../../assets/images/proudtalelogo.png";
 const styles = {
   deleteButton: {
-    // position: "absolute",
-    // left: "90%",
-    // top: "10%",
+    padding: "0",
+    color: "#fb4207",
   },
   dialogDiv: {
     display: "flex",
@@ -44,7 +43,6 @@ class DeleteBook extends Component {
   };
   handleOpen = (e) => {
     this.setState({ open: true });
-    console.log(e);
   };
   handleClose = () => {
     this.setState({ open: false });
@@ -69,6 +67,7 @@ class DeleteBook extends Component {
           open={this.state.open}
           onClose={this.handleClose}
           fullWidth
+          scroll="body"
           maxWidth="sm"
         >
           <div className={classes.dialogDiv}>
@@ -82,8 +81,8 @@ class DeleteBook extends Component {
               </DialogTitle>
               <DialogContent className={classes.dialogContent}>
                 <p>
-                  Are you sure you want to{" "}
-                  <span>delete {this.props.title}</span> ?
+                  Are you sure you want to delete{" "}
+                  <span>{this.props.title}</span> ?
                 </p>
               </DialogContent>
               <DialogActions>

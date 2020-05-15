@@ -9,7 +9,7 @@ import ProfileSkeleton from "../../util/ProfileSkeleton";
 // MUI stuff
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import MuiLink from "@material-ui/core/Link";
+// import MuiLink from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 // Icons
 import LocationOn from "@material-ui/icons/LocationOn";
@@ -73,14 +73,9 @@ class Profile extends Component {
             <hr />
             <div className="profile-details">
               <EditDetails />
-              <MuiLink
-                component={Link}
-                to={`/users/${handle}`}
-                color="primary"
-                variant="h5"
-              >
+              <Typography color="primary" variant="h5">
                 {handle}
-              </MuiLink>
+              </Typography>
               <hr />
               {bio && <Typography variant="body2">{bio}</Typography>}
               <hr />

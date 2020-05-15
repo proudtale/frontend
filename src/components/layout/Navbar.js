@@ -93,8 +93,8 @@ class Navbar extends Component {
                   <HomeIcon />
                 </MyButton>
               </Link>
-              <Link to={`/publish/${handle}`}>
-                <MyButton tip="Publish">
+              <Link to={`/contentcreation/${handle}`}>
+                <MyButton tip="Content Creation">
                   <RateReviewIcon />
                 </MyButton>
               </Link>

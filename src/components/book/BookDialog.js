@@ -2,9 +2,9 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
 import MyButton from "../../util/MyButton";
-// import LikeButton from "./LikeButton";
-// import Comments from "./Comments";
-// import CommentForm from "./CommentForm";
+import LikeButton from "./LikeButton";
+import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 // MUI Stuff
@@ -17,7 +17,7 @@ import Button from "@material-ui/core/Button";
 
 // Icons
 import CloseIcon from "@material-ui/icons/Close";
-// import ChatIcon from "@material-ui/icons/Chat";
+import ChatIcon from "@material-ui/icons/Chat";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 
 // Redux stuff
@@ -91,14 +91,14 @@ class ScreamDialog extends Component {
       classes,
       scream: {
         title,
-        // screamId,
+        screamId,
         body,
         createdAt,
-        // likeCount,
-        // commentCount,
+        likeCount,
+        commentCount,
         userImage,
         userHandle,
-        // comments,
+        comments,
       },
       UI: { loading },
       user: {
@@ -137,7 +137,7 @@ class ScreamDialog extends Component {
           </Typography>
           <hr className={classes.invisibleSeparator} />
           <Typography variant="body1">{title}</Typography>
-          {/* <LikeButton screamId={screamId} />  need to fix it later
+          {/* <LikeButton screamId={screamId} />  need to fix it later */}
           <LikeButton />
           <span>{likeCount} likes</span>
           <MyButton tip="comments">
@@ -145,7 +145,7 @@ class ScreamDialog extends Component {
           </MyButton>
           <span>{commentCount} comments</span>
           <hr className={classes.invisibleSeparator} />
-          {editButton} */}
+          {editButton}
         </Grid>
         {edit ? (
           <TextEditor scream={this.props.scream} />
@@ -155,8 +155,8 @@ class ScreamDialog extends Component {
           </Typography>
         )}
         <hr className={classes.visibleSeparator} />
-        {/* <CommentForm screamId={screamId} /> */}
-        {/* <Comments comments={comments} /> */}
+        <CommentForm screamId={screamId} />
+        <Comments comments={comments} />
       </Grid>
     );
     return (
