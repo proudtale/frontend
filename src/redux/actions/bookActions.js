@@ -14,6 +14,7 @@ import {
   SUBMIT_EDIT_BOOK,
   EDIT_BOOK,
   SEARCH_BOOKS,
+  // LOADING_BOOK
 } from "../types";
 import axios from "axios";
 
@@ -87,12 +88,13 @@ export const submitEdit = (book) => (dispatch) => {
     });
 };
 
-export const uploadBookImage = (formData) => (dispatch) => {
-  dispatch({ type: LOADING_DATA });
+export const uploadBookImage = (formData, bookId, handle) => (dispatch) => {
+  // dispatch({ type: LOADING_BOOK});
   axios
-    .post("/book/bookImage", formData)
+    .post(`/book/bookImage/${bookId}`, formData)
     .then(() => {
-      dispatch(getBookData());
+      dispatch({ type: LOADING_DATA, payload: bookId });
+      dispatch(getBookData(handle));
     })
     .catch((err) => console.log(err));
 };
@@ -114,7 +116,7 @@ export const likeBook = (bookId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 // Unlike a scream
-export const unlikeScream = (bookId) => (dispatch) => {
+export const unlikeBook = (bookId) => (dispatch) => {
   axios
     .get(`/book/${bookId}/unlike`)
     .then((res) => {

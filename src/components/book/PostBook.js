@@ -15,7 +15,7 @@ import Button from "@material-ui/core/Button";
 
 //MUI Icon
 import CloseIcon from "@material-ui/icons/Close";
-import PublishIcon from "@material-ui/icons/Publish";
+// import PublishIcon from "@material-ui/icons/Publish";
 
 // Redux stuff
 import { connect } from "react-redux";
@@ -86,8 +86,9 @@ class PostScream extends Component {
     const image = event.target.files[0];
     const formData = new FormData();
     formData.append("image", image, image.name);
+    // this.props.uploadBookImage(formData);
     // this.setState({bookImage: formData});
-    console.log(formData);
+    // console.log(formData);
     // console.log(this.state.value.bookImage);
   };
   handleAddPicture = () => {
@@ -153,7 +154,7 @@ class PostScream extends Component {
                   label="Book Synopsis"
                   setValue={this.setValue}
                 />
-                <div className={classes.uploadButton}>
+                {/* <div className={classes.uploadButton}>
                   <input
                     type="file"
                     id="bookImageInput"
@@ -169,7 +170,7 @@ class PostScream extends Component {
                     <PublishIcon color="primary" />
                     Upload book cover image
                   </Button>
-                </div>
+                </div> */}
               </form>
             </DialogContent>
           </Dialog>

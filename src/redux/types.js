@@ -31,4 +31,5 @@ export const UNLIKE_BOOK = "UNLIKE_BOOK";
 export const DELETE_BOOK = "DELETE_BOOK";
 export const POST_BOOK = "POST_BOOK";
 export const SUBMIT_COMMENT_BOOK = "SUBMIT_COMMENT_BOOK";
+export const LOADING_BOOK = "LOADING_BOOK";
 export const SEARCH_BOOKS = "SEARCH_BOOK";

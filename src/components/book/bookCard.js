@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 
 //Components
 import DeleteBook from "./DeleteBook";
+// import EditBook from "./EditBook";
 // Util
 import MyButton from "../../util/MyButton";
 
@@ -62,6 +63,9 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     paddingTop: "0.3em",
+    "& button": {
+      padding: "0",
+    },
   },
   image: {
     minWidth: "12em",
@@ -77,8 +81,8 @@ const styles = {
   },
   editbtn: {
     display: "inline",
-    "& button": {
-      padding: "0",
+    "& label": {
+      cursor: "pointer",
     },
   },
   dialogDiv: {
@@ -104,6 +108,9 @@ const styles = {
     fontSize: "1.4em",
     backgroundColor: "#1c2a48",
   },
+  input: {
+    display: "none",
+  },
 };
 
 class BookCard extends Component {
@@ -121,12 +128,13 @@ class BookCard extends Component {
     const image = event.target.files[0];
     const formData = new FormData();
     formData.append("image", image, image.name);
-    this.props.uploadBookImage(formData);
-    console.log(formData);
-  };
-  handleAddPicture = () => {
-    const fileInput = document.getElementById("bookImageInput");
-    fileInput.click();
+    this.props.uploadBookImage(
+      formData,
+      this.props.book.bookId,
+      this.props.book.userHandle
+    );
+    // console.log(this.props.book.bookId);
+    // console.log(this.props.book.userHandle);
   };
   render() {
     dayjs.extend(relativeTime);
@@ -143,6 +151,11 @@ class BookCard extends Component {
       authenticated && userHandle === handle ? (
         <DeleteBook bookId={bookId} title={title} />
       ) : null;
+
+    // const editButton =
+    //   authenticated && userHandle === handle ? (
+    //     <EditBook bookId={bookId} userHandle={userHandle}/>
+    //   ) : null;
     const confirmDialog = (
       <Fragment>
         <Dialog
@@ -223,20 +236,20 @@ class BookCard extends Component {
               </Box>
               <Divider light />
               <Box className={classes.cardContentBox2}>
-                <Typography className={classes.editbtn}>
-                  <input
-                    type="file"
-                    id="bookImageInput"
-                    hidden="hidden"
-                    onChange={this.handleBookImageChange}
-                  />
-                  <MyButton
-                    tip="Add book cover picture"
-                    onClick={this.handleAddPicture}
-                  >
-                    <EditIcon color="primary" />
-                  </MyButton>
-                </Typography>
+                <MyButton tip="Add book cover picture">
+                  <Typography className={classes.editbtn}>
+                    <label className="bookImageInput">
+                      <input
+                        className={classes.input}
+                        type="file"
+                        id="bookImageInput"
+                        onChange={this.handleBookImageChange}
+                      />
+                      <EditIcon color="primary" />
+                    </label>
+                  </Typography>
+                  {/* {editButton} */}
+                </MyButton>
                 <Typography>{deleteButton}</Typography>
               </Box>
             </CardContent>
