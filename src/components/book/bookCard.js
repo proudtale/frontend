@@ -133,8 +133,6 @@ class BookCard extends Component {
       this.props.book.bookId,
       this.props.book.userHandle
     );
-    // console.log(this.props.book.bookId);
-    // console.log(this.props.book.userHandle);
   };
   render() {
     dayjs.extend(relativeTime);
@@ -263,7 +261,6 @@ class BookCard extends Component {
 const mapActionsToProps = { uploadBookImage };
 
 BookCard.propTypes = {
-  // user: PropTypes.object.isRequired,
   uploadBookImage: PropTypes.func.isRequired,
   book: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,

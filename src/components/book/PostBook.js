@@ -12,14 +12,20 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
 
 //MUI Icon
 import CloseIcon from "@material-ui/icons/Close";
-// import PublishIcon from "@material-ui/icons/Publish";
+import PublishIcon from "@material-ui/icons/Publish";
 
 // Redux stuff
 import { connect } from "react-redux";
-import { postBook, clearErrors } from "../../redux/actions/bookActions";
+import {
+  postBook,
+  clearErrors,
+  initialPostBookImage,
+} from "../../redux/actions/bookActions";
 // Image
 import publishBookIcon from "../../assets/icons/publishbookicon.png";
 const styles = (theme) => ({
@@ -45,6 +51,24 @@ const styles = (theme) => ({
   uploadButton: {
     marginTop: "1em",
   },
+  editbtn: {
+    display: "inline",
+    "& label": {
+      cursor: "pointer",
+    },
+  },
+  input: {
+    display: "none",
+  },
+  box: {
+    paddingTop: "1em",
+    "& button": {
+      padding: "0",
+      "&:hover": {
+        borderRadius: "0",
+      },
+    },
+  },
 });
 
 class PostScream extends Component {
@@ -52,6 +76,7 @@ class PostScream extends Component {
     open: false,
     title: "",
     value: "",
+    bookImageUrl: "",
     errors: {},
   };
   componentWillReceiveProps(nextProps) {
@@ -61,7 +86,13 @@ class PostScream extends Component {
       });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ title: "", value: "", open: false, errors: {} });
+      this.setState({
+        title: "",
+        value: "",
+        open: false,
+        bookImage: {},
+        errors: {},
+      });
     }
   }
 
@@ -80,20 +111,23 @@ class PostScream extends Component {
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.postBook({ title: this.state.title, desc: this.state.value });
+    this.props.postBook({
+      title: this.state.title,
+      desc: this.state.value,
+      bookImageUrl: this.state.bookImageUrl,
+    });
   };
-  handleBookImageChange = (event) => {
+
+  postBookImageChange = (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
+    const imageFileName = image.name;
     formData.append("image", image, image.name);
-    // this.props.uploadBookImage(formData);
-    // this.setState({bookImage: formData});
-    // console.log(formData);
-    // console.log(this.state.value.bookImage);
-  };
-  handleAddPicture = () => {
-    const fileInput = document.getElementById("bookImageInput");
-    fileInput.click();
+    this.props.initialPostBookImage(formData);
+    const storageBucket = "socialape-aa1d6.appspot.com";
+    const initialBookImageUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/initialcoverimage%2F${imageFileName}?alt=media`;
+    this.setState({ bookImageUrl: initialBookImageUrl });
+    console.log(this.state.bookImageUrl);
   };
   render() {
     const { errors } = this.state;
@@ -154,23 +188,24 @@ class PostScream extends Component {
                   label="Book Synopsis"
                   setValue={this.setValue}
                 />
-                {/* <div className={classes.uploadButton}>
-                  <input
-                    type="file"
-                    id="bookImageInput"
-                    hidden="hidden"
-                    onChange={this.handleBookImageChange}
-                  />
-                  <Button
-                    tip="Book cover picture"
-                    onClick={this.handleAddPicture}
-                    color="primary"
-                    variant="outlined"
-                  >
-                    <PublishIcon color="primary" />
-                    Upload book cover image
-                  </Button>
-                </div> */}
+                <Box className={classes.box}>
+                  <MyButton tip="Add book cover picture">
+                    <Typography className={classes.editbtn}>
+                      <label className="bookImageInput">
+                        <input
+                          className={classes.input}
+                          type="file"
+                          id="bookImageInput"
+                          onChange={this.postBookImageChange}
+                        />
+                        <PublishIcon color="primary" />
+                        <Typography variant="span" color="primary">
+                          Upload book cover image
+                        </Typography>
+                      </label>
+                    </Typography>
+                  </MyButton>
+                </Box>
               </form>
             </DialogContent>
           </Dialog>
@@ -190,6 +225,8 @@ const mapStateToProps = (state) => ({
   UI: state.UI,
 });
 
-export default connect(mapStateToProps, { postBook, clearErrors })(
-  withStyles(styles)(PostScream)
-);
+export default connect(mapStateToProps, {
+  postBook,
+  clearErrors,
+  initialPostBookImage,
+})(withStyles(styles)(PostScream));

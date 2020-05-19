@@ -14,7 +14,6 @@ import {
   SUBMIT_EDIT_BOOK,
   EDIT_BOOK,
   SEARCH_BOOKS,
-  // LOADING_BOOK
 } from "../types";
 import axios from "axios";
 
@@ -88,8 +87,8 @@ export const submitEdit = (book) => (dispatch) => {
     });
 };
 
+// Edit book cover image
 export const uploadBookImage = (formData, bookId, handle) => (dispatch) => {
-  // dispatch({ type: LOADING_BOOK});
   axios
     .post(`/book/bookImage/${bookId}`, formData)
     .then(() => {
@@ -99,11 +98,18 @@ export const uploadBookImage = (formData, bookId, handle) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+// Post initial book cover image
+export const initialPostBookImage = (formData) => (dispatch) => {
+  axios
+    .post("/book/initialBookImage", formData)
+    .catch((err) => console.log(err));
+};
+
 export const editBook = () => (dispatch) => {
   dispatch({ type: EDIT_BOOK });
 };
 
-// Like a scream
+// Like a book
 export const likeBook = (bookId) => (dispatch) => {
   axios
     .get(`/book/${bookId}/like`)
@@ -115,7 +121,7 @@ export const likeBook = (bookId) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-// Unlike a scream
+// Unlike a book
 export const unlikeBook = (bookId) => (dispatch) => {
   axios
     .get(`/book/${bookId}/unlike`)
@@ -161,15 +167,12 @@ export const getBookData = (userHandle) => (dispatch) => {
     .get(`/user/${userHandle}/books`)
     .then((res) => {
       dispatch({
-        // type: SET_SCREAMS,
-        // payload: res.data.screams,
         type: SET_BOOKS,
         payload: res.data.books,
       });
     })
     .catch(() => {
       dispatch({
-        // type: SET_SCREAMS,
         type: SET_BOOKS,
         payload: null,
       });
