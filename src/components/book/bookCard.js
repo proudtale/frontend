@@ -27,7 +27,7 @@ import EditIcon from "@material-ui/icons/Edit";
 // Redux
 import { connect } from "react-redux";
 // Image
-
+import { formatStringThumbnail } from "../../util/helpers";
 import { uploadBookImage } from "../../redux/actions/bookActions";
 
 const styles = {
@@ -169,7 +169,7 @@ class BookCard extends Component {
                     variant="h6"
                     gutterBottom
                   >
-                    Author {userHandle}
+                    {userHandle}
                   </Typography>
                 </div>
                 <Typography
@@ -185,7 +185,7 @@ class BookCard extends Component {
                   classes={{ tooltip: classes.tooltip }}
                 >
                   <Typography variant="body1" className={classes.title}>
-                    {title.slice(0, 25)}
+                    {formatStringThumbnail(title)}
                   </Typography>
                 </Tooltip>
               </Box>

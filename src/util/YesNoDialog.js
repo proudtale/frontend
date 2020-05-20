@@ -8,25 +8,28 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 
 //images
-import { formatStringThumbnail } from "./helpers";
 import Proudtalelogo from "../assets/images/proudtalelogo.png";
-
+//
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme) => ({
   dialogDiv: {
     width: "100%",
-    display: "inline-block",
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+    "& img": {
+      marginLeft: "24px",
+      width: "calc(25% - 24px)",
+      borderRadius: "50%",
+    },
   },
   half: {
-    display: "inline-block",
-    width: "50%",
-    "+ img": {
-      height: "auto",
-    },
+    width: "75%",
   },
   dialogTitle: {
     textAlign: "center",
+    flexGrow: "1",
   },
   dialogContent: {
     "& span": {
@@ -58,18 +61,8 @@ export default function YesNoDialog({
       {...rest}
     >
       <div className={classes.dialogDiv}>
-        <img
-          className={classes.half}
-          alt="proudtale logo"
-          src={Proudtalelogo}
-        />
+        <img className="logo" alt="proudtale logo" src={Proudtalelogo} />
         <div className={classes.half}>
-          <DialogTitle
-            id="classesized-dialog-title"
-            className={classes.dialogTitle}
-          >
-            {formatStringThumbnail(title)}
-          </DialogTitle>
           <DialogContent className={classes.dialogContent}>
             {children}
           </DialogContent>
