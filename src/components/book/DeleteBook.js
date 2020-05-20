@@ -4,36 +4,16 @@ import PropTypes from "prop-types";
 import MyButton from "../../util/MyButton";
 
 // MUI Stuff
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import DeleteOutline from "@material-ui/icons/DeleteOutline";
 
 import { connect } from "react-redux";
 import { deleteBook } from "../../redux/actions/bookActions";
 // Image
-import Proudtalelogo from "../../assets/images/proudtalelogo.png";
+import YesNoDialog from "../../util/YesNoDialog";
 const styles = {
   deleteButton: {
     padding: "0",
     color: "#fb4207",
-  },
-  dialogDiv: {
-    display: "flex",
-  },
-  dialogTitle: {
-    textAlign: "center",
-  },
-  dialogContent: {
-    display: "flex",
-    "& span": {
-      color: "red",
-    },
-    "& p": {
-      fontSize: "1.1em",
-    },
   },
 };
 
@@ -63,39 +43,15 @@ class DeleteBook extends Component {
         >
           <DeleteOutline color="secondary" />
         </MyButton>
-        <Dialog
+        <YesNoDialog
+          handleClose={this.handleClose}
           open={this.state.open}
-          onClose={this.handleClose}
-          fullWidth
-          scroll="body"
-          maxWidth="sm"
+          title={this.props.title}
         >
-          <div className={classes.dialogDiv}>
-            <img alt="proudtale logo" src={Proudtalelogo} />
-            <div>
-              <DialogTitle
-                id="customized-dialog-title"
-                className={classes.dialogTitle}
-              >
-                Proudtale Confirmation Dialog
-              </DialogTitle>
-              <DialogContent className={classes.dialogContent}>
-                <p>
-                  Are you sure you want to delete{" "}
-                  <span>{this.props.title}</span> ?
-                </p>
-              </DialogContent>
-              <DialogActions>
-                <Button onClick={this.handleClose} color="primary">
-                  Cancel
-                </Button>
-                <Button onClick={this.deleteBook} color="secondary">
-                  Delete
-                </Button>
-              </DialogActions>
-            </div>
-          </div>
-        </Dialog>
+          <p>
+            Are you sure you want to delete <span>{this.props.title}</span> ?
+          </p>
+        </YesNoDialog>
       </Fragment>
     );
   }
