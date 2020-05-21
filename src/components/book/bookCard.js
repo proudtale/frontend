@@ -81,7 +81,6 @@ const styles = {
       cursor: "pointer",
     },
   },
-
   avatar: {
     display: "inline-block",
     border: "2px solid white",
@@ -92,6 +91,9 @@ const styles = {
   },
   input: {
     display: "none",
+  },
+  wirtechapter: {
+    color: "#00d9fd",
   },
 };
 
@@ -141,9 +143,11 @@ class BookCard extends Component {
         handleClose={this.handleClose}
         open={this.state.open}
         title={title}
+        dialogTitle={<div>Confirm writing the chapter</div>}
       >
         <p>
-          Do you want to proceed with writing chapters of <span>{title}</span> ?
+          Do you want to proceed with writing chapters of{" "}
+          <span className={classes.wirtechapter}>{title}</span> ?
         </p>
       </YesNoDialog>
     );
@@ -154,7 +158,7 @@ class BookCard extends Component {
             <Link onClick={this.handleOpen}>
               <CardMedia
                 image={bookImageUrl}
-                title={title}
+                // title={title}
                 className={classes.image}
               />
             </Link>

@@ -47,9 +47,12 @@ class DeleteBook extends Component {
           handleClose={this.handleClose}
           open={this.state.open}
           title={this.props.title}
+          dialogTitle={<div>Confirm delete the book</div>}
+          onClick={this.deleteBook}
         >
           <p>
-            Are you sure you want to delete <span>{this.props.title}</span> ?
+            Are you sure you want to delete{" "}
+            <span className={classes.deleteButton}>{this.props.title}</span> ?
           </p>
         </YesNoDialog>
       </Fragment>

@@ -121,13 +121,19 @@ class PostScream extends Component {
   postBookImageChange = (event) => {
     const image = event.target.files[0];
     const formData = new FormData();
-    const imageFileName = image.name;
-    formData.append("image", image, image.name);
+    let imageFileName = image.name;
+    const imageExtension = imageFileName.split(".")[
+      imageFileName.split(".").length - 1
+    ];
+    imageFileName = `${Math.round(
+      Math.random() * 1000000000000
+    ).toString()}.${imageExtension}`;
+    console.log(imageFileName);
+    formData.append("image", image, imageFileName);
     this.props.initialPostBookImage(formData);
     const storageBucket = "socialape-aa1d6.appspot.com";
     const initialBookImageUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/initialcoverimage%2F${imageFileName}?alt=media`;
     this.setState({ bookImageUrl: initialBookImageUrl });
-    console.log(this.state.bookImageUrl);
   };
   render() {
     const { errors } = this.state;
