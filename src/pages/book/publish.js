@@ -4,21 +4,17 @@ import PropTypes from "prop-types";
 import BookCard from "../../components/book/bookCard";
 import PostBook from "../../components/book/PostBook";
 // Util
-import ScreamSkeleton from "../../util/ScreamSkeleton";
+import Skeleton from "../../util/Skeleton";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
+
 // Redux
 import { connect } from "react-redux";
 import { getBookData } from "../../redux/actions/bookActions";
 import axios from "axios";
 // Image
-import Proudtalelogo from "../../assets/images/proudtalelogo.png";
+import NoBookImg from "../../assets/images/no-book-img.png";
 const styles = (theme) => ({
   ...theme.spread,
   inProgress: {
@@ -36,48 +32,21 @@ const styles = (theme) => ({
   publishBody: {
     display: "flex",
   },
-  dialogDiv: {
-    display: "flex",
-  },
-  dialogTitle: {
-    textAlign: "center",
-  },
   avatar: {
     margin: theme.spacing(1),
     marginLeft: theme.spacing(2),
     backgroundColor: theme.palette.primary.main,
   },
-  dialogContent: {
-    display: "flex",
-    "& span": {
-      color: "blue",
-    },
-    "& p": {
-      fontSize: "1.1em",
-    },
-  },
 });
 class bookreview extends Component {
   state = {
-    screamIdParam: null,
-    open: false,
-    bookTitle: null,
-  };
-  handleOpen = (e) => {
-    this.setState({ open: true });
-    this.setState({
-      bookTitle: e.currentTarget.lastChild.textContent,
-    });
-    console.log(e.currentTarget.lastChild.textContent);
-  };
-  handleClose = () => {
-    this.setState({ open: false });
+    bookIdParam: null,
   };
   componentDidMount() {
     const handle = this.props.match.params.handle;
-    const screamId = this.props.match.params.screamId;
+    const bookId = this.props.match.params.bookId;
 
-    if (screamId) this.setState({ screamIdParam: screamId });
+    if (bookId) this.setState({ bookIdParam: bookId });
 
     this.props.getBookData(handle);
     axios
@@ -90,102 +59,50 @@ class bookreview extends Component {
       .catch((err) => console.log(err));
   }
   render() {
-    const { screams, loading } = this.props.data;
+    const { books, loading } = this.props.data;
     const { classes } = this.props;
-    const { screamIdParam } = this.state;
-    let recentScreamsMarkup = loading ? (
-      <ScreamSkeleton />
-    ) : screams === null ? (
-      <p>No screams from this user</p>
-    ) : !screamIdParam ? (
-      screams.map((scream) => (
-        <BookCard
-          onClick={this.handleOpen}
-          key={scream.screamId}
-          scream={scream}
-        />
-      ))
+    const { bookIdParam } = this.state;
+    let recentBooksMarkup = loading ? (
+      <Skeleton image={NoBookImg} />
+    ) : books === null ? (
+      <p>No books from this user</p>
+    ) : !bookIdParam ? (
+      books.map((book) => <BookCard key={book.bookId} book={book} />)
     ) : (
-      screams.map((scream) => {
-        if (scream.screamId !== screamIdParam)
-          return (
-            <BookCard
-              onClick={this.handleOpen}
-              key={scream.screamId}
-              scream={scream}
-            />
-          );
-        else
-          return <BookCard key={scream.screamId} scream={scream} openDialog />;
+      books.map((book) => {
+        if (book.bookId !== bookIdParam)
+          return <BookCard key={book.bookId} book={book} />;
+        else return <BookCard key={book.bookId} book={book} openDialog />;
       })
     );
-    let confirmDialog = (
-      <Dialog
-        open={this.state.open}
-        onClose={this.handleClose}
-        fullWidth
-        maxWidth="sm"
-        aria-labelledby="customized-dialog-title"
-      >
-        <div className={classes.dialogDiv}>
-          <img alt="proudtale logo" src={Proudtalelogo} />
-          <div>
-            <DialogTitle
-              id="customized-dialog-title"
-              className={classes.dialogTitle}
-            >
-              Proudtale Confirmation Dialog
-            </DialogTitle>
-            <DialogContent className={classes.dialogContent}>
-              <p>
-                Do you want to proceed with{" "}
-                <span>writing chapters of {this.state.bookTitle}</span> ?
-              </p>
-            </DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
-                Yes
-              </Button>
-              <Button onClick={this.handleClose} color="secondary">
-                No
-              </Button>
-            </DialogActions>
-          </div>
-        </div>
-      </Dialog>
-    );
+
     return (
       <div className="container">
         <Grid className={classes.inProgress}>
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>
             <PostBook />
-            <div className={classes.bookCardContainer}>
-              {recentScreamsMarkup}
-            </div>
+            <div className={classes.bookCardContainer}>{recentBooksMarkup}</div>
           </Grid>
         </Grid>
         <Grid>
           <h2 className={classes.inProgressTitle}>Completed</h2>
           <Grid className={classes.publishBody}>
-            <div className={classes.bookCardContainer}>
-              {recentScreamsMarkup}
-            </div>
+            <div className={classes.bookCardContainer}>{recentBooksMarkup}</div>
           </Grid>
         </Grid>
-        {confirmDialog}
       </div>
     );
   }
 }
-
 bookreview.propTypes = {
-  getUserData: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
+  getBookData: PropTypes.func.isRequired,
+  bookData: PropTypes.object.isRequired,
 };
 
+// redeucers from store.js
 const mapStateToProps = (state) => ({
-  data: state.data,
+  data: state.bookData,
 });
 
 export default connect(mapStateToProps, { getBookData })(

@@ -9,9 +9,9 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import Button from "@material-ui/core/Button";
+// import Button from "@material-ui/core/Button";
 // MUI Icon
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import CloseIcon from "@material-ui/icons/Close";
 // Redux
 import { connect } from "react-redux";
@@ -79,14 +79,14 @@ class PostScream extends Component {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Button
+        {/* <Button
           onClick={this.handleOpen}
           tip="Create book"
           className={classes.button}
         >
           <AddIcon />
           Post your Scream
-        </Button>
+        </Button> */}
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

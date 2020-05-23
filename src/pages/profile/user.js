@@ -8,13 +8,13 @@ import Grid from "@material-ui/core/Grid";
 // import StaticProfile from "../../components/profile/StaticProfile";
 import Profile from "../../components/profile/Profile";
 // Util
-// import ScreamSkeleton from "../../util/ScreamSkeleton";
 import ProfileSkeleton from "../../util/ProfileSkeleton";
 // Redux Axios
 import { connect } from "react-redux";
 import { getUserData } from "../../redux/actions/dataActions";
 import axios from "axios";
-
+// Image
+// import {NoImg} from "../../assets/images/no-img.png";
 const styles = (theme) => ({
   ...theme.spread,
 });
@@ -44,7 +44,7 @@ class user extends Component {
     // const { screamIdParam } = this.state;
 
     // const screamsMarkup = loading ? (
-    //   <ScreamSkeleton />
+    //   <Skeleton image={NoImg}/>
     // ) : screams === null ? (
     //   <p>No screams from this user</p>
     // ) : !screamIdParam ? (

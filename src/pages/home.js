@@ -18,7 +18,7 @@ class home extends Component {
   getPopluarBook() {
     axios({
       method: "GET",
-      url: "https://us-central1-socialape-aa1d6.cloudfunctions.net/api/screams",
+      url: "https://us-central1-socialape-aa1d6.cloudfunctions.net/api/books",
       params: {
         format: "json",
       },
@@ -29,9 +29,9 @@ class home extends Component {
       .then((res) =>
         res.data.map((book, index) => ({
           index: index,
-          title: book.title,
+          title: book.title.slice(0, 25),
           author: book.userHandle,
-          bookImage: book.userImage,
+          bookImage: book.bookImageUrl,
         }))
       )
       .then((popularBook) => {
