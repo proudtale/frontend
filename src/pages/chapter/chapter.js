@@ -96,6 +96,9 @@ const styles = (theme) => ({
   chapterBtn: {
     maxWidth: "150px",
   },
+  bookTitle: {
+    marginBottom: theme.spacing(7),
+  },
 });
 
 // TODO: Add API call from backend to replace title and chapters
@@ -138,7 +141,15 @@ export class chapter extends Component {
           }}
         >
           <div className={classes.drawerHeader} />
+
           <Box height="100%" marginTop="50%">
+            <Typography
+              className={classes.bookTitle}
+              align="center"
+              variant="h4"
+            >
+              Book Title
+            </Typography>
             <Typography align="center" variant="h5">
               Chapters
             </Typography>
