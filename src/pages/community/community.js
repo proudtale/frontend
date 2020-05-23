@@ -27,9 +27,9 @@ class community extends Component {
       <Skeleton image={NoImg} />
     );
     return (
-      <div className="container">
+      <React.Fragment>
         <PostScream />
-        <Grid container spacing={16}>
+        <Grid container spacing={10}>
           <Grid item sm={8} xs={12}>
             {recentScreamsMarkup}
           </Grid>
@@ -37,7 +37,7 @@ class community extends Component {
             <Profile />
           </Grid>
         </Grid>
-      </div>
+      </React.Fragment>
     );
   }
 }
