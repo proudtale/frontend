@@ -46,7 +46,7 @@ export class info extends Component {
     return (
       <Paper className={classes.paper} elevation={3}>
         <div className={classes.spacing} />
-        <Grid justify="center" container wrap="wrap">
+        <Grid justify="center" container wrap="wrap" spacing={8}>
           <Grid item xs={12}>
             <BookInfo />
           </Grid>
