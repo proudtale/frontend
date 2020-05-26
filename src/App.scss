@@ -1,5 +1,4 @@
 @import "./components/slider/slider.scss";
-@import "./components/layout/Navbar.scss";
 
 html,
 body {
@@ -39,9 +38,7 @@ body {
 a {
   text-decoration: none;
 }
-
-@media (min-width: 1800px) {
-  .container {
-    min-width: 1800px;
-  }
+.align-verticle-flex {
+  display: flex;
+  align-items: center;
 }

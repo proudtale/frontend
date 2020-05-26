@@ -33,7 +33,7 @@ export default function MobileNavbar({ authenticated, logoutUser }) {
   };
 
   return (
-    <Box display={{ xs: "block", sm: "none" }}>
+    <Box display={{ xs: "block", md: "none" }}>
       <Notifications tip="Notification" />
       <IconButton
         aria-controls="customized-menu"
