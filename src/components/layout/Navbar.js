@@ -1,24 +1,27 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+
+// Components
 import MyButton from "../../util/MyButton";
-import PostScream from "../scream/PostScream";
 import Notifications from "./Notifications";
-import withStyles from "@material-ui/core/styles/withStyles";
+
 // MUI stuff
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
+import withStyles from "@material-ui/core/styles/withStyles";
+import Box from "@material-ui/core/Box";
+// import Button from "@material-ui/core/Button";
+// import MuiLink from "@material-ui/core/Link";
 
 // Icons
-
-import Box from "@material-ui/core/Box";
 import HomeIcon from "@material-ui/icons/Home";
 import PeopleIcon from "@material-ui/icons/People";
-import TuneIcon from "@material-ui/icons/Tune";
-import EmailIcon from "@material-ui/icons/Email";
 import MeetingRoomIcon from "@material-ui/icons/MeetingRoom";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
+import RateReviewIcon from "@material-ui/icons/RateReview";
+// import TuneIcon from "@material-ui/icons/Tune";
+// import EmailIcon from "@material-ui/icons/Email";
 
 //Redux
 import { connect } from "react-redux";
@@ -29,14 +32,15 @@ import MobileNavbar from "../../util/MobileNavbar";
 const styles = (theme) => ({
   ...theme.spread,
   navbarImage: {
-    width: 50,
-    height: 50,
+    width: 35,
+    height: 35,
     borderRadius: "10%",
   },
   navbarHandle: {
+    fontSize: "1em",
     display: "inline",
-    fontWeight: "bolder",
-    margin: "2em 0.7em 0 0",
+    margin: "0.1em 0.5em 0 0",
+    color: "white",
   },
   navbarTitle: {
     fontFamily: "cursive",

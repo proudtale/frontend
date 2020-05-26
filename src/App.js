@@ -4,24 +4,28 @@ import "./App.scss";
 import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
 import createMuiTheme from "@material-ui/core/styles/createMuiTheme";
 import jwtDecode from "jwt-decode";
-// Redux
+
+// Components
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
+// Util
+import themeObject from "./util/theme";
+import AuthRoute from "./util/AuthRoute";
+// Pages
+import home from "./pages/home";
+import community from "./pages/community/community";
+import login from "./pages/login";
+import signup from "./pages/signup";
+import user from "./pages/profile/user";
+import search from "./pages/search";
+import createbook from "./pages/book/publish";
+import nomatchpage from "./pages/nomatchpage";
+
+// Redux Axios
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { SET_AUTHENTICATED } from "./redux/types";
 import { logoutUser, getUserData } from "./redux/actions/userActions";
-// Components
-import Navbar from "./components/layout/Navbar";
-import themeObject from "./util/theme";
-import AuthRoute from "./util/AuthRoute";
-import Footer from "./components/layout/Footer";
-// Pages
-import home from "./pages/home";
-import community from "./pages/community";
-import login from "./pages/login";
-import signup from "./pages/signup";
-import user from "./pages/user";
-import search from "./pages/search";
-
 import axios from "axios";
 
 const theme = createMuiTheme(themeObject);
@@ -53,11 +57,12 @@ class App extends Component {
               <div className="container">
                 <Switch>
                   <Route exact path="/" component={home} />
-                  <Route exact path="/community" component={community} />
-                  <AuthRoute exact path="/login" component={login} />
-                  <AuthRoute exact path="/signup" component={signup} />
-                  <Route exact path="/users/:handle" component={user} />
-                  <Route
+                  <AuthRoute exact path="/createbook" component={createbook} />
+                  <AuthRoute exact path="/community" component={community} />
+                  <Route exact path="/login" component={login} />
+                  <Route exact path="/signup" component={signup} />
+                  <AuthRoute exact path="/users/:handle" component={user} />
+                  <AuthRoute
                     exact
                     path="/users/:handle/scream/:screamId"
                     component={user}
@@ -68,6 +73,7 @@ class App extends Component {
                     component={search}
                   ></Route>
                   <Route exact path="/search" component={search}></Route>
+                  <Route component={nomatchpage} />
                 </Switch>
               </div>
             </div>
