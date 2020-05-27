@@ -12,7 +12,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // Redux
 import { connect } from "react-redux";
 import { getBookData } from "../../redux/actions/bookActions";
-import axios from "axios";
+import { getUserData } from "../../redux/actions/userActions";
 // Image
 import NoBookImg from "../../assets/images/no-book-img.png";
 const styles = (theme) => ({
@@ -24,7 +24,6 @@ const styles = (theme) => ({
     color: "#1c2a48",
     fontWeight: "bolder",
     fontFamily: "Times New Roman",
-    textShadow: "2px 2px #fff",
   },
   bookCardContainer: {
     display: "flex",
@@ -38,7 +37,7 @@ const styles = (theme) => ({
     backgroundColor: theme.palette.primary.main,
   },
 });
-class bookreview extends Component {
+class publish extends Component {
   state = {
     bookIdParam: null,
   };
@@ -47,7 +46,7 @@ class bookreview extends Component {
     const bookId = this.props.match.params.bookId;
 
     if (bookId) this.setState({ bookIdParam: bookId });
-
+    this.props.getUserData();
     this.props.getBookData(handle);
   }
   render() {
@@ -69,7 +68,7 @@ class bookreview extends Component {
     );
 
     return (
-      <div className="container">
+      <Grid container>
         <Grid className={classes.inProgress}>
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>
@@ -80,20 +79,23 @@ class bookreview extends Component {
         <Grid>
           <h2 className={classes.inProgressTitle}>Completed</h2>
         </Grid>
-      </div>
+      </Grid>
     );
   }
 }
-bookreview.propTypes = {
+
+publish.propTypes = {
+  getUserData: PropTypes.func.isRequired,
   getBookData: PropTypes.func.isRequired,
-  bookData: PropTypes.object.isRequired,
+  data: PropTypes.object.isRequired,
 };
 
 // redeucers from store.js
 const mapStateToProps = (state) => ({
-  data: state.bookData,
+  data: state.data,
+  user: state.user,
 });
 
-export default connect(mapStateToProps, { getBookData })(
-  withStyles(styles)(bookreview)
+export default connect(mapStateToProps, { getBookData, getUserData })(
+  withStyles(styles)(publish)
 );
