@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import Slider from "../components/slider/slider";
+// import Slider from "../components/slider/slider";
 import withStyles from "@material-ui/core/styles/withStyles";
+import BookContentCarousel from "../components/carousel/bookContentCarousel";
 
 // MUI
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 // Redux stuff
 import axios from "axios";
 const styles = (theme) => ({
@@ -29,9 +30,11 @@ class home extends Component {
       .then((res) =>
         res.data.map((book, index) => ({
           index: index,
-          title: book.title.slice(0, 25),
+          title: book.title,
           author: book.userHandle,
           bookImage: book.bookImageUrl,
+          desc: book.desc,
+          userImage: book.userImage,
         }))
       )
       .then((popularBook) => {
@@ -54,7 +57,7 @@ class home extends Component {
 
     let homeMarkup = (
       <div className="container">
-        <div>
+        {/* <div>
           {!isLoading ? (
             <Grid parent>
               <Slider heading="Popular Book" slides={popularBook} />
@@ -62,21 +65,17 @@ class home extends Component {
           ) : (
             <h4>Loading ...</h4>
           )}
-        </div>
+        </div> */}
         <div>
           {!isLoading ? (
-            <Grid parent>
-              <Slider heading="Biography" slides={popularBook} />
-            </Grid>
+            <BookContentCarousel category="Popular" books={popularBook} />
           ) : (
             <h4>Loading ...</h4>
           )}
         </div>
         <div>
           {!isLoading ? (
-            <Grid parent>
-              <Slider heading="Fiction" slides={popularBook} />
-            </Grid>
+            <BookContentCarousel category="Fairy Tale" books={popularBook} />
           ) : (
             <h4>Loading ...</h4>
           )}
