@@ -133,6 +133,10 @@ class BookCard extends Component {
       this.props.book.userHandle
     );
   };
+
+  handleAgree = (e) => {
+    console.log(this.props.book);
+  };
   render() {
     dayjs.extend(relativeTime);
     const {
@@ -159,6 +163,7 @@ class BookCard extends Component {
         open={this.state.open}
         title={title}
         dialogTitle={<div>Confirm writing the chapter</div>}
+        onClick={this.handleAgree}
       >
         <p>
           Do you want to proceed with writing chapters of{" "}
@@ -171,11 +176,7 @@ class BookCard extends Component {
         <Fragment>
           <Card className={classes.card}>
             <Link onClick={this.handleOpen}>
-              <CardMedia
-                image={bookImageUrl}
-                // title={title}
-                className={classes.image}
-              />
+              <CardMedia image={bookImageUrl} className={classes.image} />
             </Link>
             <CardContent>
               <Box className={classes.cardContentBox1}>

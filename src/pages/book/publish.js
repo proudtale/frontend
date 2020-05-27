@@ -49,14 +49,6 @@ class bookreview extends Component {
     if (bookId) this.setState({ bookIdParam: bookId });
 
     this.props.getBookData(handle);
-    axios
-      .get(`/user/${handle}`)
-      .then((res) => {
-        this.setState({
-          profile: res.data.user,
-        });
-      })
-      .catch((err) => console.log(err));
   }
   render() {
     const { books, loading } = this.props.data;
