@@ -32,3 +32,11 @@ export const DELETE_BOOK = "DELETE_BOOK";
 export const POST_BOOK = "POST_BOOK";
 export const SUBMIT_COMMENT_BOOK = "SUBMIT_COMMENT_BOOK";
 export const SEARCH_BOOKS = "SEARCH_BOOK";
+//Chapter reducer for chapters
+export const SET_BOOK_CHAPTERS = "SET_BOOK_CHAPTERS";
+export const ADD_CHAPTER = "ADD_CHAPTER";
+export const EDIT_CHAPTER = "EDIT_CHAPTER";
+export const SUBMIT_EDIT_CHAPTER = "SUBMIT_EDIT_CHAPTER";
+export const DELETE_CHAPTER = "DELETE_CHAPTER";
+export const POST_CHAPTER = "POST_CHAPTER";
+export const SUBMIT_COMMENT_CHAPTER = "SUBMIT_COMMENT_CHAPTER";

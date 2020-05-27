@@ -5,6 +5,7 @@ import userReducer from "./reducers/userReducer";
 import dataReducer from "./reducers/dataReducer";
 import bookReducer from "./reducers/bookReducer";
 import uiReducer from "./reducers/uiReducer";
+import chapterReducer from "./reducers/chapterReducer";
 
 const initialState = {};
 
@@ -15,6 +16,7 @@ const reducers = combineReducers({
   data: dataReducer,
   bookData: bookReducer,
   UI: uiReducer,
+  chapterData: chapterReducer,
 });
 
 const composeEnhancers =

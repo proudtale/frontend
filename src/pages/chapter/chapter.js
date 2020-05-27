@@ -1,9 +1,11 @@
+import React, { Component } from "react";
+
+import { withStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import clsx from "clsx";
-
 import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -11,12 +13,14 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import EditIcon from "@material-ui/icons/Edit";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Input from "@material-ui/core/Input";
 
-import React, { Component } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { connect } from "react-redux";
+import { getBookChaptersData } from "../../redux/actions/chapterActions";
 
 import ReactQuill from "react-quill";
-import { Paper, Button, Input } from "@material-ui/core";
 import MyButton from "../../util/MyButton";
 import CreateChapter from "../../components/chapter/CreateChapter";
 const drawerWidth = 240;
@@ -102,14 +106,29 @@ const styles = (theme) => ({
 });
 
 // TODO: Add API call from backend to replace title and chapters
-
+//TODO: make editor functional to work with loading in data from the backend
 export class chapter extends Component {
   state = {
     open: true,
     edit: false,
     title: "Title of Chapter",
     chapters: ["Title of Chapter"],
+    currChapter: "",
+    bookId: "",
   };
+
+  static getDerivedStateFromProps(props, state) {
+    const { chapterId, bookId } = props.match.params;
+    return {
+      ...state,
+      currChapter: chapterId ? chapterId : "",
+      bookId: bookId ? bookId : "",
+    };
+  }
+
+  componentDidMount() {
+    this.props.getBookChaptersData(this.state.bookId);
+  }
 
   handleDrawer = () => {
     this.setState({ open: !this.state.open });
@@ -124,6 +143,7 @@ export class chapter extends Component {
   };
   render() {
     const { classes } = this.props;
+    console.log(this.state.currChapter);
     return (
       <Paper
         className={clsx(classes.paper, {
@@ -155,16 +175,33 @@ export class chapter extends Component {
             </Typography>
 
             <List>
-              {this.state.chapters.map((text, index) => (
+              {this.props.chapters.length === 0 ? (
+                <ListItem button>
+                  <ListItemText
+                    classes={{ primary: classes.centerText }}
+                    primary={"No Chapters Found!"}
+                  />
+                </ListItem>
+              ) : (
+                this.props.chapters.map((chapter, index) => (
+                  <ListItem button key={index}>
+                    <ListItemText
+                      classes={{ primary: classes.centerText }}
+                      primary={chapter.title}
+                    />
+                  </ListItem>
+                ))
+              )}
+              {/* {this.state.chapters.map((text, index) => (
                 <ListItem button key={text}>
                   <ListItemText
                     classes={{ primary: classes.centerText }}
                     primary={text}
                   />
                 </ListItem>
-              ))}
+              ))} */}
             </List>
-            <CreateChapter />
+            <CreateChapter bookId={this.state.bookId} />
           </Box>
         </Drawer>
 
@@ -220,4 +257,10 @@ export class chapter extends Component {
   }
 }
 
-export default withStyles(styles)(chapter);
+const mapStateToProps = (state) => ({
+  chapters: state.chapterData.chapters,
+});
+
+export default connect(mapStateToProps, { getBookChaptersData })(
+  withStyles(styles)(chapter)
+);

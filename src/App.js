@@ -75,7 +75,12 @@ class App extends Component {
                     path="/users/:handle/scream/:screamId"
                     component={user}
                   />
-                      <Route exact path="/books/:bookId" component={info} />
+                  <Route exact path="/books/:bookId" component={info} />
+                  <Route
+                    exact
+                    path="/book/:bookId/chapter"
+                    component={chapter}
+                  />
                   <Route
                     exact
                     path="/book/:bookId/chapter/:chapterId"

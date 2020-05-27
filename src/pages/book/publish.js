@@ -92,7 +92,7 @@ publish.propTypes = {
 
 // redeucers from store.js
 const mapStateToProps = (state) => ({
-  data: state.data,
+  data: state.bookData,
   user: state.user,
 });
 
