@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 // import PropTypes from "prop-types";
 
 import CardHeader from "@material-ui/core/CardHeader";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Avatar from "@material-ui/core/Avatar";
+import Dialog from "@material-ui/core/Dialog";
+import DialogContent from "@material-ui/core/DialogContent";
+import CloseIcon from "@material-ui/icons/Close";
 
 import InsertCommentIcon from "@material-ui/icons/InsertComment";
 import ReplyIcon from "@material-ui/icons/Reply";
@@ -12,45 +16,20 @@ import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Pill from "../../util/Pill";
-
-const useStyles = makeStyles((theme) => ({
-  ...theme.spread,
-  root: {
-    width: "100%",
-  },
-  media: {
-    width: 300,
-  },
-  title: {
-    fontWeight: 500,
-  },
-  iconParent: {
-    margin: "0 1rem",
-    display: "inline-flex",
-    verticalAlign: "middle",
-  },
-  icon: {
-    marginRight: "7px",
-  },
-  progress: {
-    maxHeight: "35px",
-    padding: theme.spacing(0, 4),
-  },
-  blackText: {
-    color: "rgb(0, 0, 0) !important",
-  },
-  tag: {
-    margin: "0 8px 0 0",
-    padding: theme.spacing(0, 4),
-  },
-  username: {
-    fontSize: "2rem",
-    fontWeight: "300",
-  },
-}));
+import MyButton from "../../util/MyButton";
+import Proudtalelogo from "../../assets/images/proudtalelogo.png";
 
 export default function BookInfo() {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   return (
     <Grid container direction="column" alignItems="center" spacing={3}>
       <Grid
@@ -151,11 +130,119 @@ export default function BookInfo() {
             cook together with your guests. Add 1 cup of frozen peas along with
             the mussels, if you like.
           </Typography>
+          <Typography
+            onClick={handleClickOpen}
+            component="a"
+            classes={{ root: classes.hoverShadow }}
+          >
+            Copyright Details
+          </Typography>
+          <Dialog open={open} onClose={handleClose} fullWidth maxWidth="sm">
+            <MyButton
+              tip="Close"
+              onClick={handleClose}
+              tipClassName={classes.closeButton}
+            >
+              <CloseIcon />
+            </MyButton>
+
+            <Grid container justify="center">
+              <Grid item>
+                <Avatar
+                  alt="proudtale logo"
+                  src={Proudtalelogo}
+                  className={classes.logo}
+                  classes={{
+                    root: classes.logoRoot,
+                  }}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <DialogContent className={classes.dialogContent}>
+                  THIS IS STATIC CONTENT FOR NOW. WILL BE REPLACED WITH PROPS
+                  LATER. Copyright © 2010 by Bill Shakespeare All rights
+                  reserved. No part of this publication may be reproduced,
+                  distributed, or transmitted in any form or by any means,
+                  including photocopying, recording, or other electronic or
+                  mechanical methods, without the prior written permission of
+                  the publisher, except in the case of brief quotations embodied
+                  in critical reviews and certain other noncommercial uses
+                  permitted by copyright law. For permission requests, write to
+                  the publisher, addressed “Attention: Permissions Coordinator,”
+                  at the address below. Imaginary Press 1233 Pennsylvania Avenue
+                  San Francisco, CA 94909 www.imaginarypress.com Ordering
+                  Information: Quantity sales. Special discounts are available
+                  on quantity purchases by corporations, associations, and
+                  others. For details, contact the publisher at the address
+                  above. Orders by U.S. trade bookstores and wholesalers. Please
+                  contact Big Distribution: Tel: (800) 800-8000; Fax: (800)
+                  800-8001 or visit www.bigbooks.com. Printed in the United
+                  States of America
+                </DialogContent>
+              </Grid>
+            </Grid>
+          </Dialog>
         </Grid>
       </Grid>
     </Grid>
   );
 }
+
+const useStyles = makeStyles((theme) => ({
+  ...theme.spread,
+  root: {
+    width: "100%",
+  },
+  media: {
+    width: 300,
+  },
+  title: {
+    fontWeight: 500,
+  },
+  iconParent: {
+    margin: "0 1rem",
+    display: "inline-flex",
+    verticalAlign: "middle",
+  },
+  icon: {
+    marginRight: "7px",
+  },
+  progress: {
+    maxHeight: "35px",
+    padding: theme.spacing(0, 4),
+  },
+  blackText: {
+    color: "rgb(0, 0, 0) !important",
+  },
+  tag: {
+    margin: "0 8px 0 0",
+    padding: theme.spacing(0, 4),
+  },
+  username: {
+    fontSize: "2rem",
+    fontWeight: "300",
+  },
+  closeButton: {
+    position: "absolute",
+    left: "90%",
+  },
+  dialogContent: {
+    padding: 30,
+    lineHeight: "30px",
+  },
+  logo: {
+    margin: theme.spacing(3),
+  },
+  logoRoot: {
+    height: "80px",
+    width: "80px",
+  },
+  hoverShadow: {
+    "&:hover": {
+      textShadow: "2px -1px 3px rgba(0,0,0,0.24)",
+    },
+  },
+}));
 
 // BookInfo.propTypes = {
 //   book: PropTypes.object,
