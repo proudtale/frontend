@@ -17,42 +17,6 @@ class home extends Component {
   state = {
     popularBook: [],
   };
-<<<<<<< HEAD
-  getPopluarBook() {
-    axios({
-      method: "GET",
-      url: "https://us-central1-socialape-aa1d6.cloudfunctions.net/api/books",
-      params: {
-        format: "json",
-      },
-    })
-      // .then( res => {
-      //   console.log(res.data);
-      // })
-      .then((res) =>
-        res.data.map((book, index) => ({
-          index: index,
-          title: book.title,
-          author: book.userHandle,
-          bookImage: book.bookImageUrl,
-          desc: book.desc,
-          userImage: book.userImage,
-        }))
-      )
-      .then((popularBook) => {
-        this.setState({
-          popularBook,
-          isLoading: false,
-        });
-        // console.log(popularBook)
-      })
-      .catch((error) => {
-        this.setState({ error, isLoading: false });
-      });
-  }
-=======
-
->>>>>>> did some work
   componentDidMount() {
     this.props.getBooks();
   }
@@ -68,7 +32,6 @@ class home extends Component {
     }));
     let homeMarkup = (
       <div className="container">
-<<<<<<< HEAD
         {/* <div>
           {!isLoading ? (
             <Grid parent>
@@ -92,23 +55,6 @@ class home extends Component {
             <h4>Loading ...</h4>
           )}
         </div>
-=======
-        {!loading ? (
-          <Slider heading="Popular Book" slides={popularBook} />
-        ) : (
-          <h4>Loading ...</h4>
-        )}
-        {!loading ? (
-          <Slider heading="Biography" slides={popularBook} />
-        ) : (
-          <h4>Loading ...</h4>
-        )}
-        {!loading ? (
-          <Slider heading="Fiction" slides={popularBook} />
-        ) : (
-          <h4>Loading ...</h4>
-        )}
->>>>>>> did some work
       </div>
     );
     return homeMarkup;
