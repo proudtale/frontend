@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Carousel, { Dots } from "@brainhubeu/react-carousel";
-import BookContentCard from "../book/bookContentCard";
+import BookContentCard from "../book/BookContentCard";
 import "@brainhubeu/react-carousel/lib/style.css";
 
 class BookConentCarousel extends Component {
@@ -23,7 +23,8 @@ class BookConentCarousel extends Component {
           onChange={this.onChange}
           //  arrows
           infinite
-          slidesPerPage={6}
+          slidesPerPage={5}
+          centered={true}
         >
           {books.map((book) => {
             return <BookContentCard book={book} />;

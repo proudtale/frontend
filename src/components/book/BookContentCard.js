@@ -11,23 +11,22 @@ import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
 // MUI Icon
 import ShareIcon from "@material-ui/icons/Share";
-
 // Component
-import BookContentCardDetail from "../book/bookContentCardDetail";
+import BookContentCardDetail from "./BookContentCardDetail";
+// Util
+import { formatStringThumbnail, formatString } from "../../util/helpers";
 
 const styles = {
   root: {
-    maxWidth: 280,
     marginBottom: "2em",
     marginLeft: "0.5em",
+    width: "22em",
   },
   media: {
-    width: "14em",
     height: 280,
     backgroundSize: "cover",
   },
   content: {
-    width: "14em",
     height: 200,
   },
   cardActions: {
@@ -44,11 +43,12 @@ const styles = {
     marginTop: "0.5em",
     wordWrap: "break-word",
     fontSize: "1rem",
-    // width: "12em"
   },
   desc: {
     marginTop: "1em",
     wordWrap: "break-word",
+    height: "10em",
+    overflowY: "auto",
   },
 };
 
@@ -76,7 +76,7 @@ class BookContentCard extends Component {
                 component="h6"
                 align="center"
               >
-                {title.slice(0, 25)}
+                {formatStringThumbnail(title)}
               </Typography>
               <Typography
                 className={classes.desc}
@@ -84,7 +84,7 @@ class BookContentCard extends Component {
                 color="textSecondary"
                 component="p"
               >
-                {desc.slice(0, 60).replace(/(<([^>]+)>)/g, "")}
+                {formatString(desc.replace(/(<([^>]+)>)/g, ""))}
               </Typography>
             </CardContent>
           </CardActionArea>

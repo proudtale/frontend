@@ -14,7 +14,7 @@ import Grid from "@material-ui/core/Grid";
 // import Divider from "@material-ui/core/Divider";
 
 // Component
-import CopyrightDialog from "../book/copyrightDialog";
+import CopyrightDialog from "./copyrightDialog";
 // MUI Icon
 import InfoIcon from "@material-ui/icons/Info";
 import CloseIcon from "@material-ui/icons/Close";

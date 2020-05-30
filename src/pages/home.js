@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import Slider from "../components/slider/slider";
 import withStyles from "@material-ui/core/styles/withStyles";
-import BookContentCarousel from "../components/carousel/bookContentCarousel";
+import BookContentCarousel from "../components/carousel/BookContentCarousel";
 
 // MUI
 // import Grid from "@material-ui/core/Grid";

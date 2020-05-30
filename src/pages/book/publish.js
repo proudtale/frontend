@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 // Components
-import BookCard from "../../components/book/bookCard";
+import BookCard from "../../components/book/BookCard";
 import PostBook from "../../components/book/PostBook";
 // Util
 import Skeleton from "../../util/Skeleton";
@@ -87,9 +87,6 @@ class bookreview extends Component {
         </Grid>
         <Grid>
           <h2 className={classes.inProgressTitle}>Completed</h2>
-          <Grid className={classes.publishBody}>
-            <div className={classes.bookCardContainer}>{recentBooksMarkup}</div>
-          </Grid>
         </Grid>
       </div>
     );
