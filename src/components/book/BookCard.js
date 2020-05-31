@@ -1,3 +1,18 @@
+/**
+ * Copyright (c) 2020 proudtale
+ * All rights reserved.
+ *
+ * Filename: bookCard.js
+ *
+ * Key Options:
+ * - set a valid value for [this booktitle]
+ *
+ * Revision History:
+ * - 22 MAR 2020, Marko Tanuan <markotanuan@proudtale.ca> : Created
+ * - 17 MAY 2020, Sidney Wittman <sidney.wittman@proudtale.com> : Refactor to a separate js file
+ *
+ */
+
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import dayjs from "dayjs";
