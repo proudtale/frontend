@@ -16,7 +16,7 @@ import MyButton from "../../util/MyButton";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { clearErrors } from "../../redux/actions/dataActions";
-import { postChapter } from "../../redux/actions/chapterActions";
+import { addChapter } from "../../redux/actions/chapterActions";
 const styles = (theme) => ({
   ...theme.primary,
   ...theme.spread,
@@ -71,10 +71,12 @@ class CreateChapter extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const chapter = { title: this.state.title, body: "Write something here!" };
-    this.props.postChapter(chapter, this.props.bookId);
+    // temporarily adding chapter to local state
+    this.props.addChapter(chapter, this.props.bookId);
+
     this.setState({ open: false });
     this.props.history.push(
-      `/book/${this.props.bookId}/chapter/${this.props.chapter.chapterId}`
+      `/book/${this.props.bookId}/chapter/${this.state.title}`
     );
   };
   render() {
@@ -135,6 +137,6 @@ const mapStateToProps = (state) => ({
   chapter: state.chapterData.chapter,
 });
 
-export default connect(mapStateToProps, { clearErrors, postChapter })(
+export default connect(mapStateToProps, { clearErrors, addChapter })(
   withStyles(styles)(withRouter(CreateChapter))
 );

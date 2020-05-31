@@ -16,6 +16,7 @@ const initialState = {
   edit: false,
 };
 
+//TODO: Fill in other functions!
 export default function (state = initialState, action) {
   switch (action.type) {
     case LOADING_DATA:
@@ -44,7 +45,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         chapters: [...state.chapters, action.payload],
-        chapter: [action.payload],
+        chapter: action.payload,
       };
     case POST_CHAPTER:
       return {
