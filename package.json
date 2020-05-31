@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@brainhubeu/react-carousel": "^1.15.4",
     "@material-ui/core": "^4.9.9",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/lab": "^4.0.0-alpha.48",
@@ -11,7 +12,7 @@
     "font-awesome": "^4.7.0",
     "husky": "^4.2.3",
     "jwt-decode": "^2.2.0",
-    "mdbreact": "^4.25.5",
+    "mdbreact": "^4.27.0",
     "node-sass": "^4.13.1",
     "prettier": "^2.0.2",
     "pretty-quick": "^2.0.1",

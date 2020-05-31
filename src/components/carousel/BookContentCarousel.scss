@@ -1,0 +1,18 @@
+button.BrainhubCarousel__arrows {
+  background-color: initial;
+  &:hover {
+    background-color: initial;
+    span {
+      border-color: #1c2a48;
+    }
+  }
+  span {
+    border-color: #1c2a48;
+  }
+}
+
+.category {
+  color: #1c2a48;
+  font-family: Georgia, Times, "Times New Roman", serif;
+  font-size: 3em;
+}
