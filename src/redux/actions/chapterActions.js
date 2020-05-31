@@ -7,6 +7,7 @@ import {
   CLEAR_ERRORS,
   LOADING_UI,
   SET_BOOK_CHAPTERS,
+  EDIT_CHAPTER_TITLE,
   //   STOP_LOADING_UI,
   //   SUBMIT_COMMENT_CHAPTER,
   //   SUBMIT_EDIT_CHAPTER,
@@ -36,6 +37,10 @@ export const getBookChaptersData = (bookId) => (dispatch) => {
 // Post a chapter to UI. No posting
 export const addChapter = (newChapter) => (dispatch) => {
   dispatch({ type: ADD_CHAPTER, payload: newChapter });
+};
+
+export const editChapterTitle = (newTitle) => (dispatch) => {
+  dispatch({ type: EDIT_CHAPTER_TITLE, payload: newTitle });
 };
 // Post a chapter to book
 export const postChapter = (newChapter, bookId) => (dispatch) => {

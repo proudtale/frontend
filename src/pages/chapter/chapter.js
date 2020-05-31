@@ -19,7 +19,10 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 import { connect } from "react-redux";
-import { getBookChaptersData } from "../../redux/actions/chapterActions";
+import {
+  getBookChaptersData,
+  editChapterTitle,
+} from "../../redux/actions/chapterActions";
 
 import MyButton from "../../util/MyButton";
 import CreateChapter from "../../components/chapter/CreateChapter";
@@ -31,6 +34,7 @@ export class chapter extends Component {
   state = {
     open: true,
     edit: false,
+    title: "",
     currChapterId: "",
     bookId: "",
   };
@@ -39,6 +43,7 @@ export class chapter extends Component {
     const { chapterId, bookId } = props.match.params;
     return {
       ...state,
+      // title: props.chapter ? props.chapter.title : "",
       currChapterId: chapterId ? chapterId : "",
       bookId: bookId ? bookId : "",
     };
@@ -53,6 +58,9 @@ export class chapter extends Component {
   };
 
   handleEditTitle = () => {
+    if (this.state.edit) {
+      this.props.editChapterTitle(this.state.title);
+    }
     this.setState({ edit: !this.state.edit });
   };
 
@@ -87,7 +95,7 @@ export class chapter extends Component {
                     style: { fontSize: "3rem" },
                   }}
                   placeholder="Enter Your Title"
-                  value={this.props.chapter.title}
+                  value={this.state.title}
                   onChange={this.handleChange}
                 />
                 <Button onClick={this.handleEditTitle}>Done</Button>
@@ -259,6 +267,7 @@ const styles = (theme) => ({
   },
 });
 
-export default connect(mapStateToProps, { getBookChaptersData })(
-  withStyles(styles)(chapter)
-);
+export default connect(mapStateToProps, {
+  getBookChaptersData,
+  editChapterTitle,
+})(withStyles(styles)(chapter));

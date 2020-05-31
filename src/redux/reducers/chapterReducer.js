@@ -4,6 +4,7 @@ import {
   ADD_CHAPTER,
   POST_CHAPTER,
   SET_BOOK_CHAPTERS,
+  EDIT_CHAPTER_TITLE,
   //   SUBMIT_COMMENT_CHAPTER,
   //   SUBMIT_EDIT_CHAPTER,
   //   EDIT_CHAPTER,
@@ -41,6 +42,17 @@ export default function (state = initialState, action) {
     //       book: action.payload,
     //       edit: false,
     //     };
+    case EDIT_CHAPTER_TITLE:
+      return {
+        ...state,
+        chapters: state.chapters.map((c) => {
+          if (c.title === state.chapter.title) {
+            c.title = action.payload;
+          }
+          return c;
+        }),
+        chapter: { ...state.chapter, title: action.payload },
+      };
     case ADD_CHAPTER:
       return {
         ...state,
