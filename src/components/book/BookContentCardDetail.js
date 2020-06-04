@@ -130,7 +130,7 @@ class BookContentCardDetail extends Component {
           open={this.state.open}
           onClose={this.handleClose}
           // fullWidth
-          maxWidth="52em"
+          maxWidth="md"
           scroll="body"
           aria-labelledby="yes-no-dialog"
         >

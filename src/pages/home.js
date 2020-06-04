@@ -22,34 +22,27 @@ class home extends Component {
   }
   render() {
     const {
-      bookData: { loading, books, error },
+      bookData: { loading, books },
     } = this.props;
     const popularBook = books.map((book, index) => ({
       title: formatStringThumbnail(book.title),
       author: book.userHandle,
       bookImage: book.bookImageUrl,
+      desc: book.desc,
+      userImage: book.userImage,
       index,
     }));
     let homeMarkup = (
       <div className="container">
-        {/* <div>
-          {!isLoading ? (
-            <Grid parent>
-              <Slider heading="Popular Book" slides={popularBook} />
-            </Grid>
-          ) : (
-            <h4>Loading ...</h4>
-          )}
-        </div> */}
         <div>
-          {!isLoading ? (
+          {!loading ? (
             <BookContentCarousel category="Popular" books={popularBook} />
           ) : (
             <h4>Loading ...</h4>
           )}
         </div>
         <div>
-          {!isLoading ? (
+          {!loading ? (
             <BookContentCarousel category="Fairy Tale" books={popularBook} />
           ) : (
             <h4>Loading ...</h4>

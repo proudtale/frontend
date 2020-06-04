@@ -26,8 +26,8 @@ class BookConentCarousel extends Component {
           slidesPerPage={5}
           centered={true}
         >
-          {books.map((book) => {
-            return <BookContentCard book={book} />;
+          {books.map((book, index) => {
+            return <BookContentCard key={book.title + index} {...book} />;
           })}
         </Carousel>
         <Dots value={this.state.value} onChange={this.onChange} number={6} />
