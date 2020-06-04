@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-
+import PropTypes from "prop-types";
 //MUI Core
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -54,7 +54,7 @@ const styles = {
 
 class BookContentCard extends Component {
   render() {
-    const { bookImage, author, title, desc, userImage } = this.props.book;
+    const { bookImage, author, title, desc, userImage } = this.props;
     const { classes } = this.props;
     return (
       <Fragment>
@@ -105,4 +105,13 @@ class BookContentCard extends Component {
     );
   }
 }
+
+BookContentCard.protoTypes = {
+  bookImage: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+  userImage: PropTypes.string.isRequired,
+};
+
 export default withStyles(styles)(BookContentCard);

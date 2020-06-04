@@ -14,8 +14,9 @@ import PropTypes from "prop-types";
 import MyButton from "../../util/MyButton";
 
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { clearErrors } from "../../redux/actions/dataActions";
-
+import { addChapter } from "../../redux/actions/chapterActions";
 const styles = (theme) => ({
   ...theme.primary,
   ...theme.spread,
@@ -44,6 +45,7 @@ class CreateChapter extends Component {
     title: "",
     errors: {},
   };
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
       this.setState({
@@ -68,7 +70,14 @@ class CreateChapter extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert("submit");
+    const chapter = { title: this.state.title, body: "Write something here!" };
+    // temporarily adding chapter to local state
+    this.props.addChapter(chapter, this.props.bookId);
+
+    this.setState({ open: false });
+    this.props.history.push(
+      `/book/${this.props.bookId}/chapter/${this.state.title}`
+    );
   };
   render() {
     const { errors } = this.state;
@@ -125,8 +134,9 @@ CreateChapter.propTypes = {
 
 const mapStateToProps = (state) => ({
   UI: state.UI,
+  chapter: state.chapterData.chapter,
 });
 
-export default connect(mapStateToProps, { clearErrors })(
-  withStyles(styles)(CreateChapter)
+export default connect(mapStateToProps, { clearErrors, addChapter })(
+  withStyles(styles)(withRouter(CreateChapter))
 );
