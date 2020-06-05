@@ -58,43 +58,41 @@ class App extends Component {
           <Router>
             <Navbar />
             <div className="home-page-container">
-              <div className="adjust-top">
-                <Switch>
-                  <Route exact path="/" component={home} />
-                  <AuthRoute
-                    exact
-                    path="/contentcreation/:handle"
-                    component={publish}
-                  />
-                  <AuthRoute exact path="/community" component={community} />
-                  <Route exact path="/login" component={login} />
-                  <Route exact path="/signup" component={signup} />
-                  <AuthRoute exact path="/users/:handle" component={user} />
-                  <AuthRoute
-                    exact
-                    path="/users/:handle/scream/:screamId"
-                    component={user}
-                  />
-                  <Route exact path="/books/:bookId" component={info} />
-                  <AuthRoute
-                    exact
-                    path="/book/:bookId/chapter"
-                    component={chapter}
-                  />
-                  <AuthRoute
-                    exact
-                    path="/book/:bookId/chapter/:chapterId"
-                    component={chapter}
-                  />
-                  <Route
-                    exact
-                    path="/search/:searchValue"
-                    component={search}
-                  ></Route>
-                  <Route exact path="/search" component={search}></Route>
-                  <Route component={nomatchpage} />
-                </Switch>
-              </div>
+              <Switch>
+                <Route exact path="/" component={home} />
+                <AuthRoute
+                  exact
+                  path="/contentcreation/:handle"
+                  component={publish}
+                />
+                <AuthRoute exact path="/community" component={community} />
+                <Route exact path="/login" component={login} />
+                <Route exact path="/signup" component={signup} />
+                <AuthRoute exact path="/users/:handle" component={user} />
+                <AuthRoute
+                  exact
+                  path="/users/:handle/scream/:screamId"
+                  component={user}
+                />
+                <Route exact path="/books/:bookId" component={info} />
+                <AuthRoute
+                  exact
+                  path="/book/:bookId/chapter"
+                  component={chapter}
+                />
+                <AuthRoute
+                  exact
+                  path="/book/:bookId/chapter/:chapterId"
+                  component={chapter}
+                />
+                <Route
+                  exact
+                  path="/search/:searchValue"
+                  component={search}
+                ></Route>
+                <Route exact path="/search" component={search}></Route>
+                <Route component={nomatchpage} />
+              </Switch>
             </div>
             <Footer />
           </Router>

@@ -68,7 +68,7 @@ class publish extends Component {
     );
 
     return (
-      <Grid container>
+      <Grid className={classes.adjustTop} container>
         <Grid className={classes.inProgress}>
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>
