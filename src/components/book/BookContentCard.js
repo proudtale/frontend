@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -22,16 +21,12 @@ const styles = {
     marginLeft: "0.5em",
     width: "22em",
   },
-  media: {
-    height: 280,
-    backgroundSize: "cover",
-  },
   content: {
     height: 200,
   },
   cardActions: {
     display: "flex",
-    justifyContent: "right",
+    justifyContent: "flex-end",
   },
   button: {
     color: "#1c2a48",
@@ -60,38 +55,6 @@ class BookContentCard extends Component {
       <Fragment>
         <Card className={classes.root}>
           <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={bookImage}
-              title={title}
-            />
-            <CardContent className={classes.content}>
-              {/* <Typography gutterBottom variant="subtitle1" component="span" color="primary">
-                {author}
-              </Typography> */}
-              <Typography
-                className={classes.title}
-                gutterBottom
-                variant="h6"
-                component="h6"
-                align="center"
-              >
-                {formatStringThumbnail(title)}
-              </Typography>
-              <Typography
-                className={classes.desc}
-                variant="body2"
-                color="textSecondary"
-                component="p"
-              >
-                {formatString(desc.replace(/(<([^>]+)>)/g, ""))}
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions className={classes.cardActions}>
-            <Button size="small" className={classes.button}>
-              <ShareIcon />
-            </Button>
             <BookContentCardDetail
               bookImage={bookImage}
               author={author}
@@ -99,6 +62,33 @@ class BookContentCard extends Component {
               desc={desc.replace(/(<([^>]+)>)/g, "")}
               userImage={userImage}
             />
+          </CardActionArea>
+          <CardContent className={classes.content}>
+            {/* <Typography gutterBottom variant="subtitle1" component="span" color="primary">
+              {author}
+            </Typography> */}
+            <Typography
+              className={classes.title}
+              gutterBottom
+              variant="h6"
+              component="h6"
+              align="center"
+            >
+              {formatStringThumbnail(title)}
+            </Typography>
+            <Typography
+              className={classes.desc}
+              variant="body2"
+              color="textSecondary"
+              component="p"
+            >
+              {formatString(desc.replace(/(<([^>]+)>)/g, ""))}
+            </Typography>
+          </CardContent>
+          <CardActions className={classes.cardActions}>
+            <Button size="small" className={classes.button}>
+              <ShareIcon />
+            </Button>
           </CardActions>
         </Card>
       </Fragment>

@@ -16,7 +16,6 @@ import Grid from "@material-ui/core/Grid";
 // Component
 import CopyrightDialog from "./copyrightDialog";
 // MUI Icon
-import InfoIcon from "@material-ui/icons/Info";
 import CloseIcon from "@material-ui/icons/Close";
 import InsertCommentIcon from "@material-ui/icons/InsertComment";
 import ReplyIcon from "@material-ui/icons/Reply";
@@ -73,7 +72,7 @@ const styles = (theme) => ({
   },
   bookContentAuthor: {
     display: "flex",
-    justifyContent: "end",
+    justifyContent: "flex-end",
     "& span": {
       padding: "0.4em 0 0 0.4em",
     },
@@ -101,6 +100,10 @@ const styles = (theme) => ({
     display: "inline-flex",
     verticalAlign: "middle",
   },
+  media: {
+    height: 280,
+    backgroundSize: "cover",
+  },
 });
 
 class BookContentCardDetail extends Component {
@@ -118,13 +121,19 @@ class BookContentCardDetail extends Component {
 
     return (
       <Fragment>
-        <MyButton
+        {/* <MyButton
           tip="Learn more"
           onClick={this.handleOpen}
           btnClassName={classes.infoButton}
         >
           <InfoIcon />
-        </MyButton>
+        </MyButton> */}
+        <CardMedia
+          className={classes.media}
+          image={this.props.bookImage}
+          title={this.props.title}
+          onClick={this.handleOpen}
+        />
         <Dialog
           className={classes.dialog}
           open={this.state.open}
