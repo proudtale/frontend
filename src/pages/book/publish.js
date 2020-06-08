@@ -17,6 +17,10 @@ import { getUserData } from "../../redux/actions/userActions";
 import NoBookImg from "../../assets/images/no-book-img.png";
 const styles = (theme) => ({
   ...theme.spread,
+  root: {
+    display: "flex",
+    flexDirection: "column",
+  },
   inProgress: {
     marginBottom: "5em",
   },
@@ -24,6 +28,7 @@ const styles = (theme) => ({
     color: "#1c2a48",
     fontWeight: "bolder",
     fontFamily: "Times New Roman",
+    textShadow: "2px 2px #fff",
   },
   bookCardContainer: {
     display: "flex",
@@ -68,7 +73,7 @@ class publish extends Component {
     );
 
     return (
-      <Grid container>
+      <Grid container className={classes.root}>
         <Grid className={classes.inProgress}>
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>

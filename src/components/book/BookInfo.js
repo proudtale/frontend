@@ -76,6 +76,7 @@ export default function BookInfo() {
                   <img
                     className="profile-image"
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1024px-Cat03.jpg"
+                    alt="profile"
                   />
                 }
                 title="username1"
