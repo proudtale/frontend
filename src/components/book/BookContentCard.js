@@ -49,7 +49,7 @@ const styles = {
 
 class BookContentCard extends Component {
   render() {
-    const { bookImage, author, title, desc, userImage } = this.props;
+    const { bookImage, author, title, desc, userImage, updatedAt } = this.props;
     const { classes } = this.props;
     return (
       <Fragment>
@@ -61,6 +61,7 @@ class BookContentCard extends Component {
               title={title}
               desc={desc.replace(/(<([^>]+)>)/g, "")}
               userImage={userImage}
+              updatedAt={updatedAt}
             />
           </CardActionArea>
           <CardContent className={classes.content}>

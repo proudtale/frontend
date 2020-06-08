@@ -64,7 +64,7 @@ const styles = (theme) => ({
       // overflowY: "auto"
     },
     "& p": {
-      height: "10em",
+      height: "9.5em",
       wordWrap: "break-word",
       overflowY: "auto",
       marginBottom: "0.5em",
@@ -93,7 +93,7 @@ const styles = (theme) => ({
   },
   bookContentComment: {
     marginTop: "0.3em",
-    marginBottom: "-1.2em",
+    marginBottom: "-1.5em",
   },
   iconParent: {
     margin: "0 1rem",
@@ -103,6 +103,11 @@ const styles = (theme) => ({
   media: {
     height: 280,
     backgroundSize: "cover",
+  },
+  updatedAt: {
+    marginLeft: "5em",
+    color: "#0251fb",
+    paddingTop: "0.15em",
   },
 });
 
@@ -121,13 +126,6 @@ class BookContentCardDetail extends Component {
 
     return (
       <Fragment>
-        {/* <MyButton
-          tip="Learn more"
-          onClick={this.handleOpen}
-          btnClassName={classes.infoButton}
-        >
-          <InfoIcon />
-        </MyButton> */}
         <CardMedia
           className={classes.media}
           image={this.props.bookImage}
@@ -204,6 +202,9 @@ class BookContentCardDetail extends Component {
                     />{" "}
                     3
                   </span>
+                  <Typography component="span" className={classes.updatedAt}>
+                    {this.props.updatedAt}
+                  </Typography>
                 </Grid>
                 <br />
                 <Typography

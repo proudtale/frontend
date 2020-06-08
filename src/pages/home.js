@@ -7,7 +7,7 @@ import BookContentCarousel from "../components/carousel/BookContentCarousel";
 // import Grid from "@material-ui/core/Grid";
 // Redux stuff
 import { getBooks } from "../redux/actions/bookActions";
-import { formatStringThumbnail } from "../util/helpers";
+// import { formatStringThumbnail } from "../util/helpers";
 import { connect } from "react-redux";
 
 const styles = (theme) => ({
@@ -25,11 +25,12 @@ class home extends Component {
       bookData: { loading, books },
     } = this.props;
     const popularBook = books.map((book, index) => ({
-      title: formatStringThumbnail(book.title),
+      title: book.title,
       author: book.userHandle,
       bookImage: book.bookImageUrl,
       desc: book.desc,
       userImage: book.userImage,
+      updatedAt: book.createdAt,
       index,
     }));
     let homeMarkup = (
