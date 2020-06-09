@@ -56,9 +56,9 @@ class user extends Component {
     //     else return <Scream key={scream.screamId} scream={scream} openDialog />;
     //   })
     // );
-
+    const { classes } = this.props;
     return (
-      <div className="container">
+      <div className={classes.adjustTop}>
         <Grid container spacing={10}>
           {/* <Grid item sm={8} xs={12}>
             {screamsMarkup}

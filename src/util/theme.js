@@ -54,6 +54,12 @@ export default {
     paper: {
       padding: 20,
     },
+    adjustTop: {
+      borderRadius: "0.5em",
+      padding: "10px",
+      flexBasis: "100%",
+      maxWidth: "75%",
+    },
     profile: {
       "& .image-wrapper": {
         textAlign: "center",

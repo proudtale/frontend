@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // import Slider from "../components/slider/slider";
 import withStyles from "@material-ui/core/styles/withStyles";
 import BookContentCarousel from "../components/carousel/BookContentCarousel";
-
+import theme from "../util/theme";
 // MUI
 // import Grid from "@material-ui/core/Grid";
 // Redux stuff
@@ -33,7 +33,7 @@ class home extends Component {
       index,
     }));
     let homeMarkup = (
-      <div className="container">
+      <div style={theme.spread.adjustTop}>
         <div>
           {!loading ? (
             <BookContentCarousel category="Popular" books={popularBook} />
