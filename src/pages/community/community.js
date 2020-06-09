@@ -7,6 +7,7 @@ import Profile from "../../components/profile/Profile";
 import PostScream from "../../components/community/PostScream";
 // Util
 import Skeleton from "../../util/Skeleton";
+import theme from "../../util/theme";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
 // Redux
@@ -29,7 +30,7 @@ class community extends Component {
     return (
       <React.Fragment>
         <PostScream />
-        <Grid container spacing={10}>
+        <Grid style={theme.spread.adjustTop} container spacing={10}>
           <Grid item sm={8} xs={12}>
             {recentScreamsMarkup}
           </Grid>

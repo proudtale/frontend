@@ -199,8 +199,8 @@ const styles = (theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    height: "100%",
     padding: theme.spacing(3),
+    flexBasis: "100%",
   },
   paperShift: {
     // Uncomment for animation
