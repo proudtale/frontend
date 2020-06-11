@@ -45,7 +45,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import { connect } from "react-redux";
 // Image
 import { formatStringThumbnail } from "../../util/helpers";
-import { uploadBookImage } from "../../redux/actions/bookActions";
+import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
 
 class BookCard extends Component {
   state = {
@@ -70,6 +70,7 @@ class BookCard extends Component {
   };
 
   handleAgree = (e) => {
+    this.props.getBook(this.props.book.bookId);
     this.props.history.push(`/book/${this.props.book.bookId}/chapter`);
   };
   render() {
@@ -170,7 +171,7 @@ class BookCard extends Component {
     );
   }
 }
-const mapActionsToProps = { uploadBookImage };
+const mapActionsToProps = { uploadBookImage, getBook };
 
 BookCard.propTypes = {
   uploadBookImage: PropTypes.func.isRequired,

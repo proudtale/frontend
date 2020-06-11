@@ -23,6 +23,7 @@ import {
   getBookChaptersData,
   editChapterTitle,
 } from "../../redux/actions/chapterActions";
+import { formatStringThumbnail } from "../../util/helpers";
 
 import MyButton from "../../util/MyButton";
 import CreateChapter from "../../components/chapter/CreateChapter";
@@ -41,6 +42,7 @@ export class chapter extends Component {
 
   static getDerivedStateFromProps(props, state) {
     const { chapterId, bookId } = props.match.params;
+
     return {
       ...state,
       // title: props.chapter ? props.chapter.title : "",
@@ -145,7 +147,9 @@ export class chapter extends Component {
               align="center"
               variant="h4"
             >
-              Book Title
+              {this.props.book.title
+                ? formatStringThumbnail(this.props.book.title)
+                : ""}
             </Typography>
             <Typography align="center" variant="h5">
               Chapters
@@ -191,6 +195,7 @@ export class chapter extends Component {
 const mapStateToProps = (state) => ({
   chapters: state.chapterData.chapters,
   chapter: state.chapterData.chapter,
+  book: state.bookData.book,
 });
 
 const styles = (theme) => ({
