@@ -28,7 +28,7 @@ export default function (state = initialState, action) {
     case SET_BOOK_CHAPTERS:
       return {
         ...state,
-        chapter: action.payload,
+        chapters: action.payload,
         loading: false,
       };
     //   case EDIT_BOOK:
