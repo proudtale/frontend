@@ -1,5 +1,4 @@
 .firebase
-build
 new-repo
-public
 node_modules
+build
