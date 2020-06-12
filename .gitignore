@@ -1,5 +1,5 @@
-/.firebase
-/build
-/new-repo
-/public
+.firebase
+build
+new-repo
+public
 node_modules
