@@ -104,10 +104,11 @@ const styles = (theme) => ({
     height: 280,
     backgroundSize: "cover",
   },
-  updatedAt: {
+  createdAt: {
     marginLeft: "5em",
     color: "#0251fb",
     paddingTop: "0.15em",
+    fontSize: "0.7em",
   },
 });
 
@@ -151,7 +152,7 @@ class BookContentCardDetail extends Component {
               <CloseIcon />
             </MyButton>
           </DialogTitle>
-          <DialogContent diviers className={classes.dialogContent}>
+          <DialogContent className={classes.dialogContent}>
             <Box className={classes.bookCover}>
               <CardMedia
                 component="img"
@@ -202,8 +203,8 @@ class BookContentCardDetail extends Component {
                     />{" "}
                     3
                   </span>
-                  <Typography component="span" className={classes.updatedAt}>
-                    {this.props.updatedAt}
+                  <Typography component="span" className={classes.createdAt}>
+                    Last updated: {this.props.createdAt}
                   </Typography>
                 </Grid>
                 <br />

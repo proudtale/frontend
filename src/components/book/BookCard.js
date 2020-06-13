@@ -15,14 +15,12 @@
 
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
-// import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 
 //Components
 import DeleteBook from "./DeleteBook";
-// import EditBook from "./EditBook";
 // Util
 import MyButton from "../../util/MyButton";
 import YesNoDialog from "../../util/YesNoDialog";
@@ -196,10 +194,6 @@ class BookCard extends Component {
       authenticated && userHandle === handle ? (
         <DeleteBook bookId={bookId} title={title} />
       ) : null;
-    // const editButton =
-    //   authenticated && userHandle === handle ? (
-    //     <EditBook bookId={bookId} userHandle={userHandle}/>
-    //   ) : null;
     const editDialog = (
       <YesNoDialog
         handleClose={this.handleEditDialogClose}
@@ -302,7 +296,6 @@ class BookCard extends Component {
                       <EditIcon color="primary" />
                     </label>
                   </Typography>
-                  {/* {editButton} */}
                 </MyButton>
                 <Typography>{deleteButton}</Typography>
               </Box>

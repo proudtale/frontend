@@ -13,7 +13,11 @@ import ShareIcon from "@material-ui/icons/Share";
 // Component
 import BookContentCardDetail from "./BookContentCardDetail";
 // Util
-import { formatStringThumbnail, formatString } from "../../util/helpers";
+import {
+  formatStringThumbnail,
+  formatString,
+  formatStringReplaceHtmltag,
+} from "../../util/helpers";
 
 const styles = {
   root: {
@@ -49,7 +53,7 @@ const styles = {
 
 class BookContentCard extends Component {
   render() {
-    const { bookImage, author, title, desc, userImage, updatedAt } = this.props;
+    const { bookImage, author, title, desc, userImage, createdAt } = this.props;
     const { classes } = this.props;
     return (
       <Fragment>
@@ -59,9 +63,9 @@ class BookContentCard extends Component {
               bookImage={bookImage}
               author={author}
               title={title}
-              desc={desc.replace(/(<([^>]+)>)/g, "")}
+              desc={formatStringReplaceHtmltag(desc)}
               userImage={userImage}
-              updatedAt={updatedAt}
+              createdAt={createdAt}
             />
           </CardActionArea>
           <CardContent className={classes.content}>
@@ -83,7 +87,7 @@ class BookContentCard extends Component {
               color="textSecondary"
               component="p"
             >
-              {formatString(desc.replace(/(<([^>]+)>)/g, ""))}
+              {formatString(formatStringReplaceHtmltag(desc))}
             </Typography>
           </CardContent>
           <CardActions className={classes.cardActions}>

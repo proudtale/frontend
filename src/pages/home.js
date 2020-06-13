@@ -30,7 +30,7 @@ class home extends Component {
       bookImage: book.bookImageUrl,
       desc: book.desc,
       userImage: book.userImage,
-      updatedAt: book.createdAt,
+      createdAt: book.createdAt,
       index,
     }));
     let homeMarkup = (

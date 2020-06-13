@@ -5,6 +5,7 @@ import BookCard from "../../components/book/BookCard";
 import PostBook from "../../components/book/PostBook";
 // Util
 import Skeleton from "../../util/Skeleton";
+import theme from "../../util/theme";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -17,10 +18,6 @@ import { getUserData } from "../../redux/actions/userActions";
 import NoBookImg from "../../assets/images/no-book-img.png";
 const styles = (theme) => ({
   ...theme.spread,
-  root: {
-    display: "flex",
-    flexDirection: "column",
-  },
   inProgress: {
     marginBottom: "5em",
   },
@@ -73,7 +70,7 @@ class publish extends Component {
     );
 
     return (
-      <Grid container className={classes.root}>
+      <Grid container direction="column" style={theme.spread.adjustTop}>
         <Grid className={classes.inProgress}>
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>
