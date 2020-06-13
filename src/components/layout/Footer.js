@@ -26,7 +26,7 @@ class Footer extends Component {
             </MDBCol>
             <MDBCol md="3">
               <h5 className="title font-weight-bolder">
-                Proudtales Advertising
+                Proudtale Advertising
               </h5>
               <ul className="pl-0">
                 <li className="list-unstyled">
@@ -65,7 +65,7 @@ class Footer extends Component {
         <div className="footer-copyright text-center py-3 mdb-color darken-4">
           <MDBContainer fluid>
             &copy; {new Date().getFullYear()} Copyright:{" "}
-            <a href="https://proudtale.com/"> proudtales.com</a>
+            <a href="https://proudtale.com/"> proudtale.com</a>
           </MDBContainer>
         </div>
       </MDBFooter>

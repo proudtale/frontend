@@ -5,6 +5,7 @@ import BookCard from "../../components/book/BookCard";
 import PostBook from "../../components/book/PostBook";
 // Util
 import Skeleton from "../../util/Skeleton";
+import theme from "../../util/theme";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -24,6 +25,7 @@ const styles = (theme) => ({
     color: "#1c2a48",
     fontWeight: "bolder",
     fontFamily: "Times New Roman",
+    textShadow: "2px 2px #fff",
   },
   bookCardContainer: {
     display: "flex",
@@ -68,7 +70,7 @@ class publish extends Component {
     );
 
     return (
-      <Grid className={classes.adjustTop} container>
+      <Grid container direction="column" style={theme.spread.adjustTop}>
         <Grid className={classes.inProgress}>
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>

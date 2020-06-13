@@ -1,1 +1,4 @@
-/node_modules
+.firebase
+new-repo
+node_modules
+build

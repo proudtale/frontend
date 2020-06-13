@@ -16,7 +16,6 @@ import Grid from "@material-ui/core/Grid";
 // Component
 import CopyrightDialog from "./copyrightDialog";
 // MUI Icon
-import InfoIcon from "@material-ui/icons/Info";
 import CloseIcon from "@material-ui/icons/Close";
 import InsertCommentIcon from "@material-ui/icons/InsertComment";
 import ReplyIcon from "@material-ui/icons/Reply";
@@ -65,7 +64,7 @@ const styles = (theme) => ({
       // overflowY: "auto"
     },
     "& p": {
-      height: "10em",
+      height: "9.5em",
       wordWrap: "break-word",
       overflowY: "auto",
       marginBottom: "0.5em",
@@ -73,7 +72,7 @@ const styles = (theme) => ({
   },
   bookContentAuthor: {
     display: "flex",
-    justifyContent: "end",
+    justifyContent: "flex-end",
     "& span": {
       padding: "0.4em 0 0 0.4em",
     },
@@ -94,12 +93,22 @@ const styles = (theme) => ({
   },
   bookContentComment: {
     marginTop: "0.3em",
-    marginBottom: "-1.2em",
+    marginBottom: "-1.5em",
   },
   iconParent: {
     margin: "0 1rem",
     display: "inline-flex",
     verticalAlign: "middle",
+  },
+  media: {
+    height: 280,
+    backgroundSize: "cover",
+  },
+  createdAt: {
+    marginLeft: "5em",
+    color: "#0251fb",
+    paddingTop: "0.15em",
+    fontSize: "0.7em",
   },
 });
 
@@ -118,13 +127,12 @@ class BookContentCardDetail extends Component {
 
     return (
       <Fragment>
-        <MyButton
-          tip="Learn more"
+        <CardMedia
+          className={classes.media}
+          image={this.props.bookImage}
+          title={this.props.title}
           onClick={this.handleOpen}
-          btnClassName={classes.infoButton}
-        >
-          <InfoIcon />
-        </MyButton>
+        />
         <Dialog
           className={classes.dialog}
           open={this.state.open}
@@ -144,7 +152,7 @@ class BookContentCardDetail extends Component {
               <CloseIcon />
             </MyButton>
           </DialogTitle>
-          <DialogContent diviers className={classes.dialogContent}>
+          <DialogContent className={classes.dialogContent}>
             <Box className={classes.bookCover}>
               <CardMedia
                 component="img"
@@ -195,6 +203,9 @@ class BookContentCardDetail extends Component {
                     />{" "}
                     3
                   </span>
+                  <Typography component="span" className={classes.createdAt}>
+                    Last updated: {this.props.createdAt}
+                  </Typography>
                 </Grid>
                 <br />
                 <Typography

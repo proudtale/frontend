@@ -15,14 +15,12 @@
 
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router-dom";
-
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
 
 //Components
 import DeleteBook from "./DeleteBook";
-// import EditBook from "./EditBook";
 // Util
 import MyButton from "../../util/MyButton";
 import YesNoDialog from "../../util/YesNoDialog";
@@ -37,7 +35,7 @@ import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
-import Link from "@material-ui/core/Link";
+import Button from "@material-ui/core/Button";
 // Icons
 import EditIcon from "@material-ui/icons/Edit";
 
@@ -46,143 +44,6 @@ import { connect } from "react-redux";
 // Image
 import { formatStringThumbnail } from "../../util/helpers";
 import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
-
-class BookCard extends Component {
-  state = {
-    open: false,
-  };
-  handleOpen = (e) => {
-    this.setState({ open: true });
-    console.log(e.currentTarget.nextSibling);
-  };
-  handleClose = () => {
-    this.setState({ open: false });
-  };
-  handleBookImageChange = (event) => {
-    const image = event.target.files[0];
-    const formData = new FormData();
-    formData.append("image", image, image.name);
-    this.props.uploadBookImage(
-      formData,
-      this.props.book.bookId,
-      this.props.book.userHandle
-    );
-  };
-
-  handleAgree = (e) => {
-    this.props.getBook(this.props.book.bookId);
-    this.props.history.push(`/book/${this.props.book.bookId}/chapter`);
-  };
-  render() {
-    dayjs.extend(relativeTime);
-    const {
-      classes,
-      book: { title, createdAt, userImage, userHandle, bookId, bookImageUrl },
-      user: {
-        authenticated,
-        credentials: { handle },
-      },
-    } = this.props;
-
-    const deleteButton =
-      authenticated && userHandle === handle ? (
-        <DeleteBook bookId={bookId} title={title} />
-      ) : null;
-
-    // const editButton =
-    //   authenticated && userHandle === handle ? (
-    //     <EditBook bookId={bookId} userHandle={userHandle}/>
-    //   ) : null;
-    const confirmDialog = (
-      <YesNoDialog
-        handleClose={this.handleClose}
-        open={this.state.open}
-        title={title}
-        dialogTitle={<div>Confirm writing the chapter</div>}
-        onClick={this.handleAgree}
-      >
-        <p>
-          Do you want to proceed with writing chapters of{" "}
-          <span className={classes.wirtechapter}>{title}</span> ?
-        </p>
-      </YesNoDialog>
-    );
-    return (
-      <Typography component={"span"} className={classes.root}>
-        <Fragment>
-          <Card className={classes.card}>
-            <Link onClick={this.handleOpen}>
-              <CardMedia image={bookImageUrl} className={classes.image} />
-            </Link>
-            <CardContent>
-              <Box className={classes.cardContentBox1}>
-                <div>
-                  <Avatar className={classes.avatar} src={userImage} />
-                  <Typography
-                    component={"span"}
-                    className={"MuiTypography--heading"}
-                    variant="h6"
-                    gutterBottom
-                  >
-                    {userHandle}
-                  </Typography>
-                </div>
-                <Typography
-                  component={"span"}
-                  className={classes.createdat}
-                  variant="body2"
-                  color="textSecondary"
-                >
-                  {dayjs(createdAt).fromNow()}
-                </Typography>
-                <Tooltip
-                  title={title}
-                  placement="top-start"
-                  classes={{ tooltip: classes.tooltip }}
-                >
-                  <Typography variant="body1" className={classes.title}>
-                    {formatStringThumbnail(title)}
-                  </Typography>
-                </Tooltip>
-              </Box>
-              <Divider light />
-              <Box className={classes.cardContentBox2}>
-                <MyButton tip="Add book cover picture">
-                  <Typography className={classes.editbtn}>
-                    <label className="bookImageInput">
-                      <input
-                        className={classes.input}
-                        type="file"
-                        id="bookImageInput"
-                        onChange={this.handleBookImageChange}
-                      />
-                      <EditIcon color="primary" />
-                    </label>
-                  </Typography>
-                  {/* {editButton} */}
-                </MyButton>
-                <Typography>{deleteButton}</Typography>
-              </Box>
-            </CardContent>
-          </Card>
-          {confirmDialog}
-        </Fragment>
-      </Typography>
-    );
-  }
-}
-const mapActionsToProps = { uploadBookImage, getBook };
-
-BookCard.propTypes = {
-  uploadBookImage: PropTypes.func.isRequired,
-  book: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
-  openDialog: PropTypes.bool,
-};
-
-const mapStateToProps = (state) => ({
-  user: state.user,
-});
 
 const styles = {
   root: {
@@ -249,7 +110,217 @@ const styles = {
   wirtechapter: {
     color: "#00d9fd",
   },
+  complete: {
+    color: "#f9a825",
+  },
+  mouseEnterBox: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    padding: "5em 1em 0 1em",
+    "& div:nth-child(1)": {
+      marginBottom: "1.5em",
+      "& button": {
+        border: "solid #FFFFFF",
+        color: "#FFFFFF",
+        "&:hover": {
+          background: "rgb(255,255,255, 0.07)",
+        },
+      },
+    },
+    "& div:nth-child(2)": {
+      "& button": {
+        border: "solid #f9a825",
+        color: "#f9a825",
+        "&:hover": {
+          background: "rgb(255,255,255, 0.07)",
+        },
+      },
+    },
+  },
 };
+
+class BookCard extends Component {
+  state = {
+    editDialogOpen: false,
+    completeDialogOpen: false,
+    bookCardMediaMouseInside: false,
+  };
+  handleEditDialogOpen = (e) => {
+    this.setState({ editDialogOpen: true });
+    console.log(e.currentTarget.nextSibling);
+  };
+  handleEditDialogClose = () => {
+    this.setState({ editDialogOpen: false });
+  };
+  handleCompleteDialogOpen = () => {
+    this.setState({ completeDialogOpen: true });
+  };
+  handleCompleteDialogClose = () => {
+    this.setState({ completeDialogOpen: false });
+  };
+  handleBookImageChange = (event) => {
+    const image = event.target.files[0];
+    const formData = new FormData();
+    formData.append("image", image, image.name);
+    this.props.uploadBookImage(
+      formData,
+      this.props.book.bookId,
+      this.props.book.userHandle
+    );
+  };
+
+  handleAgree = (e) => {
+    this.props.getBook(this.props.book.bookId);
+    this.props.history.push(`/book/${this.props.book.bookId}/chapter`);
+  };
+  bookCardMediaMouseEnter = () => {
+    this.setState({ bookCardMediaMouseInside: true });
+  };
+  bookCardMediaMouseLeave = () => {
+    this.setState({ bookCardMediaMouseInside: false });
+  };
+  render() {
+    dayjs.extend(relativeTime);
+    const {
+      classes,
+      book: { title, createdAt, userImage, userHandle, bookId, bookImageUrl },
+      user: {
+        authenticated,
+        credentials: { handle },
+      },
+    } = this.props;
+
+    const deleteButton =
+      authenticated && userHandle === handle ? (
+        <DeleteBook bookId={bookId} title={title} />
+      ) : null;
+    const editDialog = (
+      <YesNoDialog
+        handleClose={this.handleEditDialogClose}
+        open={this.state.editDialogOpen}
+        title={title}
+        dialogTitle={<div>Confirm writing the chapter</div>}
+        onClick={this.handleAgree}
+      >
+        <p>
+          Do you want to proceed with writing chapters of
+          <span className={classes.wirtechapter}> {title}</span> ?
+        </p>
+      </YesNoDialog>
+    );
+    const completeDialog = (
+      <YesNoDialog
+        handleClose={this.handleCompleteDialogClose}
+        open={this.state.completeDialogOpen}
+        title={title}
+        dialogTitle={<div>Confirm completing with the current settings</div>}
+      >
+        <p>
+          After completion you won't be able to edit this book. Would you like
+          to complete
+          <span className={classes.complete}> {title}</span>?
+        </p>
+      </YesNoDialog>
+    );
+    const bookCardMediaMouseEnter = (
+      <Box className={classes.mouseEnterBox}>
+        <Box>
+          <Button onClick={this.handleEditDialogOpen} fullWidth={true}>
+            Edit
+          </Button>
+        </Box>
+        <Box>
+          <Button onClick={this.handleCompleteDialogOpen} fullWidth={true}>
+            Complete
+          </Button>
+        </Box>
+      </Box>
+    );
+    return (
+      <Typography component={"span"} className={classes.root}>
+        <Fragment>
+          <Card className={classes.card}>
+            <CardMedia
+              image={bookImageUrl}
+              // title={title}
+              className={classes.image}
+              onMouseEnter={this.bookCardMediaMouseEnter}
+              onMouseLeave={this.bookCardMediaMouseLeave}
+            >
+              {this.state.bookCardMediaMouseInside
+                ? bookCardMediaMouseEnter
+                : null}
+            </CardMedia>
+            <CardContent>
+              <Box className={classes.cardContentBox1}>
+                <div>
+                  <Avatar className={classes.avatar} src={userImage} />
+                  <Typography
+                    component={"span"}
+                    className={"MuiTypography--heading"}
+                    variant="h6"
+                    gutterBottom
+                  >
+                    {userHandle}
+                  </Typography>
+                </div>
+                <Typography
+                  component={"span"}
+                  className={classes.createdat}
+                  variant="body2"
+                  color="textSecondary"
+                >
+                  {dayjs(createdAt).fromNow()}
+                </Typography>
+                <Tooltip
+                  title={title}
+                  placement="top-start"
+                  classes={{ tooltip: classes.tooltip }}
+                >
+                  <Typography variant="body1" className={classes.title}>
+                    {formatStringThumbnail(title)}
+                  </Typography>
+                </Tooltip>
+              </Box>
+              <Divider light />
+              <Box className={classes.cardContentBox2}>
+                <MyButton tip="Add book cover picture">
+                  <Typography className={classes.editbtn}>
+                    <label className="bookImageInput">
+                      <input
+                        className={classes.input}
+                        type="file"
+                        id="bookImageInput"
+                        onChange={this.handleBookImageChange}
+                      />
+                      <EditIcon color="primary" />
+                    </label>
+                  </Typography>
+                </MyButton>
+                <Typography>{deleteButton}</Typography>
+              </Box>
+            </CardContent>
+          </Card>
+          {editDialog}
+          {completeDialog}
+        </Fragment>
+      </Typography>
+    );
+  }
+}
+const mapActionsToProps = { uploadBookImage, getBook };
+
+BookCard.propTypes = {
+  uploadBookImage: PropTypes.func.isRequired,
+  book: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
 
 export default connect(
   mapStateToProps,
