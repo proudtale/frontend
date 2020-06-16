@@ -25,7 +25,11 @@ const styles = (theme) => ({
     color: "#1c2a48",
     fontWeight: "bolder",
     fontFamily: "Times New Roman",
-    textShadow: "2px 2px #fff",
+  },
+  completedTitle: {
+    color: "#f9a825",
+    fontWeight: "bolder",
+    fontFamily: "Times New Roman",
   },
   bookCardContainer: {
     display: "flex",
@@ -47,7 +51,9 @@ class publish extends Component {
     const handle = this.props.match.params.handle;
     const bookId = this.props.match.params.bookId;
 
-    if (bookId) this.setState({ bookIdParam: bookId });
+    if (bookId) {
+      this.setState({ bookIdParam: bookId });
+    }
     this.props.getUserData();
     this.props.getBookData(handle);
   }
@@ -55,17 +61,29 @@ class publish extends Component {
     const { books, loading } = this.props.data;
     const { classes } = this.props;
     const { bookIdParam } = this.state;
-    let recentBooksMarkup = loading ? (
+    let inProgressBooksMarkup = loading ? (
       <Skeleton image={NoBookImg} />
     ) : books === null ? (
       <p>No books from this user</p>
-    ) : !bookIdParam ? (
-      books.map((book) => <BookCard key={book.bookId} book={book} />)
     ) : (
       books.map((book) => {
-        if (book.bookId !== bookIdParam)
+        if (book.bookId !== bookIdParam && book.bookCompleted === false)
           return <BookCard key={book.bookId} book={book} />;
-        else return <BookCard key={book.bookId} book={book} openDialog />;
+        // else return <BookCard key={book.bookId} book={book} openDialog />;
+      })
+    );
+    // (!bookIdParam && bookCompleted == false) ? (
+    //   books.map((book) => <BookCard key={book.bookId} book={book} />)
+    // )
+    let completedBookMarkup = loading ? (
+      <Skeleton image={NoBookImg} />
+    ) : books === null ? (
+      <p>No books from this user</p>
+    ) : (
+      books.map((book) => {
+        if (book.bookId !== bookIdParam && book.bookCompleted === true)
+          return <BookCard key={book.bookId} book={book} />;
+        // else return <BookCard key={book.bookId} book={book} openDialog />;
       })
     );
 
@@ -75,11 +93,18 @@ class publish extends Component {
           <h2 className={classes.inProgressTitle}>In Progress</h2>
           <Grid className={classes.publishBody}>
             <PostBook />
-            <div className={classes.bookCardContainer}>{recentBooksMarkup}</div>
+            <div className={classes.bookCardContainer}>
+              {inProgressBooksMarkup}
+            </div>
           </Grid>
         </Grid>
         <Grid>
-          <h2 className={classes.inProgressTitle}>Completed</h2>
+          <h2 className={classes.completedTitle}>Completed</h2>
+          <Grid className={classes.publishBody}>
+            <div className={classes.bookCardContainer}>
+              {completedBookMarkup}
+            </div>
+          </Grid>
         </Grid>
       </Grid>
     );

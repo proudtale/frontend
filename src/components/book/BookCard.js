@@ -21,6 +21,7 @@ import PropTypes from "prop-types";
 
 //Components
 import DeleteBook from "./DeleteBook";
+import FinalCompleteDialog from "./FinalCompleteDialog";
 // Util
 import MyButton from "../../util/MyButton";
 import YesNoDialog from "../../util/YesNoDialog";
@@ -145,6 +146,7 @@ class BookCard extends Component {
     editDialogOpen: false,
     completeDialogOpen: false,
     bookCardMediaMouseInside: false,
+    finalCompleteDialog: false,
   };
   handleEditDialogOpen = (e) => {
     this.setState({ editDialogOpen: true });
@@ -169,7 +171,6 @@ class BookCard extends Component {
       this.props.book.userHandle
     );
   };
-
   handleAgree = (e) => {
     this.props.getBook(this.props.book.bookId);
     this.props.history.push(`/book/${this.props.book.bookId}/chapter`);
@@ -180,11 +181,26 @@ class BookCard extends Component {
   bookCardMediaMouseLeave = () => {
     this.setState({ bookCardMediaMouseInside: false });
   };
+  finalCompleteDialogOpen = () => {
+    this.setState({ finalCompleteDialog: true });
+    this.handleCompleteDialogClose();
+  };
+  finalCompleteDialogClose = (propsParameter) => {
+    this.setState({ finalCompleteDialog: propsParameter });
+  };
   render() {
     dayjs.extend(relativeTime);
     const {
       classes,
-      book: { title, createdAt, userImage, userHandle, bookId, bookImageUrl },
+      book: {
+        title,
+        createdAt,
+        userImage,
+        userHandle,
+        bookId,
+        bookImageUrl,
+        bookCompleted,
+      },
       user: {
         authenticated,
         credentials: { handle },
@@ -215,6 +231,7 @@ class BookCard extends Component {
         open={this.state.completeDialogOpen}
         title={title}
         dialogTitle={<div>Confirm completing with the current settings</div>}
+        onClick={this.finalCompleteDialogOpen}
       >
         <p>
           After completion you won't be able to edit this book. Would you like
@@ -248,7 +265,7 @@ class BookCard extends Component {
               onMouseEnter={this.bookCardMediaMouseEnter}
               onMouseLeave={this.bookCardMediaMouseLeave}
             >
-              {this.state.bookCardMediaMouseInside
+              {this.state.bookCardMediaMouseInside && bookCompleted === false
                 ? bookCardMediaMouseEnter
                 : null}
             </CardMedia>
@@ -256,12 +273,7 @@ class BookCard extends Component {
               <Box className={classes.cardContentBox1}>
                 <div>
                   <Avatar className={classes.avatar} src={userImage} />
-                  <Typography
-                    component={"span"}
-                    className={"MuiTypography--heading"}
-                    variant="h6"
-                    gutterBottom
-                  >
+                  <Typography component={"span"} variant="h6" gutterBottom>
                     {userHandle}
                   </Typography>
                 </div>
@@ -304,6 +316,14 @@ class BookCard extends Component {
           </Card>
           {editDialog}
           {completeDialog}
+          <FinalCompleteDialog
+            open={this.state.finalCompleteDialog}
+            handleClose={this.finalCompleteDialogClose}
+            userImage={userImage}
+            title={title}
+            userHandle={userHandle}
+            bookImage={bookImageUrl}
+          />
         </Fragment>
       </Typography>
     );
