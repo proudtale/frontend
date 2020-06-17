@@ -42,9 +42,9 @@ import EditIcon from "@material-ui/icons/Edit";
 
 // Redux
 import { connect } from "react-redux";
+import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
 // Image
 import { formatStringThumbnail } from "../../util/helpers";
-import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
 
 const styles = {
   root: {
@@ -211,6 +211,20 @@ class BookCard extends Component {
       authenticated && userHandle === handle ? (
         <DeleteBook bookId={bookId} title={title} />
       ) : null;
+    const bookCardMediaMouseEnter = (
+      <Box className={classes.mouseEnterBox}>
+        <Box>
+          <Button onClick={this.handleEditDialogOpen} fullWidth={true}>
+            Edit
+          </Button>
+        </Box>
+        <Box>
+          <Button onClick={this.handleCompleteDialogOpen} fullWidth={true}>
+            Complete
+          </Button>
+        </Box>
+      </Box>
+    );
     const editDialog = (
       <YesNoDialog
         handleClose={this.handleEditDialogClose}
@@ -240,19 +254,16 @@ class BookCard extends Component {
         </p>
       </YesNoDialog>
     );
-    const bookCardMediaMouseEnter = (
-      <Box className={classes.mouseEnterBox}>
-        <Box>
-          <Button onClick={this.handleEditDialogOpen} fullWidth={true}>
-            Edit
-          </Button>
-        </Box>
-        <Box>
-          <Button onClick={this.handleCompleteDialogOpen} fullWidth={true}>
-            Complete
-          </Button>
-        </Box>
-      </Box>
+    const finalCompleteDialog = (
+      <FinalCompleteDialog
+        open={this.state.finalCompleteDialog}
+        handleClose={this.finalCompleteDialogClose}
+        userImage={userImage}
+        title={title}
+        userHandle={userHandle}
+        bookImage={bookImageUrl}
+        bookId={bookId}
+      />
     );
     return (
       <Typography component={"span"} className={classes.root}>
@@ -316,14 +327,7 @@ class BookCard extends Component {
           </Card>
           {editDialog}
           {completeDialog}
-          <FinalCompleteDialog
-            open={this.state.finalCompleteDialog}
-            handleClose={this.finalCompleteDialogClose}
-            userImage={userImage}
-            title={title}
-            userHandle={userHandle}
-            bookImage={bookImageUrl}
-          />
+          {finalCompleteDialog}
         </Fragment>
       </Typography>
     );

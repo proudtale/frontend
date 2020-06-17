@@ -42,6 +42,9 @@ const styles = (theme) => ({
     marginLeft: theme.spacing(2),
     backgroundColor: theme.palette.primary.main,
   },
+  nobook: {
+    margin: "5em 0 0 2em",
+  },
 });
 class publish extends Component {
   state = {
@@ -69,7 +72,7 @@ class publish extends Component {
       books.map((book) => {
         if (book.bookId !== bookIdParam && book.bookCompleted === false)
           return <BookCard key={book.bookId} book={book} />;
-        // else return <BookCard key={book.bookId} book={book} openDialog />;
+        else return null;
       })
     );
     // (!bookIdParam && bookCompleted == false) ? (
@@ -83,7 +86,7 @@ class publish extends Component {
       books.map((book) => {
         if (book.bookId !== bookIdParam && book.bookCompleted === true)
           return <BookCard key={book.bookId} book={book} />;
-        // else return <BookCard key={book.bookId} book={book} openDialog />;
+        else return null;
       })
     );
 
