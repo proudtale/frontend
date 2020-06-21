@@ -52,7 +52,7 @@ const styles = (theme) => ({
   },
   bookContent: {
     width: "20em",
-    margin: "1em 0 0 1em",
+    marginLeft: "1em",
   },
   bookContentText: {
     maxHeight: "21.5em",
@@ -72,7 +72,7 @@ const styles = (theme) => ({
   },
   bookContentAuthor: {
     display: "flex",
-    justifyContent: "flex-end",
+    justifyContent: "left",
     "& span": {
       padding: "0.4em 0 0 0.4em",
     },
@@ -89,7 +89,7 @@ const styles = (theme) => ({
     },
   },
   bookContentButton: {
-    marginTop: "0.5em",
+    marginTop: "1.1em",
   },
   bookContentComment: {
     marginTop: "0.3em",
@@ -105,10 +105,9 @@ const styles = (theme) => ({
     backgroundSize: "cover",
   },
   createdAt: {
-    marginLeft: "5em",
     color: "#0251fb",
     paddingTop: "0.15em",
-    fontSize: "0.7em",
+    fontSize: "0.9em",
   },
 });
 
@@ -168,8 +167,8 @@ class BookContentCardDetail extends Component {
               <Box className={classes.bookContentText}>
                 <Typography
                   gutterBottom
-                  variant="h6"
-                  component="h6"
+                  variant="h4"
+                  component="h4"
                   align="center"
                 >
                   {this.props.title}
@@ -186,23 +185,25 @@ class BookContentCardDetail extends Component {
                   </Typography>
                 </Box>
                 <Grid container className={classes.bookContentComment}>
-                  <span className={classes.iconParent}>
-                    <ReplyIcon className={classes.icon} color="primary" /> 3
-                  </span>
-                  <span className={classes.iconParent}>
-                    <InsertCommentIcon
-                      className={classes.icon}
-                      color="primary"
-                    />{" "}
-                    3
-                  </span>
-                  <span className={classes.iconParent}>
-                    <ImportContactsIcon
-                      className={classes.icon}
-                      color="primary"
-                    />{" "}
-                    3
-                  </span>
+                  <Box>
+                    <span className={classes.iconParent}>
+                      <ReplyIcon className={classes.icon} color="primary" /> 3
+                    </span>
+                    <span className={classes.iconParent}>
+                      <InsertCommentIcon
+                        className={classes.icon}
+                        color="primary"
+                      />{" "}
+                      3
+                    </span>
+                    <span className={classes.iconParent}>
+                      <ImportContactsIcon
+                        className={classes.icon}
+                        color="primary"
+                      />{" "}
+                      3
+                    </span>
+                  </Box>
                   <Typography component="span" className={classes.createdAt}>
                     Last updated: {this.props.createdAt}
                   </Typography>

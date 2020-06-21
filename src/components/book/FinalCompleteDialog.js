@@ -16,10 +16,10 @@ import CloseIcon from "@material-ui/icons/Close";
 import MyButton from "../../util/MyButton";
 //images
 import proudtaleCongratulation from "../../assets/images/proudtaleCongratulation.png";
-import proudtaleCheck from "../../assets/images/proudtaleCheck.png";
 const styles = (theme) => ({
   root: {
     padding: "1.2em",
+    background: "#0e1524",
   },
   closeButton: {
     position: "absolute",
@@ -38,9 +38,12 @@ const styles = (theme) => ({
   },
   authorCard: {
     margin: "1em 0 1.5em 0",
-    padding: "1em",
+    paddingBottom: "1em",
     display: "flex",
     justifyContent: "left",
+    background: "#0e1524",
+    color: "#ffff",
+    boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.9)",
     "& h6": {
       padding: "1em 0 0 1em",
     },
@@ -57,12 +60,14 @@ const styles = (theme) => ({
     padding: "1em",
     display: "flex",
     justifyContent: "left",
+    background: "#0e1524",
+    boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.9)",
     "& h6:nth-child(1)": {
-      color: "#f9a825",
+      color: "rgba(242, 133, 0)",
       fontSize: "1.3em",
     },
     "& h6:nth-child(2)": {
-      color: "black",
+      color: "#ffff",
       fontSize: "1.2em",
     },
     "& img": {
@@ -75,9 +80,11 @@ const styles = (theme) => ({
     padding: "1em",
     display: "flex",
     justifyContent: "left",
+    background: "#0e1524",
+    boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.9)",
     "& p": {
       fontSize: "1.2em",
-      color: "#f44336",
+      color: "rgba(204,51,0)",
     },
     "& img": {
       width: "4em",
@@ -92,7 +99,7 @@ const styles = (theme) => ({
     "& img": {
       width: "20em",
       height: "25em",
-      boxShadow: "2px 2px 2px 2px rgba(3, 0, 55, 0.47)",
+      boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.5)",
       borderRadius: "2px",
     },
   },
@@ -105,23 +112,23 @@ const styles = (theme) => ({
     "& div:nth-child(1)": {
       marginBottom: "1.2em",
       "& button": {
-        border: "solid #f9a825",
-        color: "#f9a825",
+        border: "solid rgba(242, 133, 0)",
+        color: "rgba(242, 133, 0)",
         fontSize: "1.1em",
         marginBottom: "3em",
         "&:hover": {
-          background: "#f9a825",
+          background: "rgba(242, 133, 0)",
           color: "#ffff",
         },
       },
     },
     "& div:nth-child(2)": {
       "& button": {
-        border: "solid #030037",
-        color: "#030037",
+        border: "solid rgba(128, 128, 128)",
+        color: "rgba(128, 128, 128)",
         fontSize: "1.1em",
         "&:hover": {
-          background: "#030037",
+          background: "rgba(128, 128, 128)",
           color: "#ffff",
         },
       },
@@ -154,22 +161,12 @@ class FinalCompleteDialog extends Component {
           </Box>
           <DialogContent>
             <Card className={classes.authorCard}>
-              <Box>
-                <img
-                  className={classes.authorCardProudtaleCheck}
-                  alt="proudtale check"
-                  src={proudtaleCheck}
-                />
-              </Box>
               <Box display="flex">
                 <Avatar className={classes.avatar} src={this.props.userImage} />
                 <Typography variant="h6">{this.props.title}</Typography>
               </Box>
             </Card>
             <Card className={classes.bookCard}>
-              <Box>
-                <img alt="proudtale check" src={proudtaleCheck} />
-              </Box>
               <Box>
                 <Typography variant="subtitle1">
                   You are permanently completing your book!
@@ -180,9 +177,6 @@ class FinalCompleteDialog extends Component {
               </Box>
             </Card>
             <Card className={classes.noticeCard}>
-              <Box>
-                <img alt="proudtale check" src={proudtaleCheck} />
-              </Box>
               <Box>
                 <Typography variant="body1">
                   Once you click "complete" you will lose the ability to edit

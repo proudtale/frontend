@@ -18,14 +18,18 @@ import { withRouter } from "react-router-dom";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import PropTypes from "prop-types";
-
 //Components
 import DeleteBook from "./DeleteBook";
 import FinalCompleteDialog from "./FinalCompleteDialog";
 // Util
 import MyButton from "../../util/MyButton";
 import YesNoDialog from "../../util/YesNoDialog";
-
+import ProudtaleDialog from "../../util/ProudtaleDialog";
+import {
+  formatStringThumbnail,
+  formatStringReplaceHtmltag,
+} from "../../util/helpers";
+import ProudtaleExpansionPanel from "../../util/ProudtaleExpansionPanel";
 // MUI Core
 import withStyles from "@material-ui/core/styles/withStyles";
 import Card from "@material-ui/core/Card";
@@ -37,15 +41,18 @@ import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
+// import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+// import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+// import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+
 // Icons
 import EditIcon from "@material-ui/icons/Edit";
-
+// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 // Redux
 import { connect } from "react-redux";
 // Image
-import { formatStringThumbnail } from "../../util/helpers";
 import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
-
+import Proudtalelogo from "../../assets/images/proudtalelogobgwhite.png";
 const styles = {
   root: {
     maxWidth: "15em",
@@ -125,7 +132,7 @@ const styles = {
         border: "solid #FFFFFF",
         color: "#FFFFFF",
         "&:hover": {
-          background: "rgb(255,255,255, 0.07)",
+          background: "rgba(17, 17, 17, 0.5)",
         },
       },
     },
@@ -134,17 +141,82 @@ const styles = {
         border: "solid #f9a825",
         color: "#f9a825",
         "&:hover": {
-          background: "rgb(255,255,255, 0.07)",
+          background: "rgba(17, 17, 17, 0.5)",
         },
       },
     },
   },
+  completeButton: {
+    background: "rgba(242, 133, 0)",
+    color: "#ffff",
+    marginRight: "1em",
+    "&:hover": {
+      background: "rgba(242, 133, 0)",
+    },
+  },
+  backButton: {
+    background: "rgba(128, 128, 128)",
+    color: "#ffff",
+    "&:hover": {
+      background: "rgba(128, 128, 128)",
+    },
+  },
+  exportButton: {
+    background: "rgba(242, 133, 0)",
+    color: "#ffff",
+    margin: "1.3em 0 1.3em 1em",
+    "&:hover": {
+      background: "rgba(242, 133, 0)",
+    },
+  },
+  completeDialogImage: {
+    marginLeft: "24px",
+    width: "calc(15% - 70px)",
+    borderRadius: "50%",
+  },
+  secondCompleteDialogImage: {
+    marginLeft: "24px",
+    width: "calc(15% - 24px)",
+    borderRadius: "50%",
+  },
+  bookCover: {
+    "& img ": {
+      width: "20em",
+      height: "25em",
+      margin: "1em",
+      boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.5)",
+    },
+  },
+  bookInfo: {
+    marginLeft: "0.4em",
+  },
+  desc: {
+    height: "12em",
+    wordWrap: "break-word",
+    overflowY: "auto",
+    marginBottom: "0.5em",
+  },
 };
 
+const dummyChapters = [
+  {
+    chapterTitle: "Proudtale.com",
+  },
+  {
+    chapterTitle: "proudtale member",
+  },
+  {
+    chapterTitle: "Enjoy proudtale",
+  },
+  {
+    chapterTitle: "Awesome proudtale and team",
+  },
+];
 class BookCard extends Component {
   state = {
     editDialogOpen: false,
-    completeDialogOpen: false,
+    completeDialog: false,
+    secondCompleteDialog: false,
     bookCardMediaMouseInside: false,
     finalCompleteDialog: false,
   };
@@ -156,10 +228,16 @@ class BookCard extends Component {
     this.setState({ editDialogOpen: false });
   };
   handleCompleteDialogOpen = () => {
-    this.setState({ completeDialogOpen: true });
+    this.setState({ completeDialog: true });
   };
   handleCompleteDialogClose = () => {
-    this.setState({ completeDialogOpen: false });
+    this.setState({ completeDialog: false });
+  };
+  handleSecondCompleteDialogOpen = () => {
+    this.setState({ secondCompleteDialog: true });
+  };
+  handleSecondCompleteDialogClose = () => {
+    this.setState({ secondCompleteDialog: false });
   };
   handleBookImageChange = (event) => {
     const image = event.target.files[0];
@@ -181,11 +259,11 @@ class BookCard extends Component {
   bookCardMediaMouseLeave = () => {
     this.setState({ bookCardMediaMouseInside: false });
   };
-  finalCompleteDialogOpen = () => {
+  handleFinalCompleteDialogOpen = () => {
     this.setState({ finalCompleteDialog: true });
-    this.handleCompleteDialogClose();
+    this.handleSecondCompleteDialogClose();
   };
-  finalCompleteDialogClose = (propsParameter) => {
+  handleFinalCompleteDialogClose = (propsParameter) => {
     this.setState({ finalCompleteDialog: propsParameter });
   };
   render() {
@@ -200,6 +278,7 @@ class BookCard extends Component {
         bookId,
         bookImageUrl,
         bookCompleted,
+        desc,
       },
       user: {
         authenticated,
@@ -221,24 +300,121 @@ class BookCard extends Component {
       >
         <p>
           Do you want to proceed with writing chapters of
-          <span className={classes.wirtechapter}> {title}</span> ?
+          <span className={classes.wirtechapter}>{title}</span> ?
         </p>
       </YesNoDialog>
     );
-    const completeDialog = (
-      <YesNoDialog
-        handleClose={this.handleCompleteDialogClose}
-        open={this.state.completeDialogOpen}
+    const secondCompleteDialog = (
+      <ProudtaleDialog
+        open={this.state.secondCompleteDialog}
         title={title}
-        dialogTitle={<div>Confirm completing with the current settings</div>}
-        onClick={this.finalCompleteDialogOpen}
+        onClick={this.handleSecondCompleteDialogClose}
+        dialogTitle={<div>Confirm completing book</div>}
+        dialogActions={
+          <Box>
+            <Button
+              className={classes.completeButton}
+              onClick={this.handleFinalCompleteDialogOpen}
+            >
+              Complete
+            </Button>
+            <Button
+              className={classes.backButton}
+              onClick={this.handleSecondCompleteDialogClose}
+            >
+              Back
+            </Button>
+          </Box>
+        }
+        maxWidth="sm"
+        dialogImage={
+          <img
+            className={classes.secondCompleteDialogImage}
+            alt="proudtale logo"
+            src={Proudtalelogo}
+          />
+        }
       >
         <p>
-          After completion you won't be able to edit this book. Would you like
-          to complete
+          Would you like to complete
           <span className={classes.complete}> {title}</span>?
         </p>
-      </YesNoDialog>
+      </ProudtaleDialog>
+    );
+    const completeDialog = (
+      <ProudtaleDialog
+        open={this.state.completeDialog}
+        title={title}
+        dialogTitle={<div>Complete Book</div>}
+        dialogActions={
+          <Box>
+            <Button
+              className={classes.completeButton}
+              onClick={this.handleSecondCompleteDialogOpen}
+            >
+              Complete
+            </Button>
+            <Button
+              className={classes.backButton}
+              onClick={this.handleCompleteDialogClose}
+            >
+              Back
+            </Button>
+          </Box>
+        }
+        maxWidth="md"
+        dialogImage={
+          <img
+            className={classes.completeDialogImage}
+            alt="proudtale logo"
+            src={Proudtalelogo}
+          />
+        }
+      >
+        <Box>
+          <Typography component="p">
+            Complete {title} with the current settings. Once you click “Publish”
+            below, you won’t be able to edit this book.
+          </Typography>
+          <Button className={classes.exportButton}>Export</Button>
+          <Box display="flex" justifyContent="space-between" margin="1em">
+            <Box className={classes.bookCover}>
+              <Typography variant="h6">Book cover</Typography>
+              <CardMedia
+                component="img"
+                alt={`${title}'s cover`}
+                image={bookImageUrl}
+              />
+            </Box>
+            <Box className={classes.bookInfo}>
+              <Typography variant="h6">Book Informatoin</Typography>
+              <Box margin="1em">
+                <Typography variant="body1">
+                  <strong>Book title :</strong> {title}
+                </Typography>
+                <ProudtaleExpansionPanel
+                  title="Chapter"
+                  details={dummyChapters}
+                />
+                <Typography variant="body1">
+                  <strong>Genre tags</strong>
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Synopsis</strong>
+                </Typography>
+                <Typography
+                  variant="body1"
+                  component="p"
+                  align="justify"
+                  className={classes.desc}
+                >
+                  {formatStringReplaceHtmltag(desc)}
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        </Box>
+      </ProudtaleDialog>
     );
     const bookCardMediaMouseEnter = (
       <Box className={classes.mouseEnterBox}>
@@ -316,9 +492,10 @@ class BookCard extends Component {
           </Card>
           {editDialog}
           {completeDialog}
+          {secondCompleteDialog}
           <FinalCompleteDialog
             open={this.state.finalCompleteDialog}
-            handleClose={this.finalCompleteDialogClose}
+            handleClose={this.handleFinalCompleteDialogClose}
             userImage={userImage}
             title={title}
             userHandle={userHandle}
