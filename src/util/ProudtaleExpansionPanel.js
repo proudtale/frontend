@@ -25,9 +25,22 @@ class ProudtaleExpansionPanel extends Component {
             <Box display="flex" flexDirection="column">
               {details.map((detail, index) => {
                 return (
-                  <Typography>
-                    {title} {index + 1}: {detail.chapterTitle}
-                  </Typography>
+                  <ExpansionPanel>
+                    <ExpansionPanelSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      className={classes.subheadingPanel}
+                    >
+                      <Typography variant="body1">
+                        <strong>
+                          {" "}
+                          {title} {index + 1}
+                        </strong>
+                      </Typography>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails>
+                      <Box width="25em">{detail.chapterTitle}</Box>
+                    </ExpansionPanelDetails>
+                  </ExpansionPanel>
                 );
               })}
             </Box>
