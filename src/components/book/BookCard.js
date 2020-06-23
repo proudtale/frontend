@@ -41,13 +41,9 @@ import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
 import Button from "@material-ui/core/Button";
-// import ExpansionPanel from "@material-ui/core/ExpansionPanel";
-// import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
-// import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
-
 // Icons
 import EditIcon from "@material-ui/icons/Edit";
-// import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 // Redux
 import { connect } from "react-redux";
 // Image
@@ -182,19 +178,37 @@ const styles = {
   bookCover: {
     "& img ": {
       width: "20em",
-      height: "26em",
+      height: "27em",
       margin: "1em",
       boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.5)",
     },
   },
   bookInfo: {
     marginLeft: "0.4em",
+    wordBreak: "break-word",
+    "& p:nth-child(1)": {
+      marginBottom: "0",
+    },
+    "& p:nth-child(2)": {
+      maxHeight: "2.5em",
+      overflowY: "auto",
+      margin: "0 0 0 0.2em",
+    },
   },
   desc: {
     height: "12em",
     wordWrap: "break-word",
     overflowY: "auto",
     marginBottom: "0.5em",
+  },
+  importContactIcon: {
+    color: "#fff",
+    marginRight: "0.5em",
+  },
+  completeMessage: {
+    wordBreak: "break-word",
+    maxHeight: "2em",
+    overflowY: "auto",
   },
 };
 
@@ -390,10 +404,15 @@ class BookCard extends Component {
               <Typography variant="h6">Book Information</Typography>
               <Box margin="1em">
                 <Typography variant="body1">
-                  <strong>Book title :</strong> {title}
+                  <p>Book title :</p>
+                  <p>{title}</p>
                 </Typography>
                 <Typography variant="body1">
-                  <strong>Number of chapters :</strong> {dummyChapters.length}
+                  <ImportContactsIcon
+                    className={classes.importContactIcon}
+                    color="white"
+                  />
+                  <strong>{dummyChapters.length}</strong>
                 </Typography>
                 <ProudtaleExpansionPanel
                   title="Chapter"
@@ -417,7 +436,7 @@ class BookCard extends Component {
             </Box>
           </Box>
           <Box textAlign="end">
-            <p>
+            <p className={classes.completeMessage}>
               Would you like to complete
               <span className={classes.complete}> {title}</span>?
             </p>
@@ -445,7 +464,6 @@ class BookCard extends Component {
           <Card className={classes.card}>
             <CardMedia
               image={bookImageUrl}
-              // title={title}
               className={classes.image}
               onMouseEnter={this.bookCardMediaMouseEnter}
               onMouseLeave={this.bookCardMediaMouseLeave}

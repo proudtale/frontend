@@ -63,7 +63,7 @@ const styles = (theme) => ({
     background: "#0e1524",
     boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.9)",
     "& h6:nth-child(1)": {
-      color: "rgba(242, 133, 0)",
+      color: "#ffff",
       fontSize: "1.3em",
     },
     "& h6:nth-child(2)": {
@@ -84,7 +84,7 @@ const styles = (theme) => ({
     boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.9)",
     "& p": {
       fontSize: "1.2em",
-      color: "rgba(204,51,0)",
+      color: "#ffff",
     },
     "& img": {
       width: "4em",
