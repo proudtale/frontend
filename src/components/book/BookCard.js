@@ -182,7 +182,7 @@ const styles = {
   bookCover: {
     "& img ": {
       width: "20em",
-      height: "25em",
+      height: "26em",
       margin: "1em",
       boxShadow: "1px 1px 1px 1px rgba(255,255,255, 0.5)",
     },
@@ -309,7 +309,7 @@ class BookCard extends Component {
         open={this.state.secondCompleteDialog}
         title={title}
         onClick={this.handleSecondCompleteDialogClose}
-        dialogTitle={<div>Confirm completing book</div>}
+        dialogTitle={<div>Confirmation</div>}
         dialogActions={
           <Box>
             <Button
@@ -373,8 +373,8 @@ class BookCard extends Component {
       >
         <Box>
           <Typography component="p">
-            Complete {title} with the current settings. Once you click “Publish”
-            below, you won’t be able to edit this book.
+            Complete {title} with the current settings. Once you click
+            “Complete” below, you won’t be able to edit this book.
           </Typography>
           <Button className={classes.exportButton}>Export</Button>
           <Box display="flex" justifyContent="space-between" margin="1em">
@@ -387,10 +387,13 @@ class BookCard extends Component {
               />
             </Box>
             <Box className={classes.bookInfo}>
-              <Typography variant="h6">Book Informatoin</Typography>
+              <Typography variant="h6">Book Information</Typography>
               <Box margin="1em">
                 <Typography variant="body1">
                   <strong>Book title :</strong> {title}
+                </Typography>
+                <Typography variant="body1">
+                  <strong>Number of chapters :</strong> {dummyChapters.length}
                 </Typography>
                 <ProudtaleExpansionPanel
                   title="Chapter"
@@ -412,6 +415,12 @@ class BookCard extends Component {
                 </Typography>
               </Box>
             </Box>
+          </Box>
+          <Box textAlign="end">
+            <p>
+              Would you like to complete
+              <span className={classes.complete}> {title}</span>?
+            </p>
           </Box>
         </Box>
       </ProudtaleDialog>

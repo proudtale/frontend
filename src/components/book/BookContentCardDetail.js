@@ -56,12 +56,12 @@ const styles = (theme) => ({
   },
   bookContentText: {
     maxHeight: "21.5em",
-    "& h6": {
-      fontSize: "0.9em",
+    "& h5": {
       wordWrap: "break-word",
-      marginBottom: "1.4em",
-      maxHeight: "2.5em",
-      // overflowY: "auto"
+      marginBottom: "0.5em",
+      maxHeight: "2em",
+      padding: "0.2em",
+      overflowY: "auto",
     },
     "& p": {
       height: "9.5em",
@@ -89,7 +89,7 @@ const styles = (theme) => ({
     },
   },
   bookContentButton: {
-    marginTop: "1.1em",
+    marginTop: "1.25em",
   },
   bookContentComment: {
     marginTop: "0.3em",
@@ -167,8 +167,8 @@ class BookContentCardDetail extends Component {
               <Box className={classes.bookContentText}>
                 <Typography
                   gutterBottom
-                  variant="h4"
-                  component="h4"
+                  variant="h5"
+                  component="h5"
                   align="center"
                 >
                   {this.props.title}
@@ -197,10 +197,13 @@ class BookContentCardDetail extends Component {
                       3
                     </span>
                     <span className={classes.iconParent}>
-                      <ImportContactsIcon
+                      {/* <ImportContactsIcon
                         className={classes.icon}
                         color="primary"
-                      />{" "}
+                      />{" "} */}
+                      <Typography variant="span" color="primary">
+                        <strong>Num of chapter</strong>{" "}
+                      </Typography>
                       3
                     </span>
                   </Box>
