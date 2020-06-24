@@ -197,13 +197,10 @@ class BookContentCardDetail extends Component {
                       3
                     </span>
                     <span className={classes.iconParent}>
-                      {/* <ImportContactsIcon
+                      <ImportContactsIcon
                         className={classes.icon}
                         color="primary"
-                      />{" "} */}
-                      <Typography variant="span" color="primary">
-                        <strong>Num of chapter</strong>{" "}
-                      </Typography>
+                      />{" "}
                       3
                     </span>
                   </Box>
