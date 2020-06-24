@@ -11,6 +11,8 @@ import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -79,6 +81,7 @@ class PostScream extends Component {
     value: "",
     bookImageUrl: "",
     errors: {},
+    imageUploadedSuccessfulDialogOpen: false,
   };
   componentWillReceiveProps(nextProps) {
     if (nextProps.UI.errors) {
@@ -118,6 +121,9 @@ class PostScream extends Component {
       bookImageUrl: this.state.bookImageUrl,
     });
   };
+  handleImageUploadedSuccessfulDialogClose = () => {
+    this.setState({ imageUploadedSuccessfulDialogOpen: false });
+  };
 
   postBookImageChange = (event) => {
     const image = event.target.files[0];
@@ -135,10 +141,35 @@ class PostScream extends Component {
     const storageBucket = "socialape-aa1d6.appspot.com";
     const initialBookImageUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/initialcoverimage%2F${imageFileName}?alt=media`;
     this.setState({ bookImageUrl: initialBookImageUrl });
+    this.setState({ imageUploadedSuccessfulDialogOpen: true });
   };
   render() {
     const { errors } = this.state;
     const { classes } = this.props;
+    const imageUploadedSuccessfulDialog = (
+      <Dialog
+        open={this.state.imageUploadedSuccessfulDialogOpen}
+        aria-labelledby="draggable-dialog-title"
+      >
+        <DialogTitle id="draggable-dialog-title">
+          <Typography variant="h6" align="center">
+            Success
+          </Typography>
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>Image uploaded successfully.</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            autoFocus
+            onClick={this.handleImageUploadedSuccessfulDialogClose}
+            color="primary"
+          >
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
+    );
     return (
       <div className={classes.postbook}>
         <Fragment>
@@ -169,12 +200,7 @@ class PostScream extends Component {
             </DialogTitle>
             <DialogContent dividers>
               <div className="image-wrapper">
-                <input
-                  type="file"
-                  id="imageInput"
-                  hidden="hidden"
-                  onChange={this.handleImageChange}
-                />
+                <input type="file" id="imageInput" hidden="hidden" />
               </div>
               <form onSubmit={this.handleSubmit}>
                 <TextField
@@ -217,6 +243,7 @@ class PostScream extends Component {
             </DialogContent>
           </Dialog>
         </Fragment>
+        {imageUploadedSuccessfulDialog}
       </div>
     );
   }

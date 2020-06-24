@@ -69,12 +69,9 @@ class publish extends Component {
       books.map((book) => {
         if (book.bookId !== bookIdParam && book.bookCompleted === false)
           return <BookCard key={book.bookId} book={book} />;
-        // else return <BookCard key={book.bookId} book={book} openDialog />;
+        else return null;
       })
     );
-    // (!bookIdParam && bookCompleted == false) ? (
-    //   books.map((book) => <BookCard key={book.bookId} book={book} />)
-    // )
     let completedBookMarkup = loading ? (
       <Skeleton image={NoBookImg} />
     ) : books === null ? (
@@ -83,7 +80,7 @@ class publish extends Component {
       books.map((book) => {
         if (book.bookId !== bookIdParam && book.bookCompleted === true)
           return <BookCard key={book.bookId} book={book} />;
-        // else return <BookCard key={book.bookId} book={book} openDialog />;
+        else return null;
       })
     );
 
