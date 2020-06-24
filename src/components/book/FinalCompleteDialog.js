@@ -163,7 +163,7 @@ class FinalCompleteDialog extends Component {
             <Card className={classes.authorCard}>
               <Box display="flex">
                 <Avatar className={classes.avatar} src={this.props.userImage} />
-                <Typography variant="h6">{this.props.title}</Typography>
+                <Typography variant="h6">{this.props.userHandle}</Typography>
               </Box>
             </Card>
             <Card className={classes.bookCard}>
@@ -179,9 +179,11 @@ class FinalCompleteDialog extends Component {
             <Card className={classes.noticeCard}>
               <Box>
                 <Typography variant="body1">
-                  Once you click "complete" you will lose the ability to edit
-                  this version, you can still come back later and make an
-                  updated version of the completed work later.
+                  Once {this.props.title} is completed from the “In Progress”
+                  row, you will lose the ability to edit this book permanently.
+                  You can still come back and create another version of{" "}
+                  {this.props.title}. Do you still want to complete{" "}
+                  {this.props.title}?
                 </Typography>
               </Box>
             </Card>
