@@ -161,6 +161,17 @@ export const deleteBook = (bookId) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+// complete Book
+export const completeBook = (bookId, handle) => (dispatch) => {
+  axios
+    .post(`/book/${bookId}/completeBook`)
+    .then(() => {
+      dispatch({ type: LOADING_DATA, payload: bookId });
+      dispatch(getBookData(handle));
+    })
+    .catch((err) => console.log(err));
+};
+
 export const getBookData = (userHandle) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 // Material UI
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -14,6 +15,9 @@ import Button from "@material-ui/core/Button";
 import CloseIcon from "@material-ui/icons/Close";
 // Util
 import MyButton from "../../util/MyButton";
+// Redux
+import { connect } from "react-redux";
+import { completeBook } from "../../redux/actions/bookActions";
 //images
 import proudtaleCongratulation from "../../assets/images/proudtaleCongratulation.png";
 const styles = (theme) => ({
@@ -139,6 +143,9 @@ class FinalCompleteDialog extends Component {
   handleClose = () => {
     this.props.handleClose(false);
   };
+  handleCompleteBook = () => {
+    this.props.completeBook(this.props.bookId, this.props.userHandle);
+  };
   render() {
     const { classes, open } = this.props;
     return (
@@ -197,7 +204,7 @@ class FinalCompleteDialog extends Component {
               </Box>
               <Box className={classes.completeButton}>
                 <Box>
-                  <Button onClick={this.handleComplete} fullWidth={true}>
+                  <Button onClick={this.handleCompleteBook} fullWidth={true}>
                     Complete
                   </Button>
                 </Box>
@@ -214,4 +221,9 @@ class FinalCompleteDialog extends Component {
     );
   }
 }
-export default withStyles(styles)(FinalCompleteDialog);
+FinalCompleteDialog.propTypes = {
+  completeBook: PropTypes.func.isRequired,
+};
+export default connect(null, { completeBook })(
+  withStyles(styles)(FinalCompleteDialog)
+);

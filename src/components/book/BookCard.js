@@ -46,8 +46,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 // Redux
 import { connect } from "react-redux";
-// Image
 import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
+// Image
 import Proudtalelogo from "../../assets/images/proudtalelogobgwhite.png";
 const styles = {
   root: {
@@ -210,6 +210,11 @@ const styles = {
     maxHeight: "2em",
     overflowY: "auto",
   },
+  commpleteMessage: {
+    wordBreak: "break-word",
+    overflowY: "auto",
+    maxHeight: "3.5em",
+  },
 };
 
 const dummyChapters = [
@@ -349,7 +354,7 @@ class BookCard extends Component {
           />
         }
       >
-        <p>
+        <p className={classes.completeMessage}>
           Would you like to complete
           <span className={classes.complete}> {title}</span>?
         </p>
@@ -386,7 +391,7 @@ class BookCard extends Component {
         }
       >
         <Box>
-          <Typography component="p">
+          <Typography component="p" className={classes.commpleteMessage}>
             Complete {title} with the current settings. Once you click
             “Complete” below, you won’t be able to edit this book.
           </Typography>
@@ -527,6 +532,7 @@ class BookCard extends Component {
             title={title}
             userHandle={userHandle}
             bookImage={bookImageUrl}
+            bookId={bookId}
           />
         </Fragment>
       </Typography>
