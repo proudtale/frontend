@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import dayjs from "dayjs";
 // MUI Stuff
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -120,6 +120,7 @@ class BookContentCardDetail extends Component {
   };
   handleClose = () => {
     this.setState({ open: false });
+    this.props.handleClose(false);
   };
   render() {
     const { classes } = this.props;
@@ -134,7 +135,7 @@ class BookContentCardDetail extends Component {
         />
         <Dialog
           className={classes.dialog}
-          open={this.state.open}
+          open={this.state.open || this.props.handleOpen}
           onClose={this.handleClose}
           // fullWidth
           maxWidth="md"
@@ -205,7 +206,8 @@ class BookContentCardDetail extends Component {
                     </span>
                   </Box>
                   <Typography component="span" className={classes.createdAt}>
-                    Last updated: {this.props.createdAt}
+                    Last updated:
+                    {dayjs(this.props.createdAt).format("h:mm a, MMMM DD YYYY")}
                   </Typography>
                 </Grid>
                 <br />
