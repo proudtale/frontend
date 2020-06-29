@@ -42,6 +42,9 @@ const styles = {
     marginTop: "0.5em",
     wordWrap: "break-word",
     fontSize: "1rem",
+    "&:hover": {
+      cursor: "pointer",
+    },
   },
   desc: {
     marginTop: "1em",
@@ -52,6 +55,15 @@ const styles = {
 };
 
 class BookContentCard extends Component {
+  state = {
+    open: false,
+  };
+  handleBookContentCardDetailOpen = () => {
+    this.setState({ open: true });
+  };
+  handleBookContentCardDetailClose = (propsParameter) => {
+    this.setState({ open: propsParameter });
+  };
   render() {
     const { bookImage, author, title, desc, userImage, createdAt } = this.props;
     const { classes } = this.props;
@@ -66,6 +78,8 @@ class BookContentCard extends Component {
               desc={formatStringReplaceHtmltag(desc)}
               userImage={userImage}
               createdAt={createdAt}
+              handleOpen={this.state.open}
+              handleClose={this.handleBookContentCardDetailClose}
             />
           </CardActionArea>
           <CardContent className={classes.content}>
@@ -78,6 +92,7 @@ class BookContentCard extends Component {
               variant="h6"
               component="h6"
               align="center"
+              onClick={this.handleBookContentCardDetailOpen}
             >
               {formatStringThumbnail(title)}
             </Typography>

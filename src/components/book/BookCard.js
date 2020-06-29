@@ -93,6 +93,7 @@ const styles = {
     color: "#00d9fd",
     textAlign: "left",
     fontWeight: "bold",
+    fontSize: "0.85em",
   },
   editbtn: {
     display: "inline",
@@ -491,7 +492,7 @@ class BookCard extends Component {
                   variant="body2"
                   color="textSecondary"
                 >
-                  {dayjs(createdAt).fromNow()}
+                  Updated: {dayjs(createdAt).format("h:mm a, MMMM DD YYYY")}
                 </Typography>
                 <Tooltip
                   title={title}
