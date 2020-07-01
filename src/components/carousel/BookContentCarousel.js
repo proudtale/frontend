@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Carousel, { Dots } from "@brainhubeu/react-carousel";
+import Carousel from "@brainhubeu/react-carousel";
 import BookContentCard from "../book/BookContentCard";
 import "@brainhubeu/react-carousel/lib/style.css";
 
@@ -30,7 +30,7 @@ class BookConentCarousel extends Component {
             return <BookContentCard key={book.title + index} {...book} />;
           })}
         </Carousel>
-        <Dots value={this.state.value} onChange={this.onChange} number={6} />
+        {/* <Dots value={this.state.value} onChange={this.onChange} number={6} /> */}
       </Fragment>
     );
   }
