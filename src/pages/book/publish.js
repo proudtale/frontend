@@ -1,6 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 // Components
+import Carousel from "@brainhubeu/react-carousel";
+import "@brainhubeu/react-carousel/lib/style.css";
 import BookCard from "../../components/book/BookCard";
 import PostBook from "../../components/book/PostBook";
 // Util
@@ -9,7 +11,7 @@ import theme from "../../util/theme";
 // MUI Core
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
-
+import Box from "@material-ui/core/Box";
 // Redux
 import { connect } from "react-redux";
 import { getBookData } from "../../redux/actions/bookActions";
@@ -18,9 +20,6 @@ import { getUserData } from "../../redux/actions/userActions";
 import NoBookImg from "../../assets/images/no-book-img.png";
 const styles = (theme) => ({
   ...theme.spread,
-  inProgress: {
-    marginBottom: "5em",
-  },
   inProgressTitle: {
     color: "#1c2a48",
     fontWeight: "bolder",
@@ -30,12 +29,6 @@ const styles = (theme) => ({
     color: "#f9a825",
     fontWeight: "bolder",
     fontFamily: "Times New Roman",
-  },
-  bookCardContainer: {
-    display: "flex",
-  },
-  publishBody: {
-    display: "flex",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -66,43 +59,55 @@ class publish extends Component {
     ) : books === null ? (
       <p>No books from this user</p>
     ) : (
-      books.map((book) => {
-        if (book.bookId !== bookIdParam && book.bookCompleted === false)
-          return <BookCard key={book.bookId} book={book} />;
-        else return null;
-      })
+      <Fragment>
+        <Carousel slidesPerPage={5} arrows>
+          {books.map((book) => {
+            if (book.bookId !== bookIdParam && book.bookCompleted === false)
+              return <BookCard key={book.bookId} book={book} />;
+            else return null;
+          })}
+        </Carousel>
+      </Fragment>
     );
     let completedBookMarkup = loading ? (
       <Skeleton image={NoBookImg} />
     ) : books === null ? (
       <p>No books from this user</p>
     ) : (
-      books.map((book) => {
-        if (book.bookId !== bookIdParam && book.bookCompleted === true)
-          return <BookCard key={book.bookId} book={book} />;
-        else return null;
-      })
+      <Fragment>
+        <Carousel slidesPerPage={5} arrows>
+          {books.map((book) => {
+            if (book.bookId !== bookIdParam && book.bookCompleted === true)
+              return <BookCard key={book.bookId} book={book} />;
+            else return null;
+          })}
+        </Carousel>
+      </Fragment>
     );
 
     return (
       <Grid container direction="column" style={theme.spread.adjustTop}>
-        <Grid className={classes.inProgress}>
-          <h2 className={classes.inProgressTitle}>In Progress</h2>
-          <Grid className={classes.publishBody}>
-            <PostBook />
-            <div className={classes.bookCardContainer}>
-              {inProgressBooksMarkup}
-            </div>
+        <Box marginTop="2em">
+          <Grid className={classes.inProgress}>
+            <Box display="flex" marginBottom="8em">
+              <Grid>
+                <h2 className={classes.inProgressTitle}>In Progress</h2>
+                <PostBook />
+              </Grid>
+              <Grid>
+                <Box width="120em">{inProgressBooksMarkup}</Box>
+              </Grid>
+            </Box>
           </Grid>
-        </Grid>
-        <Grid>
-          <h2 className={classes.completedTitle}>Completed</h2>
-          <Grid className={classes.publishBody}>
-            <div className={classes.bookCardContainer}>
-              {completedBookMarkup}
-            </div>
+          <Grid>
+            <h2 className={classes.completedTitle}>Completed</h2>
+            <Grid>
+              <Grid>
+                <Box width="120em">{completedBookMarkup}</Box>
+              </Grid>
+            </Grid>
           </Grid>
-        </Grid>
+        </Box>
       </Grid>
     );
   }
