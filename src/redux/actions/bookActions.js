@@ -171,7 +171,7 @@ export const completeBook = (bookId, handle) => (dispatch) => {
     })
     .catch((err) => console.log(err));
 };
-
+// Get all books of the author
 export const getBookData = (userHandle) => (dispatch) => {
   dispatch({ type: LOADING_DATA });
   axios

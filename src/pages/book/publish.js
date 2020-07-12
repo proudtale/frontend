@@ -14,7 +14,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Box from "@material-ui/core/Box";
 // Redux
 import { connect } from "react-redux";
-import { getBookData } from "../../redux/actions/bookActions";
+import { getBookData, clearErrors } from "../../redux/actions/bookActions";
 import { getUserData } from "../../redux/actions/userActions";
 // Image
 import NoBookImg from "../../assets/images/no-book-img.png";
@@ -37,19 +37,32 @@ const styles = (theme) => ({
   },
 });
 class publish extends Component {
-  state = {
-    bookIdParam: null,
-  };
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bookIdParam: null,
+    };
     const handle = this.props.match.params.handle;
     const bookId = this.props.match.params.bookId;
-
     if (bookId) {
       this.setState({ bookIdParam: bookId });
     }
     this.props.getUserData();
     this.props.getBookData(handle);
   }
+  // state = {
+  //   bookIdParam: null,
+  // };
+  // componentDidMount() {
+  //   const handle = this.props.match.params.handle;
+  //   const bookId = this.props.match.params.bookId;
+
+  //   if (bookId) {
+  //     this.setState({ bookIdParam: bookId });
+  //   }
+  //   this.props.getUserData();
+  //   this.props.getBookData(handle);
+  // }
   render() {
     const { books, loading } = this.props.data;
     const { classes } = this.props;
@@ -121,10 +134,12 @@ publish.propTypes = {
 
 // redeucers from store.js
 const mapStateToProps = (state) => ({
-  data: state.bookData,
+  data: state.book,
   user: state.user,
 });
 
-export default connect(mapStateToProps, { getBookData, getUserData })(
-  withStyles(styles)(publish)
-);
+export default connect(mapStateToProps, {
+  getBookData,
+  getUserData,
+  clearErrors,
+})(withStyles(styles)(publish));

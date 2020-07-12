@@ -46,7 +46,8 @@ import EditIcon from "@material-ui/icons/Edit";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 // Redux
 import { connect } from "react-redux";
-import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
+// import { uploadBookImage, getBook } from "../../redux/actions/bookActions";
+import { uploadBookImage } from "../../redux/actions/bookActions";
 // Image
 import Proudtalelogo from "../../assets/images/proudtalelogobgwhite.png";
 const styles = {
@@ -270,8 +271,9 @@ class BookCard extends Component {
     );
   };
   handleAgree = (e) => {
-    this.props.getBook(this.props.book.bookId);
-    this.props.history.push(`/book/${this.props.book.bookId}/chapter`);
+    // this.props.getBook(this.props.book.bookId);
+    this.props.history.push(`/book/${this.props.book.bookId}/chapters`);
+    console.log(this.props);
   };
   bookCardMediaMouseEnter = () => {
     this.setState({ bookCardMediaMouseInside: true });
@@ -540,7 +542,8 @@ class BookCard extends Component {
     );
   }
 }
-const mapActionsToProps = { uploadBookImage, getBook };
+// const mapActionsToProps = { uploadBookImage, getBook }; code before July 12 on 2020. To check if getbook is working deleted getbook below.
+const mapActionsToProps = { uploadBookImage };
 
 BookCard.propTypes = {
   uploadBookImage: PropTypes.func.isRequired,
