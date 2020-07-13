@@ -1,17 +1,32 @@
+/**
+ * Copyright (c) 2020 proudtale
+ * All rights reserved.
+ *
+ * Filename: book/TextEditor.js
+ *
+ * Key Options:
+ * -  Post new book for
+ *    [const book = this.props.book
+      book.desc = this.state.editorHtml
+      this.props.submitEdit(book)] in Quill.js Text Editor
+ *
+ * Revision History:
+ * - 05 Feb 2020, Martin <m.hwang@proudtale.com>: Created
+ */
+
+// React
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+// MUI Core
 import withStyles from "@material-ui/core/styles/withStyles";
-
-//redux
-import { connect } from "react-redux";
-import { getBooks, submitEdit } from "../../redux/actions/bookActions";
-
 import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-
-//quilljs
+// Quilljs
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+// Redux
+import { connect } from "react-redux";
+import { submitEdit } from "../../redux/actions/bookActions";
 
 const styles = {
   submitButton: {
@@ -77,7 +92,7 @@ class TextEditor extends Component {
           onClick={this.handleClick}
         >
           Save
-          {loading && (
+          {!loading && (
             <CircularProgress size={30} className={classes.progressSpinner} />
           )}
         </Button>
@@ -143,6 +158,6 @@ TextEditor.propTypes = {
   placeholder: PropTypes.string,
 };
 
-export default connect(mapStateToProps, { getBooks, submitEdit })(
+export default connect(mapStateToProps, { submitEdit })(
   withStyles(styles)(TextEditor)
 );

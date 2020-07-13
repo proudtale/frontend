@@ -77,12 +77,12 @@ class App extends Component {
                 <Route exact path="/books/:bookId" component={info} />
                 <AuthRoute
                   exact
-                  path="/book/:bookId/chapter"
+                  path="/book/:bookId/chapters"
                   component={chapter}
                 />
                 <AuthRoute
                   exact
-                  path="/book/:bookId/chapter/:chapterId"
+                  path="/book/:bookId/chapters/:chapterId"
                   component={chapter}
                 />
                 <Route

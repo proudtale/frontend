@@ -14,9 +14,9 @@ const middleware = [thunk];
 const reducers = combineReducers({
   user: userReducer,
   data: dataReducer,
-  bookData: bookReducer,
+  book: bookReducer,
   UI: uiReducer,
-  chapterData: chapterReducer,
+  chapter: chapterReducer,
 });
 
 const composeEnhancers =

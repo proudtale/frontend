@@ -3,3 +3,4 @@ new-repo
 node_modules
 build
 components/slider
+pages/chapter/chapter1.js

@@ -1,3 +1,15 @@
+/**
+ * Copyright (c) 2020 proudtale
+ * All rights reserved.
+ *
+ * Filename: ChapterChapter.js
+ *
+ * Key Options:
+ * -
+ *
+ * Revision History:
+ * - 02 Feb 2020, Martin Hwang : Created
+ */
 import {
   SET_SCREAMS,
   LOADING_DATA,

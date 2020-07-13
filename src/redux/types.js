@@ -34,6 +34,7 @@ export const SUBMIT_COMMENT_BOOK = "SUBMIT_COMMENT_BOOK";
 export const SEARCH_BOOKS = "SEARCH_BOOK";
 //Chapter reducer for chapters
 export const SET_BOOK_CHAPTERS = "SET_BOOK_CHAPTERS";
+export const SET_BOOK_CHAPTER = "SET_BOOK_CHAPTER";
 export const ADD_CHAPTER = "ADD_CHAPTER";
 export const EDIT_CHAPTER_TITLE = "EDIT_CHAPTER_TITLE";
 export const EDIT_CHAPTER = "EDIT_CHAPTER";

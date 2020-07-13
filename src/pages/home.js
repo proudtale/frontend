@@ -6,7 +6,7 @@ import theme from "../util/theme";
 // MUI
 // import Grid from "@material-ui/core/Grid";
 // Redux stuff
-import { getBooks } from "../redux/actions/bookActions";
+import { getBooks, clearErrors } from "../redux/actions/bookActions";
 // import { formatStringThumbnail } from "../util/helpers";
 import { connect } from "react-redux";
 
@@ -14,15 +14,23 @@ const styles = (theme) => ({
   ...theme.spread,
 });
 class home extends Component {
-  state = {
-    popularBook: [],
-  };
-  componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      popularBook: [],
+    };
     this.props.getBooks();
+    this.props.clearErrors();
   }
+  // state = {
+  //   popularBook: [],
+  // };
+  // componentDidMount() {
+  //   this.props.getBooks();
+  // }
   render() {
     const {
-      bookData: { loading, books },
+      book: { loading, books },
     } = this.props;
     const popularBook = books.map((book, index) => ({
       title: book.title,
@@ -56,7 +64,9 @@ class home extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  bookData: state.bookData,
+  book: state.book,
   UI: state.UI,
 });
-export default connect(mapStateToProps, { getBooks })(withStyles(styles)(home));
+export default connect(mapStateToProps, { getBooks, clearErrors })(
+  withStyles(styles)(home)
+);

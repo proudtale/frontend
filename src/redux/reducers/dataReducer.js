@@ -1,3 +1,15 @@
+/**
+ * Copyright (c) 2020 proudtale
+ * All rights reserved.
+ *
+ * Filename: dataReducer.js
+ *
+ * Key Options:
+ * - edit the value for [this.props.chapter.body]
+ *
+ * Revision History:
+ * - 10 Feb 2020, Martin Hwang <m.hwang@proudtale.com> : Created
+ */
 import {
   SET_SCREAMS,
   SEARCH_SCREAMS,
