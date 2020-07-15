@@ -12,6 +12,7 @@
  * - 09 July 2020, Martin Hwang <m.hwang@proudtale.com> : Modified and fixed
  */
 import React, { Component, Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 // CLSX
 import clsx from "clsx";
@@ -118,8 +119,9 @@ class chapter extends Component {
       chapterInChapterEditor: {
         chapterId: null,
         title: null,
-        body: "<h3>Please select chapter</h3>",
+        body: "<h1>Please select chapter</h1>",
         createdAt: null,
+        triggerFunc: null,
       },
       selectedChapterId: null,
     };
@@ -131,7 +133,7 @@ class chapter extends Component {
     );
   }
   componentDidMount() {
-    this.handleAssignChapterToPropsInChapterEditor();
+    // this.handleAssignChapterToPropsInChapterEditor();
   }
   handleMenuDrawer = () => {
     this.setState({ open: !this.state.open });
@@ -146,6 +148,7 @@ class chapter extends Component {
       }
       i++;
     }
+    this.setState({ triggerFunc: () => {} });
   }
   render() {
     const { chapters } = this.props.chapter;
@@ -170,6 +173,7 @@ class chapter extends Component {
             chapter={this.state.chapterInChapterEditor}
             chapterId={this.state.selectedChapterId}
             className={classes.chapterEditor}
+            triggerChildFunc={this.state.triggerFunc}
           />
         </Grid>
       </Fragment>
@@ -270,4 +274,4 @@ export default connect(mapStateToProps, {
   getChapters,
   editChapter,
   clearErrors,
-})(withStyles(sytles)(chapter));
+})(withStyles(sytles)(withRouter(chapter)));

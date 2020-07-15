@@ -170,10 +170,10 @@ class CreateChapter extends Component {
     );
     return (
       <Fragment>
+        {createChapterDialog}
         <Button className={classes.button} onClick={this.handleOpen} fullWidth>
           +
         </Button>
-        {createChapterDialog}
       </Fragment>
     );
   }

@@ -21,6 +21,7 @@ import {
   SET_BOOK_CHAPTER,
   SUBMIT_EDIT_CHAPTER,
   EDIT_CHAPTER,
+  // STOP_LOADING_UI,
   // ADD_CHAPTER,
   // DELETE_CHAPTER,
   // EDIT_CHAPTER_TITLE,
@@ -77,6 +78,7 @@ export const postChapter = (newChapter, bookId) => (dispatch) => {
         type: POST_CHAPTER,
         payload: res.data,
       });
+      dispatch(getChapters(bookId)); // for element in chapter array goes back to end of array.
       dispatch(clearErrors());
     })
     .catch((err) => {
