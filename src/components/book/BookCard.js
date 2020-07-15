@@ -273,7 +273,6 @@ class BookCard extends Component {
   handleAgree = (e) => {
     // this.props.getBook(this.props.book.bookId);
     this.props.history.push(`/book/${this.props.book.bookId}/chapters`);
-    console.log(this.props);
   };
   bookCardMediaMouseEnter = () => {
     this.setState({ bookCardMediaMouseInside: true });
@@ -307,7 +306,6 @@ class BookCard extends Component {
         credentials: { handle },
       },
     } = this.props;
-
     const deleteButton =
       authenticated && userHandle === handle ? (
         <DeleteBook bookId={bookId} title={title} />
